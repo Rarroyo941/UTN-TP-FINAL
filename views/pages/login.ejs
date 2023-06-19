@@ -1,0 +1,21 @@
+<%- include('../partials/header.ejs') %>
+<section>
+    <h1 class="login-title">MI CUENTA</h1>
+    <div class="login-container">
+        <form class="login-form" action="/login" method="post">
+            <h2>INICIAR SESIÓN</h2>
+            <label>E-mail</label>
+            <input type="email" name="email" placeholder="Ingrese su e-mail" required>
+            <label>Contraseña</label>
+            <input type="password" name="password" placeholder="Ingrese su contraseña" required>
+            <button type="submit">Ingresar</button>
+            <a href="/olvide">Olvidé mi contraseña</a>
+        </form>
+        <div class="registro-container">
+            <h2>REGISTRO</h2>
+            <p>Registrarse en este sitio le permite acceder al estado y al historial de su pedido. Simplemente complete los campos del formulario y le crearemos una nueva cuenta.</p>
+            <button>Registrarse</button>
+        </div>
+    </div>
+</section>
+<%- include('../partials/footer.ejs') %>

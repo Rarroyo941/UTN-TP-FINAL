@@ -1,0 +1,21 @@
+<%- include('../partials/header.ejs') %>
+<section class="delivery">
+    <h1 class="login-title">ENVÍOS</h1>
+    <p>Consultá el costo de envío ingresando tu dirección en el buscador:</p>
+    <form class="d-flex search-form-delivery" role="search">
+        <input class="form-control search-input me-2" type="search" placeholder="Ingrese su domicilio" aria-label="Search">
+        <button class="btn btn-outline-success search-btn" type="submit"><i class="bi bi-search"></i></button>
+    </form>
+    <div id="map"></div>
+</section>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBQGeGj6u39zDax5bLW3X4pkZXls41LjuM&callback=initMap"></script>
+<script>
+    function initMap() {
+      var mapOptions = {
+        center: { lat: 40.7128, lng: -74.0060 },
+        zoom: 12 
+      };
+      var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+    }
+  </script>
+<%- include('../partials/footer.ejs') %>
