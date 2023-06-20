@@ -1,0 +1,14 @@
+<%- include('../partials/header.ejs') %>
+<h1 class="login-title">REGISTRO</h1>
+    <div class="registro-container">
+        <form action="/registro" method="post">
+            <label>Ingrese su nombre</label>
+            <input type="text" name="nombre" placeholder="Nombre" required>
+            <label>Ingrese su email</label>
+            <input type="email" name="email" placeholder="E-mail" required>
+            <label>Ingrese su contraseña</label>
+            <input type="password" name="password" placeholder="Contraseña" required>
+            <button type="submit">Registrarse</button>
+        </form>
+    </div>
+<%- include('../partials/footer.ejs') %>

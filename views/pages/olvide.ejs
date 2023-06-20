@@ -1,9 +1,12 @@
 <%- include('../partials/header.ejs') %>
-<section>
+<section >
     <h1 class="login-title">RECUPERAR CONTRASEÑA</h1>
-    <form>
-        <input>
-        <button>Enviar código</button>
-    </form>
+    <div class="olvide-contrasenia">
+        <form action="/olvide" method="post">
+            <input type="email" name="email" placeholder="Ingrese su email" required>
+            <button type="submit">Enviar código</button>
+        </form>
+        <a href="/login">Regresar al Login</a>
+    </div>
 </section>
 <%- include('../partials/footer.ejs') %>

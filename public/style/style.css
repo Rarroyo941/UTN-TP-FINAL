@@ -8,9 +8,11 @@
 body{
     background-color: var(--color-fondo);
     margin: 0;
-    font-family: 'Open Sans', sans-serif;
+    padding: 0;
 }
-
+* {
+    font-family: 'Monserrat', sans-serif;
+}
 
 /* ACÁ EMPIEZA EL NAVBAR */
 .navbar{
@@ -19,12 +21,10 @@ body{
     align-items: center;
     height: 80px;
     padding: 0 5%;
-    margin-bottom: 0;
 }
 .logo {
     color: var(--naranja-);
     text-decoration: none;
-    font-family: 'Open Sans' !important;
 }
 .logo > h1 {
     font-size: 2rem;
@@ -906,5 +906,72 @@ footer > h5 {
 }
 .mediosPago-container > .icons-div > i {
     font-size: 5rem;
-    
+}
+
+
+
+/* PESTAÑA OLVIDE MI CONTRASEÑA */
+.olvide-contrasenia, .olvide-contrasenia > form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0.8rem;
+}
+.olvide-contrasenia > form > input,.olvide-contrasenia > form > button {
+    margin: 0.5rem;
+}
+.olvide-contrasenia > form > button {
+    color: var(--color-fondo);
+        font-size: 1rem;
+        font-weight: 500;
+        background-color: var(--naranja-);
+        border-radius: 45px;
+        padding: 0.5rem 1rem;
+        border: none;
+        cursor: pointer;
+        border:3px solid transparent;
+}
+.olvide-contrasenia > form > button:hover{
+    color: black;
+    background-color: var(--naranja-claro);
+    border-color:  var(--naranja-);
+}
+
+
+
+/* PAGINA DE REGISTRO */
+.registro-container {
+    width: 100%;
+}
+.registro-container > form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem;
+}
+.registro-container > form > label {
+    font-weight: bold;
+    margin: 0.5rem;
+}
+.registro-container > form > input {
+    margin: 0.5rem;
+}
+
+.registro-container > form > button {
+    color: var(--color-fondo);
+        font-size: 1rem;
+        font-weight: 500;
+        background-color: var(--naranja-);
+        border-radius: 45px;
+        padding: 0.5rem 1rem;
+        border: none;
+        cursor: pointer;
+        border:3px solid transparent;
+}
+.registro-container > form > button:hover{
+    color: black;
+    background-color: var(--naranja-claro);
+    border-color:  var(--naranja-);
 }

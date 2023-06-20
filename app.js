@@ -32,8 +32,14 @@ app.get('/', (req,res)=>{
 app.get('/login', (req,res)=>{
     res.render('pages/login')
 })
+app.get('/olvide', (req,res)=>{
+    res.render('pages/olvide')
+})
+app.get('/registro', (req,res)=>{
+    res.render('pages/registro')
+})
 app.get('/productos', (req,res)=>{
-    /*const datos = Productos.find()*/
+    /*const datos = Product.find()*/
     res.render('pages/productos', { datos: datos })
 })
 app.get('/contacto', (req,res)=>{
@@ -48,9 +54,7 @@ app.get('/envios', (req,res)=>{
 app.get('/pagos', (req,res)=>{
     res.render('pages/mediosPago')
 })
-app.get('/olvide', (req,res)=>{
-    res.render('pages/olvide')
-})
+
 app.listen(3030,(req,res)=>{
     console.log('el servidor se esta ejecutando')
 })
