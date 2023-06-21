@@ -178,26 +178,30 @@ body{
     width: 95%;
     font-size: 1rem;
     text-align: justify;
+
 }
 .botones{
     display: flex;
+    height: 3rem;
     width: 65%;
-    height: 16%;
-    margin-top: 10px;
     align-items: center;
-    gap: 10px;
+    justify-content: center;
+    
 }
 
 .btn-comprar{
-    color: var(--color-fondo);
-    font-size: 1.6rem;
-    font-weight: 500;
-    background-color: var(--naranja-);
-    width: 50%;
-    height: 100%;
+    padding: 1rem 3rem;
     border-radius: 45px;
+    margin: auto;
     border: none;
     cursor: pointer;
+    color: var(--color-fondo);
+    font-size: 1.5rem;
+    font-weight: 500;
+    background-color: var(--naranja-);
+    text-decoration: none;
+    text-align: center;
+    border:3px solid transparent;
 }
 
 .btn-comprar:hover{
@@ -211,11 +215,14 @@ body{
     font-size: 1.6rem;
     font-weight: 500;
     background-color: var(--color-fondo);
-    width: 50%;
-    height: 100%;
+    padding: 1rem 3rem;
     border-radius: 45px;
     border: none;
     cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    margin: auto;
+    border:3px solid transparent;
 }
 
 .btn-leer-mas:hover{
@@ -650,13 +657,16 @@ body{
     font-weight: bold;
 }
 /* FOOTER*/
+footer {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
 .footer-section {
     background-color: #141414;
     display: flex;
     justify-content: space-between;
     padding: 3rem 5% 2rem;
     margin: 0;
-    box-shadow: 0 -3px 3px rgba(207,208,207,255);
 }
 .footer-section > div > h4 {
     color: #FFFFFF;
@@ -761,7 +771,7 @@ footer > h5 {
     background-color: var(--naranja-claro);
     border: 2px solid black;
 }
-.registro-container {
+.login-container > .registro-container {
     width: 50%;
     display: flex;
     flex-direction: column;
@@ -769,18 +779,31 @@ footer > h5 {
     align-items: center;
     gap: 15px;
 }
-.registro-container > p {
+.login-container > .registro-container > p {
     margin: 0 10%;
     color: grey;
 }
-.registro-container > button {
-    border-radius: 20px;
-    padding: 8px 14px;
+.registro-btn {
+    color: var(--color-fondo);
+    font-size: 1rem;
+    font-weight: 500;
     background-color: var(--naranja-);
-    color: #F8F8F8;
-    font-weight: bold;
-    border: 2px solid transparent;
+    border-radius: 45px;
+    padding: 0.5rem 1rem;
+    border: none;
+    cursor: pointer;
+    border:3px solid transparent;
 }
+.registro-btn:hover{
+    color: black;
+    background-color: var(--naranja-claro);
+    border-color:  var(--naranja-);
+}
+
+
+
+
+
 /* sidebar */
 .sidebar-container {
     max-width: 20%;
@@ -874,6 +897,7 @@ footer > h5 {
     background-color: white;
     width: 30%;
     margin: 1rem auto;
+    border: 1px solid transparent;
 }
 .search-form-delivery:hover {
     border: 1px solid var(--naranja-);
@@ -958,20 +982,82 @@ footer > h5 {
 .registro-container > form > input {
     margin: 0.5rem;
 }
-
 .registro-container > form > button {
     color: var(--color-fondo);
-        font-size: 1rem;
-        font-weight: 500;
-        background-color: var(--naranja-);
-        border-radius: 45px;
-        padding: 0.5rem 1rem;
-        border: none;
-        cursor: pointer;
-        border:3px solid transparent;
+    font-size: 1rem;
+    font-weight: 500;
+    background-color: var(--naranja-);
+    border-radius: 45px;
+    padding: 0.5rem 1rem;
+    border: none;
+    cursor: pointer;
+    border:3px solid transparent;
 }
 .registro-container > form > button:hover{
     color: black;
     background-color: var(--naranja-claro);
     border-color:  var(--naranja-);
 }
+
+
+
+
+
+/* PAGINA DE CONTACTO */
+.contenedor-contacto {
+    display: flex;
+    margin: 1rem 5%;
+    justify-content: space-around;
+    align-items: center;
+    height: 20rem;
+}
+.contacto-izquierdo {
+    border-right: solid 3px var(--naranja-);
+    width: 50%;
+    padding: 1rem 2.5rem 1rem;
+}
+.contacto-izquierdo > p {
+    font-style: italic;
+}
+.contacto-izquierdo > p > span {
+    padding: 0 1rem;
+}
+.contacto-derecho {
+    width: 50%;
+    padding: 1rem 2.5rem 1rem;
+    display: flex;
+    flex-direction: column;
+}
+.contacto-derecho > a {
+    text-decoration: none;
+    color: var(--naranja-);
+}
+.contacto-derecho > a > i {
+    font-size: 1.5rem;
+    
+}
+.contacto-derecho > a:hover, .contacto-derecho > a > i:hover {
+    text-decoration:underline;
+}
+
+
+
+/* PAGINA DE PRODUCTOS */
+
+.products-container {
+    background-color: yellow;
+    margin-left: 24%;
+    width: 71%;
+    height: 300px;
+}
+.product-prueba {
+    background-color: orange;
+    width: 150px;
+    height: 150px;
+    margin: 5px;
+    border: 1px solid black;
+}
+.product-prueba > img {
+    width: 100px;
+}
+

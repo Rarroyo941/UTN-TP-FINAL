@@ -1,10 +1,15 @@
 <%- include('../partials/header.ejs') %>
-<section>
-    <h1 class="login-title">PRODUCTOS</h1>
+<section class="product-section">
+    <h1 class="login-title">CATÁLOGO DE PRODUCTOS</h1>
     <%- include('../partials/sidebar.ejs') %>
-    <% datos.forEach((dato) => { %>
-        <p><%= dato.titulo %></p>
-        <p><%= dato.precio %></p>
-      <% }) %>
+    <div class="products-container">
+    <% productos.forEach(producto => { %>
+       <div class="product-prueba"> 
+        <img src="<%= producto.image %>">
+        <p><%= producto.titulo %></p>
+        <a href="/producto/<%= producto.id%>">agregar</a>
+      </div>
+        <% }) %> 
+    </div> 
 </section>
 <%- include('../partials/footer.ejs') %>

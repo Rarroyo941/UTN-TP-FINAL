@@ -8,9 +8,11 @@ import flash from 'connect-flash';
 import session from 'express-session';
 import MethodOverride from 'method-override';
 import passport from 'passport';
+import userRouter from './routes/user.js'
 
 const app = express()
-mongoose.connect('mongodb+srv://Admin:12345@cluster0.gz1bmpq.mongodb.net/Productos?retryWrites=true&w=majority', { 
+
+mongoose.connect('mongodb+srv://Admin:12345@cluster0.gz1bmpq.mongodb.net/ProductosBD?retryWrites=true&w=majority', { 
     useNewUrlParser: true,
   useUnifiedTopology: true,
 })
@@ -26,38 +28,14 @@ app.use(bodyParser.urlencoded({extended:true}))
 app.use(express.static('public'))
 app.set('view engine','ejs')
 
-app.get('/', (req,res)=>{
-    res.render('pages/index')
-})
-app.get('/login', (req,res)=>{
-    res.render('pages/login')
-})
-app.get('/olvide', (req,res)=>{
-    res.render('pages/olvide')
-})
-app.get('/registro', (req,res)=>{
-    res.render('pages/registro')
-})
-app.get('/productos', (req,res)=>{
-    /*const datos = Product.find()*/
-    res.render('pages/productos', { datos: datos })
-})
-app.get('/contacto', (req,res)=>{
-    res.render('pages/contacto')
-})
-app.get('/nosotros', (req,res)=>{
-    res.render('pages/nosotros')
-})
-app.get('/envios', (req,res)=>{
-    res.render('pages/delivery')
-})
-app.get('/pagos', (req,res)=>{
-    res.render('pages/mediosPago')
-})
+app.use(userRouter)
+app.use(flash())
 
 app.listen(3030,(req,res)=>{
     console.log('el servidor se esta ejecutando')
 })
+
+
 
 
 
