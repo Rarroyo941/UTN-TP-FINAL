@@ -1,6 +1,14 @@
 <%- include('../partials/header.ejs') %>
 <h1 class="login-title">CATÁLOGO DE PRODUCTOS</h1>
 <section class="product-section">
-
+    <div class="product-container">
+        <img src="<%= producto.image %>">
+        <div class="details-container">
+            <h1>Product Details</h1>
+            <p>Product Name: <%= producto.titulo %></p>
+            <p>Product Price: <%= producto.precio %></p>
+            <p>Product Stock: <%= producto.stock %></p>
+        </div>
+    </div>
 </section>
 <%- include('../partials/footer.ejs') %>

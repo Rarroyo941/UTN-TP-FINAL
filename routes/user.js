@@ -42,14 +42,18 @@ router.get('/productos',(req,res)=>{
     })
     
 })
-router.get('/producto/:id',(req,res)=>{
-    let productoId = {_id:req.params.id}
-    Product.findOne(productoId)
-    .then(producto=>{
-        res.render('pages/producto',{producto:producto})
-    })
-    .catch(error => {
-        res.redirect('pages/productos')
-    })
-})
+router.get('/producto/:id', (req, res) => {
+    let productoId = req.params.id;
+  
+    Product.findById(productoId)
+      .then(producto => {
+        res.render('pages/producto', { producto: producto });
+      })
+      .catch(error => {
+        console.error(error); // Log the error to the console for debugging
+        res.redirect('/productos');
+      });
+  });
+  
+  
 export default router
