@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;700;800&display=swap" rel="stylesheet">
-    <script defer src="js/index.js"></script>
+    <script defer src="/js/index.js"></script>
     <title>Cfood E-commerce</title>
 </head>
 <body>
@@ -21,9 +21,9 @@
             <button class="nav-toggle" aria-label="Abrir menú">
                 <i class="fas fa-bars"></i>
             </button>
-            <form class="d-flex search-form" role="search" action="/productos/buscar" method="get">
-                <input class="form-control search-input me-2" type="search" name="buscador" placeholder="Buscar productos, marcas y más..." aria-label="Search">
-                <button id="fetchBtn" class="btn btn-outline-success search-btn" type="submit"><i class="bi bi-search"></i></button>
+            <form class="d-flex search-form" role="search" action="/productos" method="get">
+                <input class="form-control search-input me-2" Protype="search" name="buscar" placeholder="Buscar productos, marcas y más..." aria-label="Search">
+                <button id="fetchBtn" class="btn btn-outline-success search-btn" type="submit" value="Buscar"><i class="bi bi-search"></i></button>
             </form>
             <div class="nav-menu-container">
                 <ul class="nav-menu nav-menu_visible">

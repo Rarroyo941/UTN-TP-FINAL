@@ -8,7 +8,7 @@ import crypto from 'crypto';
 //import User from '../models/usermodel.js'
 import Product from '../models/productmodel.js'
 router.get('/', (req,res)=>{
-    res.render('pages/index')
+  res.render('pages/index')
 })
 router.get('/login', (req,res)=>{
     res.render('pages/login')
@@ -31,26 +31,34 @@ router.get('/envios', (req,res)=>{
 router.get('/pagos', (req,res)=>{
     res.render('pages/mediosPago')
 })
-router.get('/productos',(req,res)=>{
-    Product.find({})
-    .then(productos=>{
-    res.render('pages/productos',{productos:productos})
-    })
-    .catch(error=>{
-        //mensaje sobre el error
-        res.render('admin/notfound')
-    })
-    
-})
+router.get('/productos', (req, res) => {
+    const buscar = req.query.buscar || '';
+  
+    const regex = buscar !== '' ? new RegExp(`${buscar}`, 'i') : /.*/;
+  
+    Product.find({ etiquetas: { $regex: regex } })
+      .then(productos => {
+        if (productos.length > 0) {
+          res.render('pages/productos', { productos: productos });
+        } else {
+          res.render('admin/productNotFound', {buscar:buscar});
+        }
+      })
+      .catch(error => {
+        console.error(error);
+        res.render('admin/productNotFound', {buscar:buscar});
+      });
+  });
+  
 router.get('/producto/:id', (req, res) => {
     let productoId = req.params.id;
-  
     Product.findById(productoId)
       .then(producto => {
+        res.locals.randomNumber = Math.floor(Math.random() * 10);
         res.render('pages/producto', { producto: producto });
       })
       .catch(error => {
-        console.error(error); // Log the error to the console for debugging
+        console.error(error);
         res.redirect('/productos');
       });
   });

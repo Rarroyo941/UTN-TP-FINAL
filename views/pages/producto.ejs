@@ -1,14 +1,20 @@
 <%- include('../partials/header.ejs') %>
-<h1 class="login-title">CATÁLOGO DE PRODUCTOS</h1>
+<h1 class="login-title"><%= producto.titulo %></h1>
 <section class="product-section">
-    <div class="product-container">
         <img src="<%= producto.image %>">
         <div class="details-container">
-            <h1>Product Details</h1>
-            <p>Product Name: <%= producto.titulo %></p>
-            <p>Product Price: <%= producto.precio %></p>
-            <p>Product Stock: <%= producto.stock %></p>
+            <span class="random-number-product">Nuevo | +<%= randomNumber %> vendidos</span>
+            <h2><%= producto.titulo %></h2>
+            <p>Precio: <span class="product-span">$ <%= producto.precio %></span></p>
+            <a href="/pagos" class="medios-pago-product">Ver medios de pago</a>
+            <p>Stock: <span class="product-span"><%= producto.stock %> (unidades)</span></p>
+            <i class="bi bi-truck"> Consultá costo de <a href="/envios">envío</a></i>
+            <i class="bi bi-arrow-left-right"> Devolución gratis</i>
+            <a href="#" class="btn btn-primary">Agregar al carrito</a>
+            <div class="etiquetas-div">
+                <p>Etiquetas:</p>
+                <p><%= producto.etiquetas %></p>
+            </div>            
         </div>
-    </div>
 </section>
 <%- include('../partials/footer.ejs') %>

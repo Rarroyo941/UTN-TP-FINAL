@@ -856,7 +856,9 @@ footer > h5 {
     flex-direction: column;
 }
 .nosotros-texto {
-    background-color: var(--naranja-);
+    background-color: #F8F8F8;
+    opacity: 0.8;
+    background: linear-gradient(135deg, #FAD0AB55 25%, transparent 25%) -10px 0/ 20px 20px, linear-gradient(225deg, #FAD0AB 25%, transparent 25%) -10px 0/ 20px 20px, linear-gradient(315deg, #FAD0AB55 25%, transparent 25%) 0px 0/ 20px 20px, linear-gradient(45deg, #FAD0AB 25%, #F8F8F8 25%) 0px 0/ 20px 20px;
     margin: 2rem 5%;
     padding: 3rem;
     box-shadow: 0 0 4px black;
@@ -1098,14 +1100,86 @@ footer > h5 {
 
 /* PAGINA DE PRODUCTO INDIVIDUAL */
 .product-section {
+    margin: 2rem 5%;
+    padding: 1rem 1rem 0.4rem 1rem;
     display: flex;
-    background-color: yellow;
     align-items: center;
     justify-content: space-between;
+    border: 1px solid grey;
+    box-shadow: 0 0 5px grey;
+    border-radius: 15px;
+    background-color: #FFFFFF;
 }
 .product-section > img {
-    background-color: red;
+    width: 55%;
+    height: 450px;
+    object-fit: contain;
 }
 .details-container {
-    background-color: blue;
+    height: 450px;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: center;
+    padding: 1rem;
+    box-shadow: 0 0 3px grey;
+    border-radius: 15px;
+}
+.details-container > p > .product-span {
+    font-weight: bold;
+    margin-left: 0.5rem;
+    font-size: 1.1rem;
+}
+.medios-pago-product {
+    margin-top: -1rem;
+    font-size: 0.9rem;
+    text-decoration: none;
+}
+.details-container > i {
+    color: green;
+}
+.etiquetas-div {
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    padding-bottom: 0;
+    gap: 0;
+}
+.etiquetas-div > p, .random-number-product {
+    font-size: 0.9rem;
+    color: grey;
+    margin: 0;
+}
+.btn-primary {
+    background-color: var(--naranja-claro);
+    border: 2px solid var(--naranja-claro);
+    color: var(--color-letra);
+}
+.btn-primary:hover {
+    background-color: var(--naranja-claro);
+    border: 2px solid var(--naranja-);
+    color: var(--color-letra);
+    font-weight: bold;
+}
+
+
+
+
+/* PAGINA DE ERROR AL NO ENCONTRAR PRODUCTO */
+.error-producto-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 12rem;
+    box-shadow: 0 0 4px grey;
+    font-weight: bold;
+    font-size: 1.2rem;
+    background-color: #F8F8F8;
+    opacity: 0.8;
+    background: linear-gradient(135deg, #FAD0AB55 25%, transparent 25%) -10px 0/ 20px 20px, linear-gradient(225deg, #FAD0AB 25%, transparent 25%) -10px 0/ 20px 20px, linear-gradient(315deg, #FAD0AB55 25%, transparent 25%) 0px 0/ 20px 20px, linear-gradient(45deg, #FAD0AB 25%, #F8F8F8 25%) 0px 0/ 20px 20px;
+}
+.error-busqueda {
+    font-weight: bolder;
+    font-size: 1.4rem;
 }
