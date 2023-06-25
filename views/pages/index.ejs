@@ -37,97 +37,72 @@
 </section>
 <!-- ACA COMIENZA EL PRIMER CAROUSEL CON ALGUNOS PRODUCTOS-->
 <section class="carousel-container">
-    <div id="carouselPromo" class="carousel slide">
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <div class="cards-container">
+  <div id="carouselPromo" class="carousel slide">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <div class="cards-container">
+          <% for (let i = 25; i < 30; i += 1) { %>
             <div class="card" style="width: 14rem;">
-                <img src="imagenes/dogchowadultogrande.jpg" class="card-img-top" alt="dogchow adulto grande">
-                <div class="card-body">
-                  <h5 class="card-title">DOG CHOW ADULTO RMG 21 KGS</h5>
-                  <p class="card-text">$999</p>
-                </div>
-            </div>
-            <div class="card" style="width: 14rem;">
-              <img src="imagenes/dogchowadultomini.jpg" class="card-img-top" alt="dogchow adulto mini">
+              <img src="<%=productos[i].image%>" class="card-img-top" alt="dogchow adulto grande">
               <div class="card-body">
-                <h5 class="card-title">DOG CHOW ADULTO MINI 21 KGS</h5>
-                <p class="card-text">$999</p>
-              </div>
-          </div>
-            <div class="card" style="width: 14rem;">
-                <img src="imagenes/doguiadulto.jpg" class="card-img-top" alt="dogui adulto">
-                <div class="card-body">
-                  <h5 class="card-title">DOGUI ADULTO 24 KGS</h5>
-                  <p class="card-text">$888</p>
-                </div>
-            </div>
-            <div class="card" style="width: 14rem;">
-                <img src="imagenes/excellentperroadulto.jpg" class="card-img-top" alt="excellent perro adulto grande">
-                <div class="card-body">
-                  <h5 class="card-title">EXCELLENT PERRO ADULTO RMG 20 KGS</h5>
-                  <p class="card-text">$1333</p>
-                </div>
-            </div>
-            <div class="card" style="width: 14rem;">
-                <img src="imagenes/proplanperroadulto.jpg" class="card-img-top" alt="PROPLAN PERRO ADULTO">
-                <div class="card-body">
-                  <h5 class="card-title">PROPLAN PERRO ADULTO 15 KGS</h5>
-                  <p class="card-text">$4444</p>
-                </div>
+                <h5 class="card-title"><%=productos[i].titulo%></h5>
+                <p class="card-text">$<%=productos[i].precio%></p>
               </div>
             </div>
-          </div>
-          <div class="carousel-item">
-            <div class="cards-container">
-            <div class="card" style="width: 14rem;">
-                <img src="imagenes/excellentgatokitten.jpg" class="card-img-top" alt="excellent gato cachorro">
-                <div class="card-body">
-                  <h5 class="card-title">EXCELLENT GATO KITTEN 7,5 KGS</h5>
-                  <p class="card-text">$444</p>
-                </div>
-            </div>
-            <div class="card" style="width: 14rem;">
-              <img src="imagenes/gatiadulto.jpg" class="card-img-top" alt="gati gato adulto">
-              <div class="card-body">
-                <h5 class="card-title">GATI GATO ADULTO 15 KGS</h5>
-                <p class="card-text">$1123</p>
-              </div>
-          </div>
-            <div class="card" style="width: 14rem;">
-                <img src="imagenes/proplangatoadulto.jpg" class="card-img-top" alt="proplan gato adulto">
-                <div class="card-body">
-                  <h5 class="card-title">PROPLAN GATO ADULTO 15 KGS</h5>
-                  <p class="card-text">$1235</p>
-                </div>
-            </div>
-            <div class="card" style="width: 14rem;">
-                <img src="imagenes/catchowgatoadulto.jpg" class="card-img-top" alt="catchow gato adulto">
-                <div class="card-body">
-                  <h5 class="card-title">CAT CHOW GATO ADULTO 15 KGS</h5>
-                  <p class="card-text">$1234</p>
-                </div>
-            </div>
-            <div class="card" style="width: 14rem;">
-                <img src="imagenes/proplangatokitten.jpg" class="card-img-top" alt="proplan gato cachorro">
-                <div class="card-body">
-                  <h5 class="card-title">PROPLAN GATO KITTEN 7,5 KGS</h5>
-                  <p class="card-text">$300</p>
-                </div>
-            </div>
-          </div>
-          </div>
+          <% } %>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselPromo" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselPromo" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
       </div>
+      <div class="carousel-item">
+        <div class="cards-container">
+          <% for (let i = 20; i < 25; i += 1) { %>
+            <div class="card" style="width: 14rem;">
+              <img src="<%=productos[i].image%>" class="card-img-top" alt="dogchow adulto grande">
+              <div class="card-body">
+                <h5 class="card-title"><%=productos[i].titulo%></h5>
+                <p class="card-text">$<%=productos[i].precio%></p>
+              </div>
+            </div>
+          <% } %>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <div class="cards-container">
+          <% for (let i = 15; i < 20; i += 1) { %>
+            <div class="card" style="width: 14rem;">
+              <img src="<%=productos[i].image%>" class="card-img-top" alt="dogchow adulto grande">
+              <div class="card-body">
+                <h5 class="card-title"><%=productos[i].titulo%></h5>
+                <p class="card-text">$<%=productos[i].precio%></p>
+              </div>
+            </div>
+          <% } %>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <div class="cards-container">
+          <% for (let i = 10; i < 15; i += 1) { %>
+            <div class="card" style="width: 14rem;">
+              <img src="<%=productos[i].image%>" class="card-img-top" alt="dogchow adulto grande">
+              <div class="card-body">
+                <h5 class="card-title"><%=productos[i].titulo%></h5>
+                <p class="card-text">$<%=productos[i].precio%></p>
+              </div>
+            </div>
+          <% } %>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselPromo" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselPromo" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
 </section>
+
 <!-- ACA COMIENZA EL SEGUNDO CAROUSEL CON "LOS MAS VENDIDOS", "MAS RECIENTES" Y "EN OFERTA"-->
 <section class="contenedorCarrusel">
   <div class="carruseles" id="carrusel1">
