@@ -14,12 +14,12 @@
   </div>
   <div class="products-container">
   <% productos.forEach(producto => { %>
-    <a href="/producto/<%= producto._id %>" class="card-enlace">
-      <div class="card producto-card" style="width: 16rem;">
-        <img src="<%= producto.image %>" class="card-img-top" alt="<%= producto.titulo %>">
+    <a href="/producto/<%= producto._id %>" class="card-enlace-primer-carousel">
+      <div class="card producto-card-primer-carousel" style="width: 16rem;">
+        <img src="<%= producto.image %>" class="card-img-top" alt="<%=productos.titulo%>">
         <div class="card-body">
-          <h5 class="card-title"><%= producto.titulo %></h5>
-          <p class="card-text">$<%= producto.precio %></p>
+          <h5 class="card-title primer-carousel-titulo"><%= producto.titulo %></h5>
+          <p class="card-text primer-carousel-precio">$<%= producto.precio %></p>
           <a href="/producto/<%= producto._id %>" class="btn btn-primary carrito-btn">Agregar al Carrito</a>
         </div>
       </div>

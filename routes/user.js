@@ -7,16 +7,17 @@ import crypto from 'crypto';
 //import nodemailer from 'nodemailer'
 //import User from '../models/usermodel.js'
 import Product from '../models/productmodel.js'
-router.get('/', (req,res)=>{
+router.get('/', (req, res) => {
   Product.find({})
-    .then(productos=>{
-    res.render('pages/index',{productos:productos})
+    .then(productos => {
+      res.render('pages/index', { productos: productos });
     })
-    .catch(error=>{
-        //mensaje sobre el error
-        res.render('pages/index')
-      })
-})
+    .catch(error => {
+      //mensaje sobre el error
+      res.render('pages/index');
+    });
+});
+
 router.get('/login', (req,res)=>{
     res.render('pages/login')
 })

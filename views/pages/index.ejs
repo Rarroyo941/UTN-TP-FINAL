@@ -42,52 +42,65 @@
       <div class="carousel-item active">
         <div class="cards-container">
           <% for (let i = 25; i < 30; i += 1) { %>
-            <div class="card" style="width: 14rem;">
-              <img src="<%=productos[i].image%>" class="card-img-top" alt="dogchow adulto grande">
+            <a href="/producto/<%= productos[i]._id %>" class="card-enlace-primer-carousel">
+            <div class="card producto-card-primer-carousel" style="width: 14rem;">
+              <img src="<%=productos[i].image%>" class="card-img-top" alt="<%=productos[i].titulo%>">
               <div class="card-body">
-                <h5 class="card-title"><%=productos[i].titulo%></h5>
-                <p class="card-text">$<%=productos[i].precio%></p>
+                <h5 class="card-title primer-carousel-titulo"><%=productos[i].titulo%></h5>
+                <p class="card-text primer-carousel-precio">$<%=productos[i].precio%></p>
+                <a href="/producto/<%= productos[i]._id %>" class="btn btn-primary carrito-btn">Agregar al Carrito</a>
               </div>
             </div>
+          </a>
           <% } %>
         </div>
       </div>
       <div class="carousel-item">
         <div class="cards-container">
           <% for (let i = 20; i < 25; i += 1) { %>
-            <div class="card" style="width: 14rem;">
-              <img src="<%=productos[i].image%>" class="card-img-top" alt="dogchow adulto grande">
+            <a href="/producto/<%= productos[i]._id %>" class="card-enlace-primer-carousel">
+            <div class="card producto-card-primer-carousel" style="width: 14rem;">
+              <img src="<%=productos[i].image%>" class="card-img-top" alt="<%=productos[i].titulo%>">
               <div class="card-body">
-                <h5 class="card-title"><%=productos[i].titulo%></h5>
-                <p class="card-text">$<%=productos[i].precio%></p>
+                <h5 class="card-title primer-carousel-titulo"><%=productos[i].titulo%></h5>
+                <p class="card-text primer-carousel-precio">$<%=productos[i].precio%></p>
+                <a href="/producto/<%= productos[i]._id %>" class="btn btn-primary carrito-btn">Agregar al Carrito</a>
               </div>
             </div>
+          </a>
           <% } %>
+          </a>
         </div>
       </div>
       <div class="carousel-item">
         <div class="cards-container">
           <% for (let i = 15; i < 20; i += 1) { %>
-            <div class="card" style="width: 14rem;">
-              <img src="<%=productos[i].image%>" class="card-img-top" alt="dogchow adulto grande">
+            <a href="/producto/<%= productos[i]._id %>" class="card-enlace-primer-carousel">
+            <div class="card producto-card-primer-carousel" style="width: 14rem;">
+              <img src="<%=productos[i].image%>" class="card-img-top" alt="<%=productos[i].titulo%>">
               <div class="card-body">
-                <h5 class="card-title"><%=productos[i].titulo%></h5>
-                <p class="card-text">$<%=productos[i].precio%></p>
+                <h5 class="card-title primer-carousel-titulo"><%=productos[i].titulo%></h5>
+                <p class="card-text primer-carousel-precio">$<%=productos[i].precio%></p>
+                <a href="/producto/<%= productos[i]._id %>" class="btn btn-primary carrito-btn">Agregar al Carrito</a>
               </div>
             </div>
+          </a>
           <% } %>
         </div>
       </div>
       <div class="carousel-item">
         <div class="cards-container">
           <% for (let i = 10; i < 15; i += 1) { %>
-            <div class="card" style="width: 14rem;">
-              <img src="<%=productos[i].image%>" class="card-img-top" alt="dogchow adulto grande">
+            <a href="/producto/<%= productos[i]._id %>" class="card-enlace-primer-carousel">
+            <div class="card producto-card-primer-carousel" style="width: 14rem;">
+              <img src="<%=productos[i].image%>" class="card-img-top" alt="<%=productos[i].titulo%>">
               <div class="card-body">
-                <h5 class="card-title"><%=productos[i].titulo%></h5>
-                <p class="card-text">$<%=productos[i].precio%></p>
+                <h5 class="card-title primer-carousel-titulo"><%=productos[i].titulo%></h5>
+                <p class="card-text primer-carousel-precio">$<%=productos[i].precio%></p>
+                <a href="/producto/<%= productos[i]._id %>" class="btn btn-primary carrito-btn">Agregar al Carrito</a>
               </div>
             </div>
+          </a>
           <% } %>
         </div>
       </div>
