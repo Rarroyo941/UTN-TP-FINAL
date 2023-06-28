@@ -70,6 +70,11 @@ router.get('/producto/:id', (req, res) => {
         res.redirect('/productos');
       });
   });
-  
+  router.get('/dashboard/usuarios', (req,res)=>{
+    res.render('admin/allusers')
+})
+router.get('/dashboard/usuarios/editar', (req,res)=>{
+  res.render('admin/edituser')
+})
   
 export default router

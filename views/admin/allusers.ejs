@@ -1,0 +1,45 @@
+<%- include('../partials/header.ejs') %>
+<h1 class="login-title">USUARIOS</h1>
+<section class="dashboard-usuarios">
+    <table class="table table-bordered" id="dataTable" cellspacing="0">
+        <thead>
+            <tr>
+                <th>NOMBRE</th>
+                <th>EMAIL</th>
+                <th>Editar / Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>rodrigo</td>
+                <td>arroyo.rodrigo@outlook.com</td>
+                <td>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                      Editar
+                    </button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Editar Usuario</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                            ...
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Salir</button>
+                            <button type="button" class="btn btn-primary">Guardar cambios</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <form action="/borrar-usuario/" method="post">
+                    <button type="submit" class="btn btn-primary">Eliminar</button>
+                </form></td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+<%- include('../partials/footer.ejs') %>

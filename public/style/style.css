@@ -8,6 +8,7 @@ body{
     background-color: var(--color-fondo);
     margin: 0;
     padding: 0;
+    overflow-x: hidden;
 }
 * {
     font-family: 'Monserrat', sans-serif;
@@ -20,7 +21,7 @@ body{
     align-items: center;
     height: 80px;
     padding: 0 5%;
-    margin-bottom: 0;
+    margin: 0;
 }
 .logo {
     color: var(--naranja-);
@@ -739,7 +740,13 @@ footer > h5 {
     text-align: center;
     padding: 1.5rem 0;
     margin: 0;
+
 }
+
+
+
+
+
 /* LOGIN */
 .login-container {
     height: 50vh;
@@ -843,6 +850,7 @@ footer > h5 {
 .nosotros-texto {
     background-color: #F8F8F8;
     opacity: 0.8;
+    text-shadow: 1px 0 0 var(--naranja-);
     background: linear-gradient(135deg, #FAD0AB55 25%, transparent 25%) -10px 0/ 20px 20px, linear-gradient(225deg, #FAD0AB 25%, transparent 25%) -10px 0/ 20px 20px, linear-gradient(315deg, #FAD0AB55 25%, transparent 25%) 0px 0/ 20px 20px, linear-gradient(45deg, #FAD0AB 25%, #F8F8F8 25%) 0px 0/ 20px 20px;
     margin: 2rem 5%;
     padding: 3rem;
@@ -935,6 +943,13 @@ footer > h5 {
 }
 .olvide-contrasenia > form > input,.olvide-contrasenia > form > button {
     margin: 0.5rem;
+    border-radius: 20px;
+}   
+.olvide-contrasenia > form > input {
+    padding: 4px 1rem;
+}
+.olvide-contrasenia > form > input::placeholder {
+    text-align: center;
 }
 .olvide-contrasenia > form > button {
     color: var(--color-fondo);
@@ -958,6 +973,10 @@ footer > h5 {
 /* PAGINA DE REGISTRO */
 .registro-container {
     width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 .registro-container > form {
     display: flex;
@@ -996,7 +1015,6 @@ footer > h5 {
     background-color: var(--naranja-claro);
     border-color:  var(--naranja-);
 }
-
 
 
 
@@ -1045,6 +1063,7 @@ footer > h5 {
     max-width: 25%;
     max-height: 440px;
     border-radius: 15px;
+    margin: 0;
 }
 .product-category > h3 {
     padding: 0.8rem;
@@ -1068,15 +1087,41 @@ footer > h5 {
     border-radius: 15px;
     border: 0;
     box-shadow: -1px 1px 2px grey;
+    position: relative;
+    border: none;
+    background-color: var(--color-fondo);
+    transition: background-color 0.9s;
+    cursor: pointer;
 }
+.product-category > form > input::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background-color: #fad0ab;
+    transition: width 0.9s;
+  }
 .product-category > form > input:hover {
     font-weight: bold;
     background-color: var(--naranja-claro);
-    cursor: pointer;
 }
+.product-category > form > input:hover::before {
+    width: 100%;
+    animation: colorAnimation 2s linear;
+  }
+  @keyframes colorAnimation {
+    0% {
+      width: 0;
+    }
+    100% {
+      width: 100%;
+    }
+  }
 .products-section{
     margin: 2rem 5%;
     display: flex;
+    
 }
 .products-container {
     display: flex;
@@ -1086,6 +1131,7 @@ footer > h5 {
     border-radius: 15px;
     background-color: #FFFFFF;
     box-shadow: 0 0 5px grey;
+    padding-top: 10px;
   }
 /* PAGINA DE PRODUCTO INDIVIDUAL */
 .product-section {
@@ -1139,12 +1185,12 @@ footer > h5 {
     color: grey;
     margin: 0;
 }
-.btn-primary {
+.details-container > .btn-primary {
     background-color: var(--naranja-claro);
     border: 2px solid var(--naranja-claro);
     color: var(--color-letra);
 }
-.btn-primary:hover {
+.details-container > .btn-primary:hover {
     background-color: var(--naranja-claro);
     border: 2px solid var(--naranja-);
     color: var(--color-letra);
@@ -1171,4 +1217,43 @@ footer > h5 {
 .error-busqueda {
     font-weight: bolder;
     font-size: 1.4rem;
+}
+
+
+
+/* PAGINA DE DASHBOARD DE USUARIOS */
+.dashboard-usuarios {
+    width: 100vw;
+    padding: 1rem 5%;
+}
+.dashboard-usuarios > table > tbody > tr > td {
+    text-align: center;
+    vertical-align: middle;
+}
+.dashboard-usuarios > table > tbody > tr > td  > button {
+background-color: var(--naranja-claro);
+border: 2px solid var(--naranja-claro);
+color: var(--color-letra);
+}
+.dashboard-usuarios > table > tbody > tr > td > button:hover {
+background-color: var(--naranja-claro);
+border: 2px solid var(--naranja-);
+color: var(--color-letra);
+}
+.dashboard-usuarios > table > tbody > tr > td  > form > button {
+    background-color: red;
+    border: 2px solid red;
+    color: var(--color-fondo);
+}
+.dashboard-usuarios > table > tbody > tr > td  > form > button:hover {
+    background-color: #f34336;
+    color: var(--color-letra);
+}
+.dashboard-usuarios > table > tbody > tr > td:last-child{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.dashboard-usuarios > table > tbody > tr > td {
+    margin: 0;
 }

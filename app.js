@@ -10,6 +10,7 @@ import MethodOverride from 'method-override';
 import passport from 'passport';
 import userRouter from './routes/user.js';
 
+dotenv.config({path:'./config.env'})
 const app = express();
 
 mongoose.connect('mongodb+srv://Admin:12345@cluster0.gz1bmpq.mongodb.net/ProductosBD?retryWrites=true&w=majority', {
