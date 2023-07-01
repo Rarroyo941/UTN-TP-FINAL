@@ -1,12 +1,16 @@
 import express from "express";
 const router=express.Router()
-
+import session from "express-session";
 import passport from "passport";
 import crypto from 'crypto';
 //import async from 'async';
 //import nodemailer from 'nodemailer'
-//import User from '../models/usermodel.js'
+import User from '../models/usermodel.js'
 import Product from '../models/productmodel.js'
+
+
+//   RUTAS .GET
+
 router.get('/', (req, res) => {
   Product.find({})
     .then(productos => {
@@ -76,5 +80,70 @@ router.get('/producto/:id', (req, res) => {
 router.get('/dashboard/usuarios/editar', (req,res)=>{
   res.render('admin/edituser')
 })
-  
+router.use(session({
+  secret: 'secreto', // Cambia esto por una clave secreta segura
+  resave: false,
+  saveUninitialized: true
+}));
+router.get('/carrito', (req, res) => {
+  const producto = req.session.producto; // Obtén el producto de la sesión
+  res.render('pages/carrito', { producto: producto });
+});
+
+router.get('/logout',(req,res)=>{
+  req.logOut()
+})
+//  RUTAS .POST
+router.post('/agregarCarrito', (req, res) => {
+  const carrito = req.body.agregar;
+
+  Product.findById(carrito)
+    .then(producto => {
+      req.session.producto = producto; // Guarda el producto en la sesión
+      res.redirect('/productos');
+    })
+    .catch(error => {
+      console.error(error);
+      res.redirect('/carrito');
+    });
+});
+
+router.post('/registro', (req, res) => {
+  const { nombre, email, password } = req.body;
+
+  // Validación básica de campos
+  if (!nombre || !email || !password) {
+    return res.status(400).json({ error: 'Por favor, complete todos los campos' });
+  }
+
+  // Verificar si el email ya está registrado
+  User.findOne({ email })
+    .then(usuarioExistente => {
+      if (usuarioExistente) {
+        return res.status(400).json({ error: 'El email ya está registrado' });
+      }
+
+      // Crear un nuevo objeto de usuario
+      const nuevoUsuario = new User({
+        nombre,
+        email,
+        password
+      });
+
+      // Guardar el nuevo usuario en la base de datos
+      nuevoUsuario.save()
+        .then(() => {
+          res.status(200).json({ mensaje: 'Usuario registrado exitosamente' });
+        })
+        .catch((error) => {
+          res.status(400).json({ error: error.message });
+        });
+    })
+    .catch((error) => {
+      res.status(400).json({ error: error.message });
+    });
+});
+
 export default router
+
+

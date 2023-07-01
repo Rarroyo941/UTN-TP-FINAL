@@ -48,7 +48,10 @@
               <div class="card-body">
                 <h5 class="card-title primer-carousel-titulo"><%=productos[i].titulo%></h5>
                 <p class="card-text primer-carousel-precio">$<%=productos[i].precio%></p>
-                <a href="/producto/<%= productos[i]._id %>" class="btn btn-primary carrito-btn">Agregar al Carrito</a>
+                <form action="/agregarCarrito" method="post" id="formulario-carrito">
+                  <input type="hidden" id="input-producto-id" name="agregar" value="<%= productos[i]._id %>">
+                  <input class="btn btn-primary carrito-btn" type="submit" value="Agregar al carrito">
+                </form>
               </div>
             </div>
           </a>

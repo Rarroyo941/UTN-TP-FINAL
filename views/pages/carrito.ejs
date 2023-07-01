@@ -1,0 +1,146 @@
+<%- include('../partials/header.ejs') %>
+<section class="pruebacarrito">
+<header>
+    <div class="contenedorHeader">
+        <p class="elementosHeader">CARRITO</p>
+        <i class="bi bi-arrow-right elementosHeader"></i>
+        <p class="elementosHeader"><span class="finalizarPedido">FINALIZAR PEDIDO</span></p>
+        <i class="bi bi-arrow-right elementosHeader"></i>
+        <p class="elementosHeader">PEDIDO COMPLETO</p>
+    </div> 
+</header>
+<section class="pedido">
+    <div class="detalleFacturacion">
+        <h3 class="tituloDetalleFact">
+            DETALLES DE FACTURACIÓN
+        </h3>
+        <form action="#" id="formularioCarrito">
+            <div class="nombreApellidoFormulario">
+                <div class="nomApellForm">
+                    <label for="nombres">Nombres *</label>
+                    <input id="nombres" type="text" name="nombres" placeholder="Nombres" required>
+                </div>
+                <div class="nomApellForm">
+                    <label for="apellidos">Apellidos *</label>
+                    <input id="apellidos" type="text" name="apellidos" placeholder="Apellidos" required>
+                </div>
+            </div>
+            <div class="empresa">
+                <label for="empresa">Nombre de la empresa (Opcional)</label>
+                <input id="empresa" type="text" name="empresa" placeholder="Nombre de la empresa">
+            </div>
+            <div class="telefono">
+                <label for="telefono">Telofono de contacto *</label>
+                <input id="telefono" type="tel" name="telefono" placeholder="Telefono" required>
+            </div>
+            <div class="pais">
+                <label for="pais">Pais/Region</label>
+                <input id="pais" type="text" name="pais" placeholder="Argentina" disabled>
+            </div>
+            <div class="codigoPostal">
+                <label for="codigoPostal">Codigo Postal *</label>
+                <input id="codigoPostal" type="number" name="codigoPostal" placeholder="Codigo Postal" required>
+                <a href="https://www.correoargentino.com.ar/formularios/cpa" target="_blank" class="linkPostal">No se mi codigo postal</a>
+            </div>
+            <div class="provinciaLocalidad">
+                <div class="provinciaLocalidadForm">
+                    <label for="provincia">Provincia *</label>
+                    <input id="provincia" type="text" name="provincia" placeholder="Provincia" required>
+                </div>
+                <div class="provinciaLocalidadForm">
+                    <label for="localidad">Localidad *</label>
+                    <input id="localidad" type="text" name="localidad" placeholder="Localidad" required>
+                </div>
+            </div>
+            <div class="calleNumero">
+                <div class="calleNumeroForm">
+                    <label for="calle">Calle *</label>
+                    <input id="calle" type="text" name="calle" placeholder="Calle" required>
+                </div>
+                <div class="calleNumeroForm">
+                    <label for="numero">Numero *</label>
+                    <input id="numero" type="number" name="numero" placeholder="Numero" required>
+                    <div class="sinNumero">
+                        <input id="sinNumero" type="checkbox" name="sinNumero">
+                        <label for="sinNumero">Sin Numero</label>
+                    </div>
+                </div>
+
+            </div>
+            <div class="pisoDepto">
+                <div class="pisoDeptoForm">
+                    <label for="piso">Piso/Departamento (Opcional)</label>
+                    <input id="piso" type="text" name="piso" placeholder="Piso/Departamento">
+                </div> 
+            </div>
+            <label for="#" class="entreCalles">Entre calles (Opcional)</label>
+            <div class="entreCallesForm">
+                <div class="calleUnoYDos">
+                    <label for="calleUno">Calle 1</label>
+                    <input id="calleUno" type="text" name="calleUno" placeholder="Calle 1">
+                </div>
+                <div class="calleUnoYDos">
+                    <label for="calleDos">Calle 2</label>
+                    <input id="calleDos" type="text" name="calleDos" placeholder="Calle 2">
+                </div>
+            </div>
+            <div class="ingresarComentarios">
+                <label for="comentarios">Comentarios (Opcional)</label>
+                <textarea name="comentarios" id="contadorLetras" maxlength="450" onkeyup="contarLetras()" placeholder="Comentarios"></textarea>
+                <div id="contador">
+                    0/450
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="tuPedido">
+        <h3 class="tituloTuPedido">TU PEDIDO</h3>
+        <div class="detallePedido">
+            <div class="titulosProductoSubtotal">
+                <p>PRODUCTO</p>
+                <p>SUBTOTAL</p>
+            </div>
+            <div class="productosPedido">
+                <p><%= producto.titulo %></p>
+                <p>$<%= producto.precio %></p>
+            </div>
+            <div class="subtotalPedido">
+                <p>Subtotal</p>
+                <div>$65645</div>
+            </div>
+            <div class="envioPedido">
+                <p>Envio</p>
+                <div class="checkboxPedido">
+                    <div class="checkPedido">
+                        <label for="tipoEnvio">Retirar en local</label>
+                        <input type="radio" name="tipoEnvio">
+                    </div>
+                    <div class="checkPedido">
+                        <label for="tipoEnvio">Definir con vendedor</label>
+                        <input type="radio" name="tipoEnvio">
+                    </div>
+                </div>
+            </div>
+            <div class="totalPedido">
+                <p>Total</p>
+                <div>$6545645</div>    
+            </div>
+        </div>
+        <div class="datosPersonalesPedido">
+            <p>Tus datos personales se utilizaran para procesar tu pedido, mejorar tu experiencia en nuestra web y otros propositos descriptos en nuestros <span href="#" class="politicaDePrivacidad">politica de privacidad.</span>
+            </p>
+            <p></p>
+        </div>
+        <div class="terminosYCondiciones">
+            <input type="checkbox" name="terminosYCondiciones" id="termYCondCheck">
+            <label for="terminosYCondiciones">He leido y acepto los <a href="#" id="terYCondLink">Terminos y Condiciones.</a></label>
+        </div>
+        <button id="btnPedido" disabled>REALIZAR PEDIDO</button>
+    </div>
+</section>
+</section>
+
+
+
+<%- include('../partials/footer.ejs') %>
