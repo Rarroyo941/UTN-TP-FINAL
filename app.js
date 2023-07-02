@@ -10,10 +10,10 @@ import MethodOverride from 'method-override';
 import passport from 'passport';
 import userRouter from './routes/user.js';
 
-dotenv.config({path:'./config.env'})
 const app = express();
+dotenv.config({path:'./.env'})
 
-mongoose.connect('mongodb+srv://Admin:12345@cluster0.gz1bmpq.mongodb.net/ProductosBD?retryWrites=true&w=majority', {
+mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
@@ -26,19 +26,13 @@ mongoose.connect('mongodb+srv://Admin:12345@cluster0.gz1bmpq.mongodb.net/Product
 
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static('public', { 
-  setHeaders: (res, path) => {
-    if (path.endsWith('.css')) {
-      res.setHeader('Content-Type', 'text/css');
-    }
-  }
-}));
+app.use(express.static('public'));
 app.set('view engine', 'ejs');
 
 app.use(userRouter);
 app.use(flash());
 
-app.listen(3030, (req, res) => {
+app.listen(process.env.PORT, (req, res) => {
   console.log('El servidor se está ejecutando');
 });
 

@@ -25,6 +25,9 @@ router.get('/', (req, res) => {
 router.get('/login', (req,res)=>{
     res.render('pages/login')
 })
+router.get('/logout',(req,res)=>{
+  req.logOut()
+})
 router.get('/olvide', (req,res)=>{
     res.render('pages/olvide')
 })
@@ -90,9 +93,7 @@ router.get('/carrito', (req, res) => {
   res.render('pages/carrito', { producto: producto });
 });
 
-router.get('/logout',(req,res)=>{
-  req.logOut()
-})
+
 //  RUTAS .POST
 router.post('/agregarCarrito', (req, res) => {
   const carrito = req.body.agregar;
@@ -133,7 +134,7 @@ router.post('/registro', (req, res) => {
       // Guardar el nuevo usuario en la base de datos
       nuevoUsuario.save()
         .then(() => {
-          res.status(200).json({ mensaje: 'Usuario registrado exitosamente' });
+          res.redirect('/login')
         })
         .catch((error) => {
           res.status(400).json({ error: error.message });

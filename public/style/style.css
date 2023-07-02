@@ -306,6 +306,7 @@ body{
 .card-enlace-primer-carousel {
     text-decoration: none;
     color: var(--color-letra);
+    margin: 0 5px;
 }
 .producto-card-primer-carousel {
     border-radius: 15px;
@@ -1125,7 +1126,8 @@ footer > h5 {
 }
 .products-container {
     display: flex;
-    justify-content: space-evenly;
+    width: 100%;
+    justify-content:space-between;
     margin-left: 1rem;
     flex-wrap: wrap;
     border-radius: 15px;
