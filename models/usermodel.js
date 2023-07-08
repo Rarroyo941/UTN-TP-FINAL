@@ -1,4 +1,6 @@
+import bcrypt from 'bcrypt';
 import mongoose from "mongoose";
+
 
 let userSchema= new mongoose.Schema({
     nombre: {
@@ -18,6 +20,12 @@ let userSchema= new mongoose.Schema({
     resetPasswordToken: String,
     resetPasswordExpires: Date
 })
+
+userSchema.methods.verifyPassword = function(password) {
+  console.log(this.password)
+  return bcrypt.compareSync(password, this.password);
+};
+
 
 const User = mongoose.model('User', userSchema);
 

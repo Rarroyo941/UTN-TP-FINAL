@@ -1,12 +1,18 @@
 import express from "express";
-const router=express.Router()
 import session from "express-session";
 import passport from "passport";
-import crypto from 'crypto';
-//import async from 'async';
-//import nodemailer from 'nodemailer'
-import User from '../models/usermodel.js'
-import Product from '../models/productmodel.js'
+import bcrypt from 'bcrypt';
+import User from '../models/usermodel.js';
+import Product from '../models/productmodel.js';
+
+const router = express.Router();
+
+function isLoggedIn(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect('/login');
+}
 
 
 //   RUTAS .GET
@@ -17,7 +23,6 @@ router.get('/', (req, res) => {
       res.render('pages/index', { productos: productos });
     })
     .catch(error => {
-      //mensaje sobre el error
       res.render('pages/index');
     });
 });
@@ -25,9 +30,10 @@ router.get('/', (req, res) => {
 router.get('/login', (req,res)=>{
     res.render('pages/login')
 })
-router.get('/logout',(req,res)=>{
-  req.logOut()
-})
+router.get('/logout', (req, res) => {
+  req.logout();
+  res.redirect('/login');
+});
 router.get('/olvide', (req,res)=>{
     res.render('pages/olvide')
 })
@@ -60,7 +66,6 @@ router.get('/productos', (req, res) => {
         }
       })
       .catch(error => {
-        console.error(error);
         res.render('admin/productNotFound', {buscar:buscar});
       });
   });
@@ -73,12 +78,11 @@ router.get('/producto/:id', (req, res) => {
         res.render('pages/producto', { producto: producto });
       })
       .catch(error => {
-        console.error(error);
         res.redirect('/productos');
       });
   });
-router.get('/dashboard',(req,res)=>{
-  res.render('pages/dashboard')
+router.get('/dashboard',isLoggedIn,(req,res)=>{
+  res.render('pages/dashboard', { user: req.user });
 })
 router.get('/dashboard/usuarios', (req,res)=>{
     res.render('admin/allusers')
@@ -99,6 +103,9 @@ router.get('/carrito', (req, res) => {
 
 
 //  RUTAS .POST
+router.post('/dashboard',(req,res)=>{
+  res.render('dashboard')
+})
 router.post('/agregarCarrito', (req, res) => {
   const carrito = req.body.agregar;
 
@@ -108,7 +115,6 @@ router.post('/agregarCarrito', (req, res) => {
       res.redirect('/productos');
     })
     .catch(error => {
-      console.error(error);
       res.redirect('/carrito');
     });
 });
@@ -128,31 +134,34 @@ router.post('/registro', (req, res) => {
         return res.status(400).json({ error: 'El email ya está registrado' });
       }
 
-      // Crear un nuevo objeto de usuario
+      // Hash de la contraseña
+      const hashedPassword = bcrypt.hashSync(password, 8);
+
+      // Crear un nuevo objeto de usuario con la contraseña hashada
       const nuevoUsuario = new User({
         nombre,
         email,
-        password
+        password: hashedPassword
       });
 
       // Guardar el nuevo usuario en la base de datos
       nuevoUsuario.save()
         .then(() => {
-          res.redirect('/login')
+          res.redirect('/login');
         })
         .catch((error) => {
-          res.status(400).json({ error: error.message });
+          console.log(error)
         });
     })
     .catch((error) => {
-      res.status(400).json({ error: error.message });
+      console.log(error)
     });
 });
-router.post('/login',passport.authenticate('local',{
-  successRedirect:'/dashboard'
-}),(req,res)=>{
-
-})
+router.post('/login', passport.authenticate('local', {
+  successRedirect: '/dashboard',
+  failureRedirect: '/login',
+  failureFlash: true
+}));
 
 export default router
 
