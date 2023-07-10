@@ -14,7 +14,7 @@ import userRouter from './routes/user.js'; // Importa el enrutador desde el arch
 import User from './models/userModel.js';
 
 const app = express();
-dotenv.config({ path: './.env' });
+dotenv.config({ path: './config.env' });
 
 mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
