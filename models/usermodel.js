@@ -1,6 +1,5 @@
-import bcrypt from 'bcrypt';
 import mongoose from "mongoose";
-
+import passportLocalMongoose from 'passport-local-mongoose'
 
 let userSchema= new mongoose.Schema({
     nombre: {
@@ -15,17 +14,12 @@ let userSchema= new mongoose.Schema({
       password: {
         type: String,
         required: true,
-        select: false
       },
     resetPasswordToken: String,
     resetPasswordExpires: Date
 })
 
-userSchema.methods.verifyPassword = function(password) {
-  console.log(this.password)
-  return bcrypt.compareSync(password, this.password);
-};
-
+userSchema.plugin(passportLocalMongoose, {usernameField : 'email'});
 
 const User = mongoose.model('User', userSchema);
 

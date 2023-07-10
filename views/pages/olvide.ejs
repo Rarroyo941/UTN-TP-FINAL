@@ -2,6 +2,7 @@
 <section >
     <h1 class="login-title">RECUPERAR CONTRASEÑA</h1>
     <div class="olvide-contrasenia">
+        <%- include('../partials/mensajes.ejs') %>
         <form action="/olvide" method="post">
             <input type="email" name="email" placeholder="Ingrese su email" required>
             <button type="submit">Enviar código</button>

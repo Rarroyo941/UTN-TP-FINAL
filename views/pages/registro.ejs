@@ -1,6 +1,7 @@
 <%- include('../partials/header.ejs') %>
 <h1 class="login-title">REGISTRO</h1>
     <div class="registro-container">
+        <%- include('../partials/mensajes.ejs') -%>
         <form action="/registro" method="post">
             <label>Ingrese su nombre</label>
             <input type="text" name="nombre" placeholder="Nombre" required>

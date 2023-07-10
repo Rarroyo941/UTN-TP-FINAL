@@ -2,19 +2,22 @@ import express from "express";
 import session from "express-session";
 import passport from "passport";
 import bcrypt from 'bcrypt';
-import User from '../models/usermodel.js';
+import User from '../models/userModel.js';
 import Product from '../models/productmodel.js';
+import crypto from 'crypto';
+import async from 'async';
+import nodemailer from 'nodemailer';
+import LocalStrategy from 'passport-local';
 
 const router = express.Router();
 
-function isLoggedIn(req, res, next) {
-  if (req.isAuthenticated()) {
-    return next();
+function isAuthenticatedUser(req, res, next) {
+  if(req.isAuthenticated()) {
+      return next();
   }
+  req.flash('error_msg', 'Por favor ingrese sesión.')
   res.redirect('/login');
 }
-
-
 //   RUTAS .GET
 
 router.get('/', (req, res) => {
@@ -30,8 +33,9 @@ router.get('/', (req, res) => {
 router.get('/login', (req,res)=>{
     res.render('pages/login')
 })
-router.get('/logout', (req, res) => {
-  req.logout();
+router.get('/logout', isAuthenticatedUser,(req, res)=> {
+  req.logOut();
+  req.flash('success_msg', 'Ha cerrado sesión.');
   res.redirect('/login');
 });
 router.get('/olvide', (req,res)=>{
@@ -40,6 +44,24 @@ router.get('/olvide', (req,res)=>{
 router.get('/registro', (req,res)=>{
     res.render('pages/registro')
 })
+router.get('/reset/:token', (req, res)=> {
+  User.findOne({resetPasswordToken: req.params.token, resetPasswordExpires : {$gt : Date.now() } })
+      .then(user => {
+          if(!user) {
+              req.flash('error_msg', 'Password reset token in invalid or has been expired.');
+              res.redirect('/olvide');
+          }
+
+          res.render('pages/newpassword', {token : req.params.token});
+      })
+      .catch(err => {
+          req.flash('error_msg', 'ERROR: '+err);
+          res.redirect('/olvide');
+      });
+});
+router.get('/password/change', isAuthenticatedUser, (req, res)=> {
+  res.render('pages/changepassword');
+});
 router.get('/contacto', (req,res)=>{
     res.render('pages/contacto')
 })
@@ -81,88 +103,150 @@ router.get('/producto/:id', (req, res) => {
         res.redirect('/productos');
       });
   });
-router.get('/dashboard',isLoggedIn,(req,res)=>{
+router.get('/dashboard',isAuthenticatedUser,(req,res)=>{
   res.render('pages/dashboard', { user: req.user });
 })
-router.get('/dashboard/usuarios', (req,res)=>{
-    res.render('admin/allusers')
-})
-router.get('/dashboard/usuarios/editar', (req,res)=>{
-  res.render('admin/edituser')
-})
-router.use(session({
-  secret: 'secreto', // Cambia esto por una clave secreta segura
-  resave: false,
-  saveUninitialized: true
-}));
-router.get('/carrito', (req, res) => {
-  const producto = req.session.producto; // Obtén el producto de la sesión
-  res.render('pages/carrito', { producto: producto });
+router.get('/dashboard/usuarios', isAuthenticatedUser ,(req, res)=> {
+  User.find({})
+      .then(users => {
+          res.render('admin/allusers', {users : users});
+      })
+      .catch(err => {
+          req.flash('error_msg', 'ERROR: '+err);
+          res.redirect('admin/allusers');
+      })
 });
+router.get('/dashboard/usuarios/editar/:id',isAuthenticatedUser, (req,res)=>{
+  let searchQuery = {_id : req.params.id};
 
+    User.findOne(searchQuery)
+        .then(user => {
+        res.render('admin/edituser', {user : user});
+        })
+        .catch(err => {
+        req.flash('error_msg', 'ERROR: '+err);
+        res.redirect('/dashboard/usuarios');
+    });
+})
 
 
 //  RUTAS .POST
-router.post('/dashboard',(req,res)=>{
+router.post('/dashboardUsuario',(req,res)=>{
   res.render('dashboard')
 })
-router.post('/agregarCarrito', (req, res) => {
-  const carrito = req.body.agregar;
 
-  Product.findById(carrito)
-    .then(producto => {
-      req.session.producto = producto; // Guarda el producto en la sesión
-      res.redirect('/productos');
+router.post('/registro', (req, res)=> {
+    User.findOne({email:req.body.email}).then((user)=>{
+      if(user) {
+          req.flash('error_msg', 'El email ya se encuentra registrado');
+          res.redirect('/registro')
+      } else {
+          let {nombre, email, password} = req.body;
+          const newUser = new User({
+              nombre: nombre,
+              email: email
+          });
+          
+          // Generar el hash de la contraseña
+          bcrypt.genSalt(10, (err, salt) => {
+            bcrypt.hash(password, salt, (err, hash) => {
+              if (err) {
+                req.flash('error_msg', 'ERROR: ' + err);
+                res.redirect('/registro');
+              }
+              
+              // Asignar la contraseña encriptada al nuevo usuario
+              newUser.password = hash;
+              
+              // Guardar el usuario en la base de datos
+              User.register(newUser, password, (err, user)=> {
+                if(err) {
+                    req.flash('error_msg', 'ERROR: '+err);
+                    res.redirect('/registro');
+                }
+                req.flash('success_msg', 'Usuario registrado');
+                res.redirect('/registro');
+            });
+            });
+          });
+      }
     })
-    .catch(error => {
-      res.redirect('/carrito');
-    });
-});
-
-router.post('/registro', (req, res) => {
-  const { nombre, email, password } = req.body;
-
-  // Validación básica de campos
-  if (!nombre || !email || !password) {
-    return res.status(400).json({ error: 'Por favor, complete todos los campos' });
+  });
+  router.post('/login', passport.authenticate('local', {
+    successRedirect : '/dashboard',
+    failureRedirect : '/login',
+    failureFlash: 'Mail o Contraseña incorrecta, pruebe nuevamente'
+  }));
+router.post('/password/change', (req, res)=> {
+  if(req.body.password !== req.body.confirmpassword) {
+      req.flash('error_msg', "Password don't match. Type again!");
+      return res.redirect('/password/change');
   }
 
-  // Verificar si el email ya está registrado
-  User.findOne({ email })
-    .then(usuarioExistente => {
-      if (usuarioExistente) {
-        return res.status(400).json({ error: 'El email ya está registrado' });
-      }
-
-      // Hash de la contraseña
-      const hashedPassword = bcrypt.hashSync(password, 8);
-
-      // Crear un nuevo objeto de usuario con la contraseña hashada
-      const nuevoUsuario = new User({
-        nombre,
-        email,
-        password: hashedPassword
+  User.findOne({email : req.user.email})
+      .then(user => {
+          user.setPassword(req.body.password, err=>{
+              user.save()
+                  .then(user => {
+                      req.flash('success_msg', 'Password changed successfully.');
+                      res.redirect('/password/change');
+                  })
+                  .catch(err => {
+                      req.flash('error_msg', 'ERROR: '+err);
+                      res.redirect('/password/change');
+                  });
+          });
       });
-
-      // Guardar el nuevo usuario en la base de datos
-      nuevoUsuario.save()
-        .then(() => {
-          res.redirect('/login');
-        })
-        .catch((error) => {
-          console.log(error)
-        });
-    })
-    .catch((error) => {
-      console.log(error)
-    });
 });
-router.post('/login', passport.authenticate('local', {
-  successRedirect: '/dashboard',
-  failureRedirect: '/login',
-  failureFlash: true
-}));
+router.post('/olvide', (req, res, next)=> {
+})
 
+//PUT routes starts here
+
+router.put('/dashboard/usuarios/editar/:id', (req, res)=> {
+  let searchQuery = {_id : req.params.id};
+
+  User.updateOne(searchQuery, {$set : {
+      name : req.body.name,
+      email : req.body.email
+  }})
+  .then(user => {
+      req.flash('success_msg', 'User updated sucessfully.');
+      res.redirect('/dashboard/usuarios');
+  })
+  .catch(err => {
+      req.flash('error_msg', 'ERROR: '+err);
+      res.redirect('/dashboard/usuarios');
+  })
+});
+
+//DELETE routes starts here
+router.delete('/delete/user/:id', (req, res)=>{
+  let searchQuery = {_id : req.params.id};
+
+  User.deleteOne(searchQuery)
+      .then(user => {
+          req.flash('success_msg', 'User deleted sucessfully.');
+          res.redirect('/dashboard/usuarios');
+      })
+      .catch(err => {
+          req.flash('error_msg', 'ERROR: '+err);
+          res.redirect('/dashboard/usuarios');
+      })
+});
+
+router.post('/agregarCarrito', (req, res) => {
+    const carrito = req.body.agregar;
+  
+    Product.findById(carrito)
+      .then(producto => {
+        req.session.producto = producto; // Guarda el producto en la sesión
+        res.redirect('/productos');
+      })
+      .catch(error => {
+        res.redirect('/carrito');
+      });
+  });
 export default router
 
 
