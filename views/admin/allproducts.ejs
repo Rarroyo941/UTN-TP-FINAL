@@ -1,0 +1,35 @@
+<%- include('../partials/header.ejs') %>
+<h1 class="login-title">PRODUCTOS</h1>
+<section class="dashboard-productos">
+    <table class="table table-bordered" id="dataTable" cellspacing="0">
+        <thead>
+            <%- include('../partials/mensajes.ejs') -%>
+            <tr>
+                <th>PRODUCTO</th>
+                <th>COSTO</th>
+                <th>PRECIO</th>
+                <th>STOCK</th>
+                <th>Editar</th>
+                <th>Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+          <% products.forEach(product => { %>
+            <tr>
+                <td><%= product.titulo %></td>
+                <td><%= product.costo %></td>
+                <td><%= product.precio %></td>
+                <td><%= product.stock %></td>
+                <td><a href="/dashboard/productos/editar/<%=product.id%>">Editar</a></td>
+                <td>
+                    <form style="display: inline;" action="/productos/eliminar/<%= product.id %>?_method=DELETE" method="POST">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button style="cursor: pointer;" type="submit" class="btn btn-danger ml-2">Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</section>
+<%- include('../partials/footer.ejs') %>

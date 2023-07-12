@@ -2,37 +2,14 @@
 <h1 class="login-title">MI CUENTA</h1>
 <section class="dashboard-container">
     <ul class="user-dashboard">
-        <li>Mi Perfil</li>
-        <li>Historial Compras</li>
-        <li>Preferencias</li>
+      <li><a href="#">Mi Perfil</a></li>
+      <li><a href="#">Historial Compras</a></li>
+      <li><a href="#">Preferencias</a></li>
     </ul>
     <ul class="admin-dashboard">
-        <p>
-            <a class="btn btn-primary" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Usuarios</a>
-            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Productos</button>
-          </p>
-          <div class="row">
-            <div class="col">
-              <div class="collapse multi-collapse" id="multiCollapseExample1">
-                <div class="card card-body">
-                    Ver Productos
-                </div>
-                <div class="card card-body">
-                    Eliminar Productos
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="collapse multi-collapse" id="multiCollapseExample2">
-                <div class="card card-body">
-                    Ver Usuarios
-                </div>
-                <div class="card card-body">
-                    Eliminar Usuarios
-                </div>
-              </div>
-            </div>
-          </div>
+        <li><a href="/dashboard/usuarios">Ver Usuarios</a></li>
+        <li><a href="/dashboard/productos">Ver Productos</a></li>
     </ul>
+    <a href="/logout">Cerrar sesión</a>
 </section>
 <%- include('../partials/footer.ejs') %>

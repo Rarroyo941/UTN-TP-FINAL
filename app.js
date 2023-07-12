@@ -10,7 +10,7 @@ import methodOverride from 'method-override';
 import passport from 'passport';
 import LocalStrategy from 'passport-local'
 import userRouter from './routes/user.js'; // Importa el enrutador desde el archivo separado
-
+import adminRouter from './routes/admin.js'
 import User from './models/userModel.js';
 
 const app = express();
@@ -55,6 +55,7 @@ app.use((req, res, next)=> {
 
 // Rutas
 app.use(userRouter); // Usa el enrutador userRouter
+app.use(adminRouter)
 
 app.listen(process.env.PORT, () => {
   console.log('El servidor se está ejecutando');

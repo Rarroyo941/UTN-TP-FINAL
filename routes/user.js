@@ -106,28 +106,8 @@ router.get('/producto/:id', (req, res) => {
 router.get('/dashboard',isAuthenticatedUser,(req,res)=>{
   res.render('pages/dashboard', { user: req.user });
 })
-router.get('/dashboard/usuarios', isAuthenticatedUser ,(req, res)=> {
-  User.find({})
-      .then(users => {
-          res.render('admin/allusers', {users : users});
-      })
-      .catch(err => {
-          req.flash('error_msg', 'ERROR: '+err);
-          res.redirect('admin/allusers');
-      })
-});
-router.get('/dashboard/usuarios/editar/:id',isAuthenticatedUser, (req,res)=>{
-  let searchQuery = {_id : req.params.id};
 
-    User.findOne(searchQuery)
-        .then(user => {
-        res.render('admin/edituser', {user : user});
-        })
-        .catch(err => {
-        req.flash('error_msg', 'ERROR: '+err);
-        res.redirect('/dashboard/usuarios');
-    });
-})
+
 
 
 //  RUTAS .POST
@@ -201,24 +181,6 @@ router.post('/password/change', (req, res)=> {
 router.post('/olvide', (req, res, next)=> {
 })
 
-//PUT routes starts here
-
-router.put('/dashboard/usuarios/editar/:id', (req, res)=> {
-  let searchQuery = {_id : req.params.id};
-
-  User.updateOne(searchQuery, {$set : {
-      name : req.body.name,
-      email : req.body.email
-  }})
-  .then(user => {
-      req.flash('success_msg', 'User updated sucessfully.');
-      res.redirect('/dashboard/usuarios');
-  })
-  .catch(err => {
-      req.flash('error_msg', 'ERROR: '+err);
-      res.redirect('/dashboard/usuarios');
-  })
-});
 
 //DELETE routes starts here
 router.delete('/delete/user/:id', (req, res)=>{
@@ -245,6 +207,46 @@ router.post('/agregarCarrito', (req, res) => {
       })
       .catch(error => {
         res.redirect('/carrito');
+      });
+  });
+
+  router.put('/usuarios/editar/:id', (req, res) => {
+    let searchQuery = {_id: req.body.id};
+  
+    User.updateOne(searchQuery, {
+      $set: {
+        nombre: req.body.nombre,
+        email: req.body.email
+      }
+    })
+      .then(user => {
+        req.flash('success_msg', 'Usuario actualizado.');
+        res.redirect('/dashboard/usuarios');
+      })
+      .catch(err => {
+        req.flash('error_msg', 'ERROR: ' + err);
+        res.redirect('/dashboard/usuarios');
+      });
+  });
+  
+  router.put('/productos/editar/:id', (req, res) => {
+    let searchQuery = {_id: req.body.id};
+  
+    Product.updateOne(searchQuery, {
+      $set: {
+        titulo: req.body.titulo,
+        costo: req.body.costo,
+        precio: req.body.precio,
+        stock: req.body.stock
+      }
+    })
+      .then(product => {
+        req.flash('success_msg', 'Producto actualizado.');
+        res.redirect('/dashboard/productos');
+      })
+      .catch(err => {
+        req.flash('error_msg', 'ERROR: ' + err);
+        res.redirect('/dashboard/productos');
       });
   });
 export default router

@@ -1,0 +1,10 @@
+<%- include('../partials/header.ejs') %>
+<h1 class="login-title">ELIMINAR USUARIOS</h1>
+<section class="editar-usuarios">
+    <form accept="/dashboard/usuarios/eliminar" method="post">
+        <input type="text" name="nombre" placeholder="ingresar nuevo nombre">
+        <input type="email" name="email" placeholder="ingresar nuevo email">
+        <button type="submit">Eliminar</button>
+    </form>
+</section>
+<%- include('../partials/footer.ejs') %>

@@ -3,42 +3,27 @@
 <section class="dashboard-usuarios">
     <table class="table table-bordered" id="dataTable" cellspacing="0">
         <thead>
+            <%- include('../partials/mensajes.ejs') -%>
             <tr>
                 <th>NOMBRE</th>
                 <th>EMAIL</th>
-                <th>Editar / Eliminar</th>
+                <th>Editar</th>
+                <th>Eliminar</th>
             </tr>
         </thead>
         <tbody>
+          <% users.forEach(user => { %>
             <tr>
-                <td>rodrigo</td>
-                <td>arroyo.rodrigo@outlook.com</td>
+                <td><%= user.nombre %></td>
+                <td><%= user.email %></td>
+                <td><a href="/dashboard/usuarios/editar/<%=user.id%>">Editar</a></td>
                 <td>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                      Editar
-                    </button>
-                    <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                      <div class="modal-dialog">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Editar Usuario</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                          </div>
-                          <div class="modal-body">
-                            ...
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Salir</button>
-                            <button type="button" class="btn btn-primary">Guardar cambios</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <form action="/borrar-usuario/" method="post">
-                    <button type="submit" class="btn btn-primary">Eliminar</button>
-                </form></td>
+                    <form action="/usuarios/eliminar/<%=user.id%>" method="post">
+                        <input type="submit" name="email" value="ELIMINAR">
+                    </form>
+                </td>
             </tr>
+            <% }) %>
         </tbody>
     </table>
 </section>
