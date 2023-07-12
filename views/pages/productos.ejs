@@ -19,7 +19,7 @@
         <img src="<%= producto.image %>" class="card-img-top" alt="<%=productos.titulo%>">
         <div class="card-body">
           <h5 class="card-title primer-carousel-titulo"><%= producto.titulo %></h5>
-          <p class="card-text primer-carousel-precio">$<%= producto.precio %></p>
+          <p class="card-text primer-carousel-precio">$<%= parseFloat(producto.precio).toFixed(2) %></p>
           <form action="/agregarCarrito" method="post" id="formulario-carrito">
             <input type="hidden" id="input-producto-id" name="agregar" value="<%= producto._id %>">
             <input class="btn btn-primary carrito-btn" type="submit" value="Agregar al carrito">

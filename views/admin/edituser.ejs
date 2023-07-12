@@ -1,10 +1,12 @@
 <%- include('../partials/header.ejs') %>
 <h1 class="login-title">EDITAR USUARIO</h1>
 <section class="editar-usuarios">
-    <form action="/usuarios/editar/<%=user.id%>" method="post">
+    <form action="/usuarios/editar/<%=user.id%>" method="post" style="display: flex;flex-direction: column;width: 100%;align-items: center;gap: 2px;">
+        <label>Nombre</label>
         <input type="text" name="nombre" value="<%=user.nombre %>" placeholder="ingresar nuevo nombre">
+        <label>E-mail</label>
         <input type="email" name="email" value="<%=user.email %>" placeholder="ingresar nuevo email">
-        <button type="submit">Actualizar</button>
+        <button type="submit" class="btn btn-success">Actualizar</button>
     </form>
 </section>
 <%- include('../partials/footer.ejs') %>

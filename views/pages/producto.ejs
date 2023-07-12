@@ -5,7 +5,7 @@
         <div class="details-container">
             <span class="random-number-product">Nuevo | +<%= randomNumber %> vendidos</span>
             <h2><%= producto.titulo %></h2>
-            <p>Precio: <span class="product-span">$ <%= producto.precio %></span></p>
+            <p>Precio: <span class="product-span">$ <%= parseFloat(producto.precio).toFixed(2) %></span></p>
             <a href="/pagos" class="medios-pago-product" target="_blank">Ver medios de pago</a>
             <p>Stock: <span class="product-span"><%= producto.stock %> (unidades)</span></p>
             <i class="bi bi-truck"> Consultá costo de <a href="/envios" target="_blank">envío</a></i>

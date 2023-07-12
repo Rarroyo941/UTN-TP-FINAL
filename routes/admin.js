@@ -61,7 +61,22 @@ adminRouter.get('/dashboard/productos/editar/:id', isAuthenticatedUser, (req, re
       res.redirect('/dashboard/productos');
     });
 });
-
+adminRouter.get('/dashboard/productos/agregar-producto/', isAuthenticatedUser,(req,res)=>{
+  let titulo=""
+  let costo=""
+  let precio=""
+  let stock=""
+  let image=""
+  let etiquetas=""
+  res.render('admin/addproduct.ejs', {
+    titulo,
+    costo,
+    precio,
+    stock,
+    image,
+    etiquetas
+  })
+})
 
   
 adminRouter.delete('/productos/eliminar/:id', (req, res)=>{
