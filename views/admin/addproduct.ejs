@@ -1,20 +1,20 @@
 <%- include('../partials/header.ejs') %>
 <h1 class="login-title">AGREGAR PRODUCTO</h1>
-<section class="editar-usuarios">
-    <form action="/productos/agregar-producto/" enctype="multipart/form-data" method="post" style="display: flex;flex-direction: column;width: 100%;align-items: center;gap: 1px;">
-        <label>Titulo</label>
-        <input type="text" name="titulo" value="<%=titulo%>" placeholder="Ingrese titulo" required>
-        <label>Costo</label>
-        <input type="number" name="costo" value="<%=costo%>" placeholder="Ingrese costo" required>
-        <label>Precio</label>
-        <input type="number" name="precio" value="<%=precio%>" placeholder="Ingrese precio" required>
-        <label>Stock</label>
-        <input type="number" name="stock" value="<%=stock%>" placeholder="Ingrese stock" required>
-        <label>URL Imagen</label>
-        <input type="text" name="image" value="<%=image%>" placeholder="Ingrese url imagen" required>
-        <label>Etiqueta/s</label>
-        <input type="text" name="etiquetas" value="<%=etiquetas%>" placeholder="Ingrese una etiqueta" required>
-        <button type="submit" class="btn btn-success">Agregar</button>
+<section>
+    <form action="/dashboard/productos/agregar-producto/" method="post" style="display: flex;flex-direction: column;width: 100%;align-items: center;gap: 2px;">
+      <label>Titulo</label>
+      <input type="text" name="titulo" placeholder="Ingrese nuevo titulo" value="<%= titulo %>">
+      <label>Costo</label>
+      <input type="number" name="costo" placeholder="Ingrese nuevo costo" value="<%= costo %>">
+      <label>Precio</label>
+      <input type="number" name="precio" placeholder="Ingrese nuevo precio" value="<%= precio %>">
+      <label>Stock</label>
+      <input type="number" name="stock" placeholder="Ingrese nuevo stock" value="<%= stock %>">
+      <label>Imagen URL</label>
+      <input type="text" name="image" placeholder="Ingrese nueva url de imagen" value="<%= image %>">
+      <label>Etiquetas</label>
+      <input type="text" name="etiquetas" placeholder="Ingrese nuevas etiquetas separadas por comas" value="<%= Array.isArray(etiquetas) ? etiquetas.join(',') : etiquetas %>">
+      <button type="submit" class="btn btn-success">Actualizar</button>
     </form>
-</section>
+  </section>
 <%- include('../partials/footer.ejs') %>

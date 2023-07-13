@@ -1,5 +1,5 @@
 import express from "express";
-
+import ExpressValidator from "express-validator";
 import User from '../models/userModel.js';
 import Product from '../models/productmodel.js';
 
@@ -61,13 +61,13 @@ adminRouter.get('/dashboard/productos/editar/:id', isAuthenticatedUser, (req, re
       res.redirect('/dashboard/productos');
     });
 });
-adminRouter.get('/dashboard/productos/agregar-producto/', isAuthenticatedUser,(req,res)=>{
-  let titulo=""
-  let costo=""
-  let precio=""
-  let stock=""
-  let image=""
-  let etiquetas=""
+adminRouter.get('/dashboard/productos/agregar-producto/', isAuthenticatedUser, (req, res) => {
+  let titulo = "";
+  let costo = "";
+  let precio = "";
+  let stock = "";
+  let image = "";
+  let etiquetas = "";
   res.render('admin/addproduct.ejs', {
     titulo,
     costo,
@@ -75,8 +75,9 @@ adminRouter.get('/dashboard/productos/agregar-producto/', isAuthenticatedUser,(r
     stock,
     image,
     etiquetas
-  })
-})
+  });
+});
+
 
   
 adminRouter.delete('/productos/eliminar/:id', (req, res)=>{
@@ -144,5 +145,41 @@ adminRouter.post('/productos/editar/:id', (req, res) => {
       res.redirect('/dashboard/productos');
     });
 });
+adminRouter.post('/dashboard/productos/agregar-producto/', isAuthenticatedUser, (req, res) => {
+  Product.findOne({ titulo: req.body.titulo })
+    .then((productoEncontrado) => {
+      if (productoEncontrado) {
+        req.flash('error_msg', 'El producto ya existe');
+        res.redirect('/registro');
+      } else {
+        const { titulo, costo, precio, stock, image, etiquetas } = req.body;
+        const nuevoProducto = new Product({
+          titulo,
+          costo,
+          precio,
+          stock,
+          image,
+          etiquetas: etiquetas.split(',').map((etiqueta) => etiqueta.trim()), // Convierte la cadena en un array de etiquetas
+        });
+
+        nuevoProducto.save()
+          .then(() => {
+            req.flash('success_msg', 'Producto agregado exitosamente');
+            res.redirect('/dashboard/productos');
+          })
+          .catch((error) => {
+            console.error(error);
+            req.flash('error_msg', 'Error al agregar el producto');
+            res.redirect('/dashboard/productos');
+          });
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+      req.flash('error_msg', 'Error al buscar el producto');
+      res.redirect('/dashboard/productos');
+    });
+});
+
 
 export default adminRouter

@@ -10,6 +10,7 @@
                 <th>COSTO</th>
                 <th>PRECIO</th>
                 <th>STOCK</th>
+                <th>ETIQUETAS</th>
                 <th>Editar</th>
                 <th>Eliminar</th>
             </tr>
@@ -21,6 +22,7 @@
                 <td><%= product.costo %></td>
                 <td><%= product.precio %></td>
                 <td><%= product.stock %></td>
+                <td><%= product.etiquetas %></td>
                 <td><a href="/dashboard/productos/editar/<%=product.id%>">Editar</a></td>
                 <td>
                     <form style="display: inline;" action="/productos/eliminar/<%= product.id %>?_method=DELETE" method="POST">
