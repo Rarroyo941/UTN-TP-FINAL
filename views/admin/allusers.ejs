@@ -16,10 +16,10 @@
             <tr>
                 <td><%= user.nombre %></td>
                 <td><%= user.email %></td>
-                <td><a href="/dashboard/usuarios/editar/<%=user.id%>">Editar</a></td>
+                <td><a href="/dashboard/usuarios/editar/<%=user.id%>" class="btn btn-warning">Editar</a></td>
                 <td>
                     <form action="/usuarios/eliminar/<%=user.id%>" method="post">
-                        <input type="submit" name="email" value="ELIMINAR">
+                        <input type="submit" name="email" class="btn btn-danger" value="ELIMINAR">
                     </form>
                 </td>
             </tr>

@@ -10,7 +10,12 @@ import nodemailer from 'nodemailer';
 import LocalStrategy from 'passport-local';
 
 const router = express.Router();
-
+const initializeCarrito = (req, res, next) => {
+  if (!req.session.carrito) {
+    req.session.carrito = [];
+  }
+  next();
+};
 function isAuthenticatedUser(req, res, next) {
   if(req.isAuthenticated()) {
       return next();
@@ -30,11 +35,15 @@ router.get('/', (req, res) => {
     });
 });
 
-router.get('/login', (req,res)=>{
-    res.render('pages/login')
-})
-router.get('/logout', isAuthenticatedUser,(req, res)=> {
-  req.logOut();
+router.get('/login', (req, res) => {
+  if (req.isAuthenticated()) {
+    res.redirect('dashboard'); // Renderiza la página del dashboard si el usuario está autenticado
+  } else {
+    res.render('pages/login'); // Renderiza la página de login si el usuario no está autenticado
+  }
+});
+router.get('/logout', isAuthenticatedUser, (req, res) => {
+  req.logout();
   req.flash('success_msg', 'Ha cerrado sesión.');
   res.redirect('/login');
 });
@@ -106,9 +115,24 @@ router.get('/producto/:id', (req, res) => {
 router.get('/dashboard',isAuthenticatedUser,(req,res)=>{
   res.render('pages/dashboard', { user: req.user });
 })
+router.get('/carrito',initializeCarrito, async (req, res) => {
+  try {
+    const productos = await Product.find({ _id: { $in: req.session.carrito } });
+    let total = 0;
+    for (const producto of productos) {
+      total += producto.precio;
+    }
+    let cantidad = 1;
+    res.render('pages/carrito', { productos,total,cantidad }); // Renderiza la vista 'carrito.ejs' con los productos del carrito
+  } catch (error) {
+    console.error('Error al obtener los productos del carrito:', error);
+    res.redirect('/'); // Redirige a la página principal o de error
+  }
+});
 
-
-
+/*router.get('/*', (req,res)=>{
+  res.render('admin/pageNotFound')
+})*/
 
 //  RUTAS .POST
 router.post('/dashboardUsuario',(req,res)=>{
@@ -180,7 +204,71 @@ router.post('/password/change', (req, res)=> {
 });
 router.post('/olvide', (req, res, next)=> {
 })
+router.post('/carrito', async (req, res) => {
+  try {
+    const { titulo, precio } = req.body;
 
+    // Buscar el producto por título y precio
+    const producto = await Product.findOne({ titulo, precio });
+
+    // Si el producto existe, agregarlo al carrito
+    if (producto) {
+      if (req.session.carrito) {
+        req.session.carrito.push(producto._id);
+      } else {
+        req.session.carrito = [producto._id];
+      }
+
+      req.flash('success_msg', 'Producto agregado al carrito exitosamente.');
+      res.redirect('/carrito'); // Redirige a la página del carrito de compras
+    } else {
+      req.flash('error_msg', 'El producto seleccionado no existe.');
+      res.redirect('/productos'); // Redirige a la página principal o de error
+    }
+  } catch (error) {
+    console.error('Error al agregar el producto al carrito:', error);
+    res.redirect('/productos'); // Redirige a la página principal o de error
+  }
+});
+router.put('/usuarios/editar/:id', (req, res) => {
+  let searchQuery = {_id: req.body.id};
+
+  User.updateOne(searchQuery, {
+    $set: {
+      nombre: req.body.nombre,
+      email: req.body.email
+    }
+  })
+    .then(user => {
+      req.flash('success_msg', 'Usuario actualizado.');
+      res.redirect('/dashboard/usuarios');
+    })
+    .catch(err => {
+      req.flash('error_msg', 'ERROR: ' + err);
+      res.redirect('/dashboard/usuarios');
+    });
+});
+
+router.put('/productos/editar/:id', (req, res) => {
+  let searchQuery = {_id: req.body.id};
+
+  Product.updateOne(searchQuery, {
+    $set: {
+      titulo: req.body.titulo,
+      costo: req.body.costo,
+      precio: req.body.precio,
+      stock: req.body.stock
+    }
+  })
+    .then(product => {
+      req.flash('success_msg', 'Producto actualizado.');
+      res.redirect('/dashboard/productos');
+    })
+    .catch(err => {
+      req.flash('error_msg', 'ERROR: ' + err);
+      res.redirect('/dashboard/productos');
+    });
+});
 
 //DELETE routes starts here
 router.delete('/delete/user/:id', (req, res)=>{
@@ -197,58 +285,8 @@ router.delete('/delete/user/:id', (req, res)=>{
       })
 });
 
-router.post('/agregarCarrito', (req, res) => {
-    const carrito = req.body.agregar;
-  
-    Product.findById(carrito)
-      .then(producto => {
-        req.session.producto = producto; // Guarda el producto en la sesión
-        res.redirect('/productos');
-      })
-      .catch(error => {
-        res.redirect('/carrito');
-      });
-  });
 
-  router.put('/usuarios/editar/:id', (req, res) => {
-    let searchQuery = {_id: req.body.id};
   
-    User.updateOne(searchQuery, {
-      $set: {
-        nombre: req.body.nombre,
-        email: req.body.email
-      }
-    })
-      .then(user => {
-        req.flash('success_msg', 'Usuario actualizado.');
-        res.redirect('/dashboard/usuarios');
-      })
-      .catch(err => {
-        req.flash('error_msg', 'ERROR: ' + err);
-        res.redirect('/dashboard/usuarios');
-      });
-  });
-  
-  router.put('/productos/editar/:id', (req, res) => {
-    let searchQuery = {_id: req.body.id};
-  
-    Product.updateOne(searchQuery, {
-      $set: {
-        titulo: req.body.titulo,
-        costo: req.body.costo,
-        precio: req.body.precio,
-        stock: req.body.stock
-      }
-    })
-      .then(product => {
-        req.flash('success_msg', 'Producto actualizado.');
-        res.redirect('/dashboard/productos');
-      })
-      .catch(err => {
-        req.flash('error_msg', 'ERROR: ' + err);
-        res.redirect('/dashboard/productos');
-      });
-  });
 export default router
 
 

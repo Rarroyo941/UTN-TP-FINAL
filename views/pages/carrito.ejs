@@ -96,20 +96,29 @@
 
     <div class="tuPedido">
         <h3 class="tituloTuPedido">TU PEDIDO</h3>
-        <div class="detallePedido">
-            <div class="titulosProductoSubtotal">
-                <p>PRODUCTO</p>
-                <p>SUBTOTAL</p>
-            </div>
-            <div class="productosPedido">
-                <p><%= producto.titulo %></p>
-                <p>$<%= producto.precio %></p>
-            </div>
+        <table>
+            <thead>
+                <tr class="titulosProductoSubtotal">
+                    <th>PRODUCTO</th>
+                    <th>CANTIDAD</th>
+                    <th>SUBTOTAL</th>
+                </tr>
+            </thead>  
+            <tbody>
+                <% productos.forEach(producto => { %>
+                    <tr class="productosAgregados">
+                        <td><%= producto.titulo %></td>
+                        <td><i class="bi bi-dash"></i> <%=cantidad%> <i class="bi bi-plus"></i></td>
+                        <td>$<%= parseFloat(producto.precio).toFixed(2) %></td>
+                    </tr>
+                <% }) %>
+            </tbody>  
+        </table>
             <div class="subtotalPedido">
-                <p>Subtotal</p>
-                <div>$65645</div>
+                <p>Subtotal:</p>
+                <p>$<%= total.toFixed(2) %></p>
             </div>
-            <div class="envioPedido">
+            <!--<div class="envioPedido">
                 <p>Envio</p>
                 <div class="checkboxPedido">
                     <div class="checkPedido">
@@ -126,6 +135,7 @@
                 <p>Total</p>
                 <div>$6545645</div>    
             </div>
+       
         </div>
         <div class="datosPersonalesPedido">
             <p>Tus datos personales se utilizaran para procesar tu pedido, mejorar tu experiencia en nuestra web y otros propositos descriptos en nuestros <span href="#" class="politicaDePrivacidad">politica de privacidad.</span>
@@ -136,7 +146,7 @@
             <input type="checkbox" name="terminosYCondiciones" id="termYCondCheck">
             <label for="terminosYCondiciones">He leido y acepto los <a href="#" id="terYCondLink">Terminos y Condiciones.</a></label>
         </div>
-        <button id="btnPedido" disabled>REALIZAR PEDIDO</button>
+        <button id="btnPedido" disabled>REALIZAR PEDIDO</button>-->
     </div>
 </section>
 </section>

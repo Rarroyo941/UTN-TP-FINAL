@@ -29,7 +29,7 @@ mongoose.connect(process.env.MONGODB_URI, {
 //  middleware de session
 app.use(session({
   secret : process.env.CLAVE,
-  resave : true,
+  resave : false,
   saveUninitialized : true
 }));
 app.use(passport.initialize());

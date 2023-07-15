@@ -150,7 +150,7 @@ adminRouter.post('/dashboard/productos/agregar-producto/', isAuthenticatedUser, 
     .then((productoEncontrado) => {
       if (productoEncontrado) {
         req.flash('error_msg', 'El producto ya existe');
-        res.redirect('/registro');
+        res.redirect('/dashboard/productos/agregar-producto/');
       } else {
         const { titulo, costo, precio, stock, image, etiquetas } = req.body;
         const nuevoProducto = new Product({

@@ -3,17 +3,17 @@
 <section>
     <form action="/dashboard/productos/agregar-producto/" method="post" style="display: flex;flex-direction: column;width: 100%;align-items: center;gap: 2px;">
       <label>Titulo</label>
-      <input type="text" name="titulo" placeholder="Ingrese nuevo titulo" value="<%= titulo %>">
+      <input type="text" name="titulo" placeholder="Ingrese nuevo titulo" value="<%= titulo %>" required>
       <label>Costo</label>
-      <input type="number" name="costo" placeholder="Ingrese nuevo costo" value="<%= costo %>">
+      <input type="number" name="costo" placeholder="Ingrese nuevo costo" value="<%= costo %>" required>
       <label>Precio</label>
-      <input type="number" name="precio" placeholder="Ingrese nuevo precio" value="<%= precio %>">
+      <input type="number" name="precio" placeholder="Ingrese nuevo precio" value="<%= precio %>" required>
       <label>Stock</label>
-      <input type="number" name="stock" placeholder="Ingrese nuevo stock" value="<%= stock %>">
+      <input type="number" name="stock" placeholder="Ingrese nuevo stock" value="<%= stock %>" required>
       <label>Imagen URL</label>
-      <input type="text" name="image" placeholder="Ingrese nueva url de imagen" value="<%= image %>">
+      <input type="text" name="image" placeholder="Ingrese nueva url de imagen" value="<%= image %>" required>
       <label>Etiquetas</label>
-      <input type="text" name="etiquetas" placeholder="Ingrese nuevas etiquetas separadas por comas" value="<%= Array.isArray(etiquetas) ? etiquetas.join(',') : etiquetas %>">
+      <input type="text" name="etiquetas" placeholder="Ingrese nuevas etiquetas separadas por comas" value="<%= Array.isArray(etiquetas) ? etiquetas.join(',') : etiquetas %>"required>
       <button type="submit" class="btn btn-success">Actualizar</button>
     </form>
   </section>

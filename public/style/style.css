@@ -1298,14 +1298,12 @@ color: var(--color-letra);
 .pedido{
     display: flex;
     flex-direction: row;
-    margin-left: 100px;
-    margin-right: 100px;
+    margin: 0 5%;
 }
 
 .detalleFacturacion{
     margin-top: 30px;
-    background-color: redv;
-    width: 50%;
+    width: 60%;
     display: flex;
     flex-direction: column;
 }
@@ -1535,45 +1533,61 @@ color: var(--color-letra);
     margin-top: 30px;
     padding-bottom: 30px;
     background-color: rgb(244, 241, 241);
-    width: 50%;
+    width: 40%;
+    margin-left: 0;
     height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     border: 2px dotted #FAD0AB;
 }
+.tuPedido > table, .tuPedido > table >thead {
+    width: 100%;
+}
 
 .tituloTuPedido{
-    display: flex;
-    justify-content: center;
-    color: #FF851B;
+    text-align: center;
+    margin: auto;
+    padding-top: 5px;
+    color: var(--naranja-);
+    height: 3rem;
 }
 
-.detallePedido{
-    background-color: white;
-    width: 80%;
+.productosAgregados > td{
+    padding: 0.5rem;
+    text-align: center;
 }
-
+.productosAgregados > td:nth-child(2) > i {
+    margin: 0 6px;
+    border: 1px solid var(--naranja-);
+    border-radius: 45px;
+}
 .titulosProductoSubtotal{
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 25px;
     border-bottom: 1px solid rgb(196, 192, 192, 0.7);
-    margin: 5px;
     font-size: 0.9rem;
     font-weight: 600;
+    width: 100%;
+    text-align: center;
 }
 
 .subtotalPedido{
     display: flex;
     align-items: center;
+    width: 100%;
     justify-content: space-between;
     margin: 5px;
     border-bottom: 1px solid rgb(196, 192, 192, 0.7);
     font-size: 0.9rem;
     font-weight: 600;
 }
-
+.subtotalPedido > p:first-child {
+    width: 70%;
+    text-align: end;
+}
+.subtotalPedido > p {
+    padding: 0 1rem;
+}
+/*
 .envioPedido{
     display: flex;
     align-items: center;
@@ -1642,4 +1656,4 @@ color: var(--color-letra);
 #btnPedido:disabled{
     background-color: gray;
     cursor: auto;
-}
+}*/
