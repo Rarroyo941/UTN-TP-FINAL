@@ -5,7 +5,7 @@
     <table class="table table-bordered" id="dataTable" cellspacing="0">
         <thead>
             <%- include('../partials/mensajes.ejs') -%>
-            <tr>
+            <tr class="products-head-tr">
                 <th>PRODUCTO</th>
                 <th>COSTO</th>
                 <th>PRECIO</th>
@@ -17,7 +17,7 @@
         </thead>
         <tbody>
           <% products.forEach(product => { %>
-            <tr>
+            <tr class="products-tr">
                 <td><%= product.titulo %></td>
                 <td><%= product.costo %></td>
                 <td><%= product.precio %></td>

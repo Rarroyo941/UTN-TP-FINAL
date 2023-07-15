@@ -1657,3 +1657,43 @@ color: var(--color-letra);
     background-color: gray;
     cursor: auto;
 }*/
+
+
+
+/* DASHBOARD */
+
+.user-dashboard > li, .admin-dashboard > li{
+    list-style: none;
+}
+.user-dashboard > li > a, .admin-dashboard > li > a{
+    background-color: var(--naranja-);
+    width: 200px;
+}
+.dashboard-container > a {
+    margin-left: 2rem;
+    width: 200px;
+}
+
+/* DASHBOARD ALL PRODUCTS*/
+.products-head-tr > th {
+    text-align: center;
+}
+.products-head-tr > th:first-child {
+    text-align: left;
+    padding-left: 1rem;
+}
+.products-tr {
+    height: 2rem;
+}
+.products-tr > td {
+    text-align: center;
+    vertical-align: middle;
+    padding: 4px;
+}
+.products-tr > td > a {
+    margin: auto;
+}
+.products-tr > td:first-child {
+    text-align: left;
+    padding-left: 1rem;
+}
