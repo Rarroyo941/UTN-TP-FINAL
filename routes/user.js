@@ -54,19 +54,19 @@ router.get('/registro', (req,res)=>{
     res.render('pages/registro')
 })
 router.get('/reset/:token', (req, res)=> {
-  User.findOne({resetPasswordToken: req.params.token, resetPasswordExpires : {$gt : Date.now() } })
-      .then(user => {
-          if(!user) {
-              req.flash('error_msg', 'Password reset token in invalid or has been expired.');
-              res.redirect('/olvide');
-          }
+  User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } })
+    .then(user => {
+      if (!user) {
+        req.flash('error_msg', 'El token para restablecer la contraseña es inválido o ha expirado.');
+        return res.redirect('/olvide');
+      }
 
-          res.render('pages/newpassword', {token : req.params.token});
-      })
-      .catch(err => {
-          req.flash('error_msg', 'ERROR: '+err);
-          res.redirect('/olvide');
-      });
+      res.render('pages/newpassword', { token: req.params.token });
+    })
+    .catch(err => {
+      req.flash('error_msg', 'ERROR: ' + err);
+      res.redirect('/olvide');
+    });
 });
 router.get('/password/change', isAuthenticatedUser, (req, res)=> {
   res.render('pages/changepassword');
@@ -115,20 +115,23 @@ router.get('/producto/:id', (req, res) => {
 router.get('/dashboard',isAuthenticatedUser,(req,res)=>{
   res.render('pages/dashboard', { user: req.user });
 })
-router.get('/carrito',initializeCarrito, async (req, res) => {
+router.get('/carrito', initializeCarrito, async (req, res) => {
   try {
     const productos = await Product.find({ _id: { $in: req.session.carrito } });
     let total = 0;
     for (const producto of productos) {
       total += producto.precio;
     }
-    let cantidad = 1;
-    res.render('pages/carrito', { productos,total,cantidad }); // Renderiza la vista 'carrito.ejs' con los productos del carrito
+    const user = req.user;
+    res.render('pages/carrito', { productos, total, user }); // Renderiza la vista 'carrito.ejs' con los productos y el total del carrito
   } catch (error) {
     console.error('Error al obtener los productos del carrito:', error);
     res.redirect('/'); // Redirige a la página principal o de error
   }
 });
+router.get('/pedidoRealizado', initializeCarrito, async (req, res)=>{
+  res.render('pages/pedidoRealizado')
+})
 
 /*router.get('/*', (req,res)=>{
   res.render('admin/pageNotFound')
@@ -203,7 +206,115 @@ router.post('/password/change', (req, res)=> {
       });
 });
 router.post('/olvide', (req, res, next)=> {
-})
+  // Generar un token aleatorio
+  crypto.randomBytes(32, (err, buffer) => {
+    if (err) {
+      console.error('Error al generar el token:', err);
+      req.flash('error_msg', 'Ha ocurrido un error al generar el token.');
+      return res.redirect('/olvide');
+    }
+    
+    const token = buffer.toString('hex');
+    
+    // Buscar el usuario por su correo electrónico
+    User.findOne({ email: req.body.email })
+      .then(user => {
+        if (!user) {
+          req.flash('error_msg', 'No se encontró un usuario con este correo electrónico.');
+          return res.redirect('/olvide');
+        }
+
+        // Establecer el token y la fecha de vencimiento en el usuario
+        user.resetPasswordToken = token;
+        user.resetPasswordExpires = Date.now() + 3600000; // 1 hora de validez para el token
+
+        user.save()
+          .then(user => {
+            // Enviar el correo electrónico con el enlace para restablecer la contraseña
+            const transporter = nodemailer.createTransport({
+              // Configura tus credenciales de correo electrónico aquí
+              service: 'Gmail',
+              auth: {
+                user: 'cfood@cfood.com',
+                pass: '12345'
+              }
+            });
+
+            const mailOptions = {
+              from: 'cfood@cfood.com',
+              to: user.email,
+              subject: 'Recuperación de contraseña',
+              text: `Hola ${user.nombre},\n\n` +
+                    'Has solicitado restablecer tu contraseña.\n\n' +
+                    'Haz clic en el siguiente enlace o pégalo en tu navegador para completar el proceso:\n\n' +
+                    `http://${req.headers.host}/reset/${token}\n\n` +
+                    'Si no solicitaste restablecer tu contraseña, ignora este correo y tu contraseña no cambiará.\n'
+            };
+
+            transporter.sendMail(mailOptions, (error, info) => {
+              if (error) {
+                console.error('Error al enviar el correo electrónico:', error);
+                req.flash('error_msg', 'Ha ocurrido un error al enviar el correo electrónico.');
+                return res.redirect('/olvide');
+              }
+
+              req.flash('success_msg', 'Se ha enviado un correo electrónico con las instrucciones para restablecer tu contraseña.');
+              res.redirect('/olvide');
+            });
+          })
+          .catch(err => {
+            console.error('Error al guardar el token en la base de datos:', err);
+            req.flash('error_msg', 'Ha ocurrido un error al guardar el token en la base de datos.');
+            res.redirect('/olvide');
+          });
+      })
+      .catch(err => {
+        console.error('Error al buscar el usuario en la base de datos:', err);
+        req.flash('error_msg', 'Ha ocurrido un error al buscar el usuario en la base de datos.');
+        res.redirect('/olvide');
+      });
+  });
+});
+router.post('/reset/:token', (req, res) => {
+  User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } })
+    .then(user => {
+      if (!user) {
+        req.flash('error_msg', 'El token para restablecer la contraseña es inválido o ha expirado.');
+        return res.redirect('/olvide');
+      }
+
+      if (req.body.password !== req.body.confirmpassword) {
+        req.flash('error_msg', "Las contraseñas no coinciden. Por favor, inténtalo de nuevo.");
+        return res.redirect(`/reset/${req.params.token}`);
+      }
+
+      // Actualizar la contraseña en la base de datos
+      user.setPassword(req.body.password, err => {
+        if (err) {
+          req.flash('error_msg', 'Ha ocurrido un error al restablecer la contraseña.');
+          return res.redirect(`/reset/${req.params.token}`);
+        }
+
+        // Limpiar los campos de reseteo de contraseña en el modelo del usuario
+        user.resetPasswordToken = undefined;
+        user.resetPasswordExpires = undefined;
+
+        user.save()
+          .then(user => {
+            req.flash('success_msg', 'La contraseña ha sido restablecida exitosamente. Ahora puedes iniciar sesión con tu nueva contraseña.');
+            res.redirect('/login');
+          })
+          .catch(err => {
+            req.flash('error_msg', 'Ha ocurrido un error al guardar la nueva contraseña.');
+            res.redirect(`/reset/${req.params.token}`);
+          });
+      });
+    })
+    .catch(err => {
+      req.flash('error_msg', 'ERROR: ' + err);
+      res.redirect('/olvide');
+    });
+});
 router.post('/carrito', async (req, res) => {
   try {
     const { titulo, precio } = req.body;

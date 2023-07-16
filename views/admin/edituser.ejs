@@ -3,9 +3,9 @@
 <section class="editar-usuarios">
     <form action="/usuarios/editar/<%=user.id%>" method="post" style="display: flex;flex-direction: column;width: 100%;align-items: center;gap: 2px;">
         <label>Nombre</label>
-        <input type="text" name="nombre" value="<%=user.nombre %>" placeholder="ingresar nuevo nombre">
+        <input type="text" name="nombre" value="<%=user.nombre %>" placeholder="ingresar nuevo nombre" style="width: 250px;">
         <label>E-mail</label>
-        <input type="email" name="email" value="<%=user.email %>" placeholder="ingresar nuevo email">
+        <input type="email" name="email" value="<%=user.email %>" placeholder="ingresar nuevo email" style="width: 250px;">
         <button type="submit" class="btn btn-success">Actualizar</button>
     </form>
 </section>

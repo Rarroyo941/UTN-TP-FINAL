@@ -149,42 +149,25 @@
               <a href="#carrusel2"><i class="bi bi-chevron-right"></i></a>
       </div>
       <div class="contenedorTarjetas">
-          <div class="tarjetas">
+        <% for (let i = 15; i < 18; i += 1) { %>
+          <a href="/producto/<%= productos[i]._id %>" class="tarjetas">
               <div class="contImg">
-                  <img src="imagenes/img 1.jpg" alt="">
+                  <img src="<%=productos[i].image%>" class="card-img-top" alt="<%=productos[i].titulo%>">
               </div>
               <div class="descripcionProducto">
-                  <p>Pollo libre de grano y batata dulce</p>
-                  <p>$49.99 for 24 lbs</p>
+                  <p class="promo-label"><%=productos[i].titulo%></p>
+                  <p>$<%=parseFloat(productos[i].precio).toFixed(2)%></p>
+                  <p class="promo-label">Disponibles:</p>
+                  <p><%=productos[i].stock%> unidades</p>
               </div>
-              <div class="carrito">
-                  <button class="btn">Agregar al carrito</button>
-              </div>
-          </div>
-          <div class="tarjetas">
-              <div class="contImg">
-                  <img src="imagenes/img 2.jpg" alt="">
-              </div>
-              <div class="descripcionProducto">
-                  <p>Pollo libre de grano y batata dulce</p>
-                  <p>$49.99 for 24 lbs</p>
-              </div>
-              <div class="carrito">
-                  <button class="btn">Agregar al carrito</button>
-              </div>
-          </div>
-          <div class="tarjetas">
-              <div class="contImg">
-                  <img src="imagenes/img 3.jpg" alt="">
-              </div>
-              <div class="descripcionProducto">
-                  <p>Pollo libre de grano y batata dulce</p>
-                  <p>$49.99 for 24 lbs</p>
-              </div>
-              <div class="carrito">
-                  <button class="btn">Agregar al carrito</button>
-              </div>
-          </div>
+              <form action="/carrito" method="post" id="formulario-carrito">
+                <input type="hidden" id="input-producto-id" name="agregar" value="<%= productos[i]._id %>">
+                <input type="hidden" name="titulo" value="<%= productos[i].titulo %>">
+                <input type="hidden" name="precio" value="<%= productos[i].precio %>">
+                <input class="carrito-btn" type="submit" value="Agregar al carrito">
+              </form>
+        </a>
+          <% } %>
       </div>
   </div>
   <div class="carruseles" id="carrusel2">
@@ -198,91 +181,58 @@
               <a href="#carrusel3"><i class="bi bi-chevron-right"></i></a>
       </div>
       <div class="contenedorTarjetas">
-          <div class="tarjetas">
+        <% for (let i = 19; i < 22; i += 1) { %>
+          <a href="/producto/<%= productos[i]._id %>" class="tarjetas">
               <div class="contImg">
-                  <img src="imagenes/img 4.jpg" alt="">
+                  <img src="<%=productos[i].image%>" alt="<%=productos[i].titulo%>">
               </div>
               <div class="descripcionProducto">
-                  <p>Pollo libre de grano y batata dulce</p>
-                  <p>$49.99 for 24 lbs</p>
+                  <p class="promo-label"><%=productos[i].titulo%></p>
+                  <p>$<%=parseFloat(productos[i].precio).toFixed(2)%></p>
+                  <p class="promo-label">Disponibles:</p>
+                  <p><%=productos[i].stock%> unidades</p>
               </div>
-              <div class="carrito">
-                  <button class="btn">Agregar al carrito</button>
-              </div>
-          </div>
-          <div class="tarjetas">
-              <div class="contImg">
-                  <img src="imagenes/img 5.jpg" alt="">
-              </div>
-              <div class="descripcionProducto">
-                  <p>Pollo libre de grano y batata dulce</p>
-                  <p>$49.99 for 24 lbs</p>
-              </div>
-              <div class="carrito">
-                  <button class="btn">Agregar al carrito</button>
-              </div>
-          </div>
-          <div class="tarjetas">
-              <div class="contImg">
-                  <img src="imagenes/img 6.jpg" alt="">
-              </div>
-              <div class="descripcionProducto">
-                  <p>Pollo libre de grano y batata dulce</p>
-                  <p>$49.99 for 24 lbs</p>
-              </div>
-              <div class="carrito">
-                  <button class="btn">Agregar al carrito</button>
-              </div>
-          </div>
+              <form action="/carrito" method="post" id="formulario-carrito">
+                <input type="hidden" id="input-producto-id" name="agregar" value="<%= productos[i]._id %>">
+                <input type="hidden" name="titulo" value="<%= productos[i].titulo %>">
+                <input type="hidden" name="precio" value="<%= productos[i].precio %>">
+                <input class="carrito-btn" type="submit" value="Agregar al carrito">
+              </form>
+        </a>
+          <% } %>
       </div>
   </div>
   <div class="carruseles" id="carrusel3">
       <div class="contenedorTitulos">
           <a href="#carrusel1" class="h2">Mas Vendidos</a>
           <a href="#carrusel2" class="h2">Mas Recientes</a>
-          <a href="#carrusel3" class="h2" id="ep">En Promocion</a>
+          <a href="#carrusel3" class="h2" id="ep">En Promoción</a>
       </div>
       <div class="flechas">
               <a href="#carrusel2"><i class="bi bi-chevron-left"></i></a>
               <a href="#carrusel1"><i class="bi bi-chevron-right"></i></a>
       </div>
       <div class="contenedorTarjetas">
-          <div class="tarjetas">
+        <% for (let i = 31; i < 34; i += 1) { %>
+          <a href="/producto/<%= productos[i]._id %>" class="tarjetas">
               <div class="contImg">
-                  <img src="imagenes/img 7.jpg" alt="">
+                  <img src="<%=productos[i].image%>" alt="<%=productos[i].titulo%>">
               </div>
               <div class="descripcionProducto">
-                  <p>Pollo libre de grano y batata dulce</p>
-                  <p>$49.99 for 24 lbs</p>
+                  <p class="promo-label"><%=productos[i].titulo%></p>
+                  <p class="promo-label">Precio de lista:</p>
+                  <p>$<%=parseFloat(productos[i].precio).toFixed(2)%></p>
+                  <p class="promo-label">En promoción:</p>
+                  <p>$<%=(parseFloat(productos[i].precio) *0.9).toFixed(2)%></p>
               </div>
-              <div class="carrito">
-                  <button class="btn">Agregar al carrito</button>
-              </div>
-          </div>
-          <div class="tarjetas">
-              <div class="contImg">
-                  <img src="imagenes/img 8.jpg" alt="">
-              </div>
-              <div class="descripcionProducto">
-                  <p>Pollo libre de grano y batata dulce</p>
-                  <p>$49.99 for 24 lbs</p>
-              </div>
-              <div class="carrito">
-                  <button class="btn">Agregar al carrito</button>
-              </div>
-          </div>
-          <div class="tarjetas">
-              <div class="contImg">
-                  <img src="imagenes/img 9.jpg" alt="">
-              </div>
-              <div class="descripcionProducto">
-                  <p>Pollo libre de grano y batata dulce</p>
-                  <p>$49.99 for 24 lbs</p>
-              </div>
-              <div class="carrito">
-                  <button class="btn">Agregar al carrito</button>
-              </div>
-          </div>
+              <form action="/carrito" method="post" id="formulario-carrito">
+                <input type="hidden" id="input-producto-id" name="agregar" value="<%= productos[i]._id %>">
+                <input type="hidden" name="titulo" value="<%= productos[i].titulo %>">
+                <input type="hidden" name="precio" value="<%= productos[i].precio %>">
+                <input class="carrito-btn" type="submit" value="Agregar al carrito">
+              </form>
+        </a>
+          <% } %>
       </div>
   </div>
 </section>

@@ -4,6 +4,16 @@
     --color-letra: #0B0B0B;
     --naranja-claro: #FAD0AB;
 }
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Si quieres ocultar también las flechas en navegadores Firefox */
+input[type="number"]::-moz-number-spin-box {
+  -moz-appearance: none;
+}
 body{
     background-color: var(--color-fondo);
     margin: 0;
@@ -387,7 +397,7 @@ body{
 }
 
 .carruseles > .flechas{
-    margin-top: 150px;
+    margin-top: 200px;
     padding: 45px;
     display: flex;
     align-items: center;
@@ -397,81 +407,105 @@ body{
 }
 
 .carruseles > .flechas > a > i{
-    font-size: 1.5rem;
+    font-size: 2rem;
     color: #FF851B;
 }
 
 .contenedorTarjetas{
-    height: 550px;
+    height: 500px;
     margin-left: 100px;
     margin-right: 100px;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
-
 .contenedorTarjetas > .tarjetas{
-    height: 450px;
-    width: 380px;
+    height: 500px;
+    width: 30%;
+    text-decoration: none;
+    border-radius: 15px;
+}
+.contenedorTarjetas >.tarjetas:hover {
+    box-shadow: 0 0 5px var(--naranja-);
 }
 
 .contImg{
     background-color: white;
-    height: 65%;
+    height: 50%;
     width: 100%;
     margin-bottom: 0%;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin: 0;
+    border-radius: 15px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    overflow: hidden
 }
 
 .contImg > img{
-    height: 80%;
-    width: 60%;
-    margin-bottom: 0%;
+    width: 50%;
+    height: auto;
+    display: block;
 }
 
 .descripcionProducto{
-    margin-top: -4px;
-    height: 20%;
+    height: 39.4%;
     background-color: #FF851B;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    font-size: 1.3rem;
+    justify-content:center;
+    font-size: 1.2rem;
     color: white;
-    padding-bottom: 15px;
-    line-height: 2.3rem;
+    gap: 2px;
 }
-
-.carrito{
+.descripcionProducto > p {
+    padding: 0;
+    margin: 0;
+    color: var(--color-letra);
+}
+.promo-label {
+    text-decoration: underline;
+    font-weight: bold;
+}
+.tarjetas > form {
+    margin-top: -0.5rem;
     height: 15%;
 }
-
-.carrito > .btn{
-    text-decoration: none;
-    height: 100%;
+.carrito-btn {
     width: 100%;
-    background-color: transparent;
-    border: 3px solid #FF851B;
-    color: #FF851B;
-    font-size: 1.3rem;
-    font-weight: 600;
+    color: var(--color-letra);
+    font-size: 1rem;
+    font-weight: bold;
+    background-color: var(--naranja-);
+    border-radius: 15px;
+    padding: 0.5rem 1rem;
+    border: none;
     cursor: pointer;
-    font-family: 'Montserrat', sans-serif;
+    border:3px solid transparent;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
 }
-
+.carrito-btn:hover {
+    color: black;
+    background-color: var(--naranja-claro);
+    border-color:  var(--naranja-);
+}
 #mv{
     border-bottom: 4px solid #FF851B;
+    color: var(--naranja-);
 }
 
 #mr{
     border-bottom: 4px solid #FF851B;
+    color: var(--naranja-);
 }
 
 #ep{
     border-bottom: 4px solid #FF851B;
+    color: var(--naranja-);
 }
 /* ACA COMIENZA LA SECCION "NUESTROS ALIMENTOS" */
 .about-feeds {
@@ -646,6 +680,7 @@ body{
 /* ACA COMIENZA LA SECCION DE PREGUNTAS Y RESPUESTAS */
 .faq-container {
     background-color: var(--naranja-claro);
+    margin-bottom: 0;
 }
 .accordion-item {
     background-color: var(--naranja-claro);
@@ -679,9 +714,8 @@ body{
     font-weight: bold;
 }
 /* FOOTER*/
-footer {
+footer, .footer-section, footer > h5 {
     margin-bottom: 0;
-    padding-bottom: 0;
 }
 .footer-section {
     background-color: #141414;
@@ -1276,11 +1310,17 @@ color: var(--color-letra);
 }
 
 .contenedorHeader{
-    background-color: #FF851B;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100px;
+    width: 100%;
+    padding: 1.5rem;
+    font-size: 3rem;
+    font-weight: bolder;
+    text-align: center;
+    background-color: var(--naranja-);
+    color: var(--color-fondo);
+    margin-top: 0;
 }
 
 .elementosHeader{
@@ -1303,7 +1343,7 @@ color: var(--color-letra);
 
 .detalleFacturacion{
     margin-top: 30px;
-    width: 60%;
+    width: 55%;
     display: flex;
     flex-direction: column;
 }
@@ -1533,7 +1573,7 @@ color: var(--color-letra);
     margin-top: 30px;
     padding-bottom: 30px;
     background-color: rgb(244, 241, 241);
-    width: 40%;
+    width: 45%;
     margin-left: 0;
     height: 100%;
     display: flex;
@@ -1547,8 +1587,7 @@ color: var(--color-letra);
 
 .tituloTuPedido{
     text-align: center;
-    margin: auto;
-    padding-top: 5px;
+    margin: 1rem auto;
     color: var(--naranja-);
     height: 3rem;
 }
@@ -1559,8 +1598,20 @@ color: var(--color-letra);
 }
 .productosAgregados > td:nth-child(2) > i {
     margin: 0 6px;
-    border: 1px solid var(--naranja-);
+    border: 1px solid black;
     border-radius: 45px;
+    padding:1px;
+    background-color: var(--naranja-);
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+.productosAgregados > td:nth-child(2) > input {
+    width: 1.2rem;
+    text-align: center;
+    border: none;
+    background-color: transparent;
+    margin: auto;
+    font-weight: bold;
 }
 .titulosProductoSubtotal{
     border-bottom: 1px solid rgb(196, 192, 192, 0.7);
@@ -1568,6 +1619,7 @@ color: var(--color-letra);
     font-weight: 600;
     width: 100%;
     text-align: center;
+    justify-content: space-between;
 }
 
 .subtotalPedido{
@@ -1587,55 +1639,86 @@ color: var(--color-letra);
 .subtotalPedido > p {
     padding: 0 1rem;
 }
-/*
+
 .envioPedido{
     display: flex;
     align-items: center;
+    width: 100%;
+    height: 7rem;
+    padding: 1rem;
     justify-content: space-between;
-    margin: 5px;
-    margin-bottom: 25px;
     border-bottom: 1px solid rgb(196, 192, 192, 0.7);
     font-size: 0.9rem;
     font-weight: 600;
+    margin: 0;
+}
+.envioPedido > p {
+    text-align: end;
+    width: 60%;
 }
 
 .checkboxPedido{
     display: flex;
     flex-direction: column;
     align-items: end;
+    margin-bottom: 0;
+    height: 100%;
 }
 
 .totalPedido{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: 5px;
+    width: 100%;
     font-size: 1.2rem;
     font-weight: 600;
+    padding: 1rem;
+    border-bottom: 1px solid rgb(196, 192, 192, 0.7);
+    margin: 0;
+}
+.totalPedido > p {
+    text-align: end;
+    width: 70%;
 }
 
 .datosPersonalesPedido{
     display: flex;
-    width: 80%;
+    width: 100%;
     font-size: 0.7rem;
     justify-content: center;
     align-items: center;
     text-align: justify;
-    margin-top: 20px;
+    padding: 1rem 1.5rem;
+    margin: 0;
 }
 
 .politicaDePrivacidad{
     color: #FF851B;
+    cursor: pointer;
+    text-decoration: none;
 }
 
 .terminosYCondiciones{
     display: flex;
     align-items: center;
-    width: 80%;
+    width: 100%;
     justify-content: start;
     font-size: 0.7rem;
-    margin-top: 10px;
+    padding: 0 1.5rem;
+    height: 2rem;
+    margin: 0;
+    gap: 5px;
 }
+.terminosYCondiciones > input {
+    height: 100%;
+    padding: 0;
+}
+.terminosYCondiciones > label {
+    height: 100%;
+    margin: 0;
+    padding: 8px 0 0 0;
+}
+
 
 #terYCondLink{
     color: #FF851B;
@@ -1656,8 +1739,23 @@ color: var(--color-letra);
 #btnPedido:disabled{
     background-color: gray;
     cursor: auto;
-}*/
-
+}
+.pedidoConfirmado {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
+}
+.pedidoConfirmado > a {
+    text-decoration: none;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
+.pedidoConfirmado-span {
+    color: var(--naranja-);
+    font-weight: bold;
+}
 
 
 /* DASHBOARD */

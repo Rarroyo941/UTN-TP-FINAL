@@ -1,4 +1,5 @@
 <%- include('../partials/header.ejs') %>
+
 <section class="pruebacarrito">
 <header>
     <div class="contenedorHeader">
@@ -9,6 +10,7 @@
         <p class="elementosHeader">PEDIDO COMPLETO</p>
     </div> 
 </header>
+<%- include('../partials/mensajes.ejs') -%>
 <section class="pedido">
     <div class="detalleFacturacion">
         <h3 class="tituloDetalleFact">
@@ -18,12 +20,16 @@
             <div class="nombreApellidoFormulario">
                 <div class="nomApellForm">
                     <label for="nombres">Nombres *</label>
-                    <input id="nombres" type="text" name="nombres" placeholder="Nombres" required>
+                    <input id="nombres" type="text" name="nombres" placeholder="<%= user ? user.nombre : 'Nombre' %>" >
                 </div>
                 <div class="nomApellForm">
                     <label for="apellidos">Apellidos *</label>
-                    <input id="apellidos" type="text" name="apellidos" placeholder="Apellidos" required>
+                    <input id="apellidos" type="text" name="apellidos" placeholder="Apellidos" >
                 </div>
+            </div>
+            <div class="empresa">
+                <label for="empresa">Email</label>
+                <input id="empresa" type="email" name="empresa" placeholder="<%= user ? user.email : 'E-mail' %>" >
             </div>
             <div class="empresa">
                 <label for="empresa">Nombre de la empresa (Opcional)</label>
@@ -31,7 +37,7 @@
             </div>
             <div class="telefono">
                 <label for="telefono">Telofono de contacto *</label>
-                <input id="telefono" type="tel" name="telefono" placeholder="Telefono" required>
+                <input id="telefono" type="tel" name="telefono" placeholder="Telefono" >
             </div>
             <div class="pais">
                 <label for="pais">Pais/Region</label>
@@ -39,27 +45,27 @@
             </div>
             <div class="codigoPostal">
                 <label for="codigoPostal">Codigo Postal *</label>
-                <input id="codigoPostal" type="number" name="codigoPostal" placeholder="Codigo Postal" required>
+                <input id="codigoPostal" type="number" name="codigoPostal" placeholder="Codigo Postal" >
                 <a href="https://www.correoargentino.com.ar/formularios/cpa" target="_blank" class="linkPostal">No se mi codigo postal</a>
             </div>
             <div class="provinciaLocalidad">
                 <div class="provinciaLocalidadForm">
                     <label for="provincia">Provincia *</label>
-                    <input id="provincia" type="text" name="provincia" placeholder="Provincia" required>
+                    <input id="provincia" type="text" name="provincia" placeholder="Provincia" >
                 </div>
                 <div class="provinciaLocalidadForm">
                     <label for="localidad">Localidad *</label>
-                    <input id="localidad" type="text" name="localidad" placeholder="Localidad" required>
+                    <input id="localidad" type="text" name="localidad" placeholder="Localidad" >
                 </div>
             </div>
             <div class="calleNumero">
                 <div class="calleNumeroForm">
                     <label for="calle">Calle *</label>
-                    <input id="calle" type="text" name="calle" placeholder="Calle" required>
+                    <input id="calle" type="text" name="calle" placeholder="Calle">
                 </div>
                 <div class="calleNumeroForm">
                     <label for="numero">Numero *</label>
-                    <input id="numero" type="number" name="numero" placeholder="Numero" required>
+                    <input id="numero" type="number" name="numero" placeholder="Numero">
                     <div class="sinNumero">
                         <input id="sinNumero" type="checkbox" name="sinNumero">
                         <label for="sinNumero">Sin Numero</label>
@@ -94,32 +100,41 @@
         </form>
     </div>
 
-    <div class="tuPedido">
+    <section class="tuPedido">
         <h3 class="tituloTuPedido">TU PEDIDO</h3>
-        <table>
+        <table id="tablaProductos">
             <thead>
-                <tr class="titulosProductoSubtotal">
-                    <th>PRODUCTO</th>
-                    <th>CANTIDAD</th>
-                    <th>SUBTOTAL</th>
-                </tr>
-            </thead>  
+              <tr class="titulosProductoSubtotal">
+                <th>PRODUCTO</th>
+                <th>CANTIDAD</th>
+                <th>SUBTOTAL</th>
+                <th>TOTAL</th>
+              </tr>
+            </thead>
             <tbody>
-                <% productos.forEach(producto => { %>
-                    <tr class="productosAgregados">
-                        <td><%= producto.titulo %></td>
-                        <td><i class="bi bi-dash"></i> <%=cantidad%> <i class="bi bi-plus"></i></td>
-                        <td>$<%= parseFloat(producto.precio).toFixed(2) %></td>
-                    </tr>
-                <% }) %>
-            </tbody>  
-        </table>
-            <div class="subtotalPedido">
-                <p>Subtotal:</p>
-                <p>$<%= total.toFixed(2) %></p>
-            </div>
-            <!--<div class="envioPedido">
-                <p>Envio</p>
+              <% productos.forEach(producto => { %>
+                <tr class="productosAgregados" data-id="<%= producto._id %>" data-precio="<%= parseFloat(producto.precio).toFixed(2) %>">
+                  <td><%= producto.titulo %></td>
+                  <td>
+                    <i class="bi bi-dash" id="decrementar-<%= producto._id %>" data-precio="<%= parseFloat(producto.precio).toFixed(2) %>"></i>
+                    <input id="cantidad-<%= producto._id %>" type="number" name="cantidad" min="1" value="1" required>
+                    <i class="bi bi-plus" id="incrementar-<%= producto._id %>" data-precio="<%= parseFloat(producto.precio).toFixed(2) %>"></i>
+                  </td>
+                  <td>$<%= producto.precio.toFixed(2) %></td>
+                  <!-- Nuevo elemento <td> para mostrar el resultado de la multiplicación -->
+                  <td>
+                    <p id="resultado-<%= producto._id %>">$<%= parseFloat(producto.precio).toFixed(2) %></p>
+                  </td>
+                </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        <div class="subtotalPedido">
+          <p>SUBTOTAL:</p>
+          <p>$<%= total.toFixed(2) %></p>
+        </div>
+        <div class="envioPedido">
+                <p>ENVIO:</p>
                 <div class="checkboxPedido">
                     <div class="checkPedido">
                         <label for="tipoEnvio">Retirar en local</label>
@@ -131,26 +146,84 @@
                     </div>
                 </div>
             </div>
+            
             <div class="totalPedido">
-                <p>Total</p>
-                <div>$6545645</div>    
+                <p>TOTAL:</p>
+                <div id="total">$<%= total.toFixed(2) %></div>  
             </div>
-       
+            <div class="datosPersonalesPedido">
+                <p>Tus datos personales se utilizaran para procesar tu pedido, mejorar tu experiencia en nuestra web y otros propositos descriptos en nuestros <a href="/carrito" class="politicaDePrivacidad">politica de privacidad.</a></p>
+            </div>
+            <div class="terminosYCondiciones">
+                <input type="checkbox" name="terminosYCondiciones" id="termYCondCheck">
+                <label for="terminosYCondiciones">He leido y acepto los <a href="#" id="terYCondLink">Terminos y Condiciones.</a></label>
+            </div>
+            <a href="/pedidoRealizado" class="btn" id="btnPedido" disabled>REALIZAR PEDIDO</a>
         </div>
-        <div class="datosPersonalesPedido">
-            <p>Tus datos personales se utilizaran para procesar tu pedido, mejorar tu experiencia en nuestra web y otros propositos descriptos en nuestros <span href="#" class="politicaDePrivacidad">politica de privacidad.</span>
-            </p>
-            <p></p>
-        </div>
-        <div class="terminosYCondiciones">
-            <input type="checkbox" name="terminosYCondiciones" id="termYCondCheck">
-            <label for="terminosYCondiciones">He leido y acepto los <a href="#" id="terYCondLink">Terminos y Condiciones.</a></label>
-        </div>
-        <button id="btnPedido" disabled>REALIZAR PEDIDO</button>-->
-    </div>
+        
+        
+    </section>
 </section>
 </section>
 
-
+<script>
+    // Obtener todos los elementos con clase "productosAgregados"
+    const productosElements = document.querySelectorAll(".productosAgregados");
+  
+    const decrementarCantidad = (productoId) => {
+      const cantidadInput = document.getElementById(`cantidad-${productoId}`);
+      let cantidad = parseInt(cantidadInput.value);
+      if (cantidad > 1) {
+        cantidad--;
+        cantidadInput.value = cantidad;
+        calcularSubtotal(productoId, cantidad);
+      }
+    };
+  
+    const incrementarCantidad = (productoId) => {
+      const cantidadInput = document.getElementById(`cantidad-${productoId}`);
+      let cantidad = parseInt(cantidadInput.value);
+      cantidad++;
+      cantidadInput.value = cantidad;
+      calcularSubtotal(productoId, cantidad);
+    };
+  
+    const calcularSubtotal = (productoId, cantidad) => {
+      const precioUnitario = parseFloat(productos.find(p => p._id.toString() === productoId.toString()).precio);
+      const subtotal = precioUnitario * cantidad;
+      const subtotalElement = document.getElementById(`subtotal-${productoId}`);
+      subtotalElement.textContent = `$${subtotal.toFixed(2)}`;
+      const resultado = precioUnitario * cantidad;
+        const resultadoElement = document.getElementById(`resultado-${productoId}`);
+        resultadoElement.textContent = `$${resultado.toFixed(2)}`;
+      // Actualizar el total al modificar un subtotal
+      const totalElement = document.getElementById('total');
+    let total = 0;
+    productosElements.forEach(producto => {
+      const cantidadInput = producto.querySelector(`#cantidad-${producto.dataset.id}`);
+      const precio = parseFloat(producto.dataset.precio);
+      total += cantidadInput.value * precio;
+    });
+    totalElement.textContent = `$${total.toFixed(2)}`;
+    };
+  
+    document.addEventListener("DOMContentLoaded", () => {
+      // Asociar los eventos a los botones + y - para modificar la cantidad
+      productosElements.forEach(producto => {
+        const productoId = producto.dataset.id;
+        const cantidadInput = producto.querySelector(`#cantidad-${productoId}`);
+        const decrementButton = producto.querySelector(`#decrementar-${productoId}`);
+        const incrementButton = producto.querySelector(`#incrementar-${productoId}`);
+        
+        decrementButton.addEventListener('click', () => decrementarCantidad(productoId));
+        incrementButton.addEventListener('click', () => incrementarCantidad(productoId));
+  
+        cantidadInput.addEventListener("input", (event) => {
+        const cantidad = parseInt(event.target.value);
+        calcularSubtotal(productoId, cantidad);
+      });
+      });
+    });
+  </script>
 
 <%- include('../partials/footer.ejs') %>
