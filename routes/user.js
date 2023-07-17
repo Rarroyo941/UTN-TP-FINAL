@@ -46,9 +46,13 @@ router.get('/login', (req, res) => {
   }
 });
 router.get('/logout', isAuthenticatedUser, (req, res) => {
-  req.logout();
-  req.flash('success_msg', 'Ha cerrado sesión.');
-  res.redirect('/login');
+  req.logout((err) => {
+    if (err) {
+      console.error('Error al salir sesión:', err);
+    }
+    req.flash('success_msg', 'Ha cerrado sesión.');
+    res.redirect('/login');
+  });
 });
 router.get('/olvide', (req,res)=>{
     res.render('pages/olvide')

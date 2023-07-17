@@ -145,6 +145,46 @@ body{
     font-size: 1.2rem;
     margin-bottom: 4px;
 }
+.bi.bi-list{
+    display: none;
+    position: relative;
+}
+
+.lista-desplegable-menu{
+    position: absolute;
+    display: none;
+    flex-direction: column;
+    align-items: start;
+    justify-content: end;
+    list-style-type: none;
+    background-color: var(--naranja-claro);
+    height: 250px;
+    width: 120px;
+    left: -90px;
+    top: 35px;
+    z-index: 1;
+}
+
+.bi.bi-list:hover>.lista-desplegable-menu{
+    display: flex;
+}
+
+.lista-desplegable-menu>li{
+    margin: -5px;
+    margin-top: 0px;
+    padding: 0px;
+    height: auto;
+}
+
+.lista-desplegable-menu>li>a{
+    text-decoration: none;
+    font-size: 1rem;
+    color: #0B0B0B;
+}
+
+.lista-desplegable-menu>li>a:hover{
+    text-decoration: underline 2px var(--naranja-);
+}
 .nav-toggle{
     color: #141414;
     background: none;
@@ -1802,5 +1842,1643 @@ color: var(--color-letra);
 .products-tr > td:first-child {
     text-align: left;
     padding-left: 1rem;
+}
+
+@media (min-width: 291px) and (max-width: 480px){
+
+    /* REGISTRO */
+
+    .login-title{
+        height: 100px;
+    }
+
+    .registro-container{
+        height: 1500px;
+    }
+
+
+    /*NAVBAR*/
+
+    .navbar{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+    }
+
+    .logo{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 25px;
+    }
+
+    .nav-toggle{
+        display: none;
+    }
+
+    .d-flex.search-form{
+        display: none;
+    }
+
+    .form-control.search-input.me-2{
+        display: none;
+    }
+
+    #fetchBtn{
+        display: none;
+    }
+
+    .nav-menu-container{
+        display: none;
+    }
+
+    .navbar-icons{
+        display: none;
+    }
+
+    .contenedor-icono-lista{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 25px;
+    }
+
+    .bi.bi-list{
+        display: block;
+        color: var(--naranja-);
+        font-size: 2rem;
+    }
+
+    /*ACA EMPIEZA EL HERO*/
+
+
+    .contenedor{
+        background-image: url(../imagenes/cachorro.jpg);
+        background-size: cover;
+        background-position: center center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: auto;
+    }
+
+    .contenedor-izq{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100%;
+        width: 80%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .titulo{
+        
+        margin-top: 30px;
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
+    .vida{
+        font-size: 1.5rem;
+        margin-top: -10px;
+    }
+
+    .texto{
+        font-size: 0.5;
+        text-align: center;
+    }
+
+    .botones{
+        width: 100%;
+        height: 6rem;
+    }
+
+    .btn-comprar{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 45%;
+        height: 75%;
+        font-size: 1rem;
+        font-weight: 500;
+    }
+
+    .btn-leer-mas{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 45%;
+        height: 75%;
+        font-size: 1rem;
+        font-weight: 500;
+        color: var(--color-fondo);
+        background-color: var(--naranja-);
+    }
+
+    .contenedor-der{
+        display: none;
+    }
+
+    .cartelera{
+        flex-direction: column;
+        height: 60vh;
+    }
+
+    #cartelera-view{
+        width: 100%;
+        border-bottom: solid 3px var(--naranja-);
+    }
+
+    #cartelera-noview{
+        display: none;
+    }
+
+    /*PRIMER CARRUSEL*/
+
+    /*SEGUNDO CARRUSEL*/
+
+    .contenedorCarrusel{
+        height: 1600px;
+    }
+
+    .carruseles{
+        height: 100%;
+        width: 100%;
+    }
+
+    .contenedorTitulos > .h2{
+        font-size: 1rem;
+        margin: 5px;
+        height: 50px;
+        padding-top: 0px;
+        text-align: center;
+    }
+
+    .contenedorTarjetas{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .carruseles > .flechas{
+        margin-top: -100px;
+    }
+
+    /*NUESTROS ALIMENTOS*/
+
+    .p-noview{
+        display: none;
+    }
+
+    .about-feeds{
+        padding-top: 100px;
+        height: 1100px;
+        overflow: hidden;
+    }
+
+    .custom-shape-divider-top-1686532109 {
+        width: 250%;
+        height: 1100px;
+        margin-left: -90%;
+        margin-top: 25px;
+    }
+
+    .custom-shape-divider-top-1686532109 svg {
+        position: relative;
+        display: block;
+        width: calc(134% + 1.3px);
+        height: 150px;
+    }
+
+    .custom-shape-divider-top {
+        margin-top: 25px;
+        margin-left: -90%;
+        width: 250%;
+        height: 1100px;
+    }
+
+    /* FOOTER */
+
+    .footer-section{
+        margin-top: -15px;
+        display: flex;
+        flex-direction: column;    
+        align-items: start;
+    }
+   
+    /* LOGIN */
+
+    .login-container{
+        flex-direction: column;
+        height: 1000px;
+    }
+
+    .login-form{
+        margin-top: -200px;
+        border: none;
+        width: 100%;
+        border-bottom: 1px solid var(--naranja-claro);
+    }
+   
+    .registro-container{
+        margin-top: -450px;
+        margin-bottom: -100px;
+    }
+
+    .login-container > .registro-container{
+        width: 100%;
+    }
+
+    /* CONTACTO */
+
+    .contenedor-contacto{
+        display: flex;
+        flex-direction: column;
+        height: 700px;
+    }
+
+    .contacto-izquierdo{
+        border-right: none;
+        width: 100%;
+    }
+
+    .contacto-derecho{
+        display: flex;
+        width: 100%;
+    }
+
+    .contacto-derecho > a > i{
+        font-size: 1rem;
+    }
+
+    /* NOSOTROS */
+
+    .section-nosotros-container{
+        height: 1600px;
+    }
+
+    .login-title{
+        font-size: 2rem;
+    }
+
+    /* CARRITO */
+
+    .contenedorHeader{
+        display: none;
+    }
+
+    .pedido{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .detalleFacturacion{
+        width: 100%;
+    }
+
+    .tuPedido{
+        width: 100%;
+    }
+    
+    #pais{
+        width: 100%;
+    }
+
+    .envioPedido{
+        flex-direction: column;
+    }
+
+    /* MEDIOS DE PAGO */
+    .mediosPago-container>div>h2{
+        font-size: 0.7rem;
+    }
+}
+
+
+@media (min-width: 481px) and (max-width: 545px){
+
+    /*NAVBAR*/
+
+    .navbar{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+    }
+
+    .logo{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 25px;
+    }
+
+    .nav-toggle{
+        display: none;
+    }
+
+    .d-flex.search-form{
+        display: none;
+    }
+
+    .form-control.search-input.me-2{
+        display: none;
+    }
+
+    #fetchBtn{
+        display: none;
+    }
+
+    .nav-menu-container{
+        display: none;
+    }
+
+    .navbar-icons{
+        display: none;
+    }
+
+    .contenedor-icono-lista{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 25px;
+    }
+
+    .bi.bi-list{
+        display: block;
+        color: var(--naranja-);
+        font-size: 2rem;
+    }
+
+    /*ACA EMPIEZA EL HERO*/
+
+
+    .contenedor{
+        background-image: url(../imagenes/cachorro.jpg);
+        background-size: cover;
+        background-position: center center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: auto;
+    }
+
+    .contenedor-izq{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100%;
+        width: 80%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .titulo{
+        
+        margin-top: 30px;
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
+    .vida{
+        font-size: 1.5rem;
+        margin-top: -10px;
+    }
+
+    .texto{
+        font-size: 0.5;
+        text-align: center;
+    }
+
+    .botones{
+        width: 100%;
+        height: 6rem;
+    }
+
+    .btn-comprar{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 45%;
+        height: 75%;
+        font-size: 1rem;
+        font-weight: 500;
+    }
+
+    .btn-leer-mas{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 45%;
+        height: 75%;
+        font-size: 1rem;
+        font-weight: 500;
+        color: var(--color-fondo);
+        background-color: var(--naranja-);
+    }
+
+    .contenedor-der{
+        display: none;
+    }
+
+    .cartelera{
+        flex-direction: column;
+        height: 60vh;
+    }
+
+    #cartelera-view{
+        width: 100%;
+        border-bottom: solid 3px var(--naranja-);
+    }
+
+    #cartelera-noview{
+        display: none;
+    }
+
+    /*PRIMER CARRUSEL*/
+
+    /*SEGUNDO CARRUSEL*/
+
+    .contenedorCarrusel{
+        height: 1600px;
+    }
+
+    .carruseles{
+        height: 100%;
+        width: 100%;
+    }
+
+    .contenedorTitulos > .h2{
+        font-size: 1rem;
+        margin: 5px;
+        height: 50px;
+        padding-top: 0px;
+        text-align: center;
+    }
+
+    .contenedorTarjetas{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .carruseles > .flechas{
+        margin-top: -100px;
+    }
+
+    /*NUESTROS ALIMENTOS*/
+
+    .p-noview{
+        display: none;
+    }
+
+    .about-feeds{
+        padding-top: 100px;
+        height: 1100px;
+        overflow: hidden;
+    }
+
+    .custom-shape-divider-top-1686532109 {
+        width: 250%;
+        height: 1100px;
+        margin-left: -90%;
+        margin-top: 25px;
+    }
+
+    .custom-shape-divider-top-1686532109 svg {
+        position: relative;
+        display: block;
+        width: calc(134% + 1.3px);
+        height: 150px;
+    }
+
+    .custom-shape-divider-top {
+        margin-top: 25px;
+        margin-left: -90%;
+        width: 250%;
+        height: 1100px;
+    }
+
+    /* FOOTER */
+
+    .footer-section{
+        margin-top: -15px;
+        display: flex;
+        flex-direction: column;    
+        align-items: start;
+    }
+    
+    /* LOGIN */
+
+    .login-form > input {
+        width: 200px;
+    }
+
+    /* CONTACTO */
+
+    .contenedor-contacto{
+        display: flex;
+        flex-direction: column;
+        height: 600px;
+    }
+
+    .contacto-izquierdo{
+        border-right: none;
+    }
+
+    /* NOSOTROS */
+
+    .section-nosotros-container{
+        height: 900px;
+    }
+
+    /* CARRITO */
+
+    .contenedorHeader{
+        display: none;
+    }
+
+    .pedido{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .detalleFacturacion{
+        width: 100%;
+    }
+
+    .tuPedido{
+        width: 100%;
+    }
+    
+    #pais{
+        width: 100%;
+    }
+
+    .envioPedido{
+        flex-direction: column;
+    }
+
+    /* MEDIOS DE PAGO */
+    .mediosPago-container>div>h2{
+        font-size: medium;
+    }
+}
+
+
+@media (min-width: 545px) and (max-width: 650px){
+
+    /*NAVBAR*/
+
+    .navbar{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+    }
+
+    .logo{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 25px;
+    }
+
+    .nav-toggle{
+        display: none;
+    }
+
+    .d-flex.search-form{
+        display: none;
+    }
+
+    .form-control.search-input.me-2{
+        display: none;
+    }
+
+    #fetchBtn{
+        display: none;
+    }
+
+    .nav-menu-container{
+        display: none;
+    }
+
+    .navbar-icons{
+        display: none;
+    }
+
+    .contenedor-icono-lista{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 25px;
+    }
+
+    .bi.bi-list{
+        display: block;
+        color: var(--naranja-);
+        font-size: 2rem;
+    }
+
+    /*ACA EMPIEZA EL HERO*/
+
+
+    .contenedor{
+        background-image: url(../imagenes/cachorro.jpg);
+        background-size: cover;
+        background-position: center center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: auto;
+    }
+
+    .contenedor-izq{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100%;
+        width: 80%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .titulo{
+        
+        margin-top: 30px;
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
+    .vida{
+        font-size: 1.5rem;
+        margin-top: -10px;
+    }
+
+    .texto{
+        font-size: 0.5;
+        text-align: center;
+    }
+
+    .botones{
+        width: 100%;
+        height: 6rem;
+    }
+
+    .btn-comprar{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 45%;
+        height: 75%;
+        font-size: 1rem;
+        font-weight: 500;
+    }
+
+    .btn-leer-mas{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 45%;
+        height: 75%;
+        font-size: 1rem;
+        font-weight: 500;
+        color: var(--color-fondo);
+        background-color: var(--naranja-);
+    }
+
+    .contenedor-der{
+        display: none;
+    }
+
+    .cartelera{
+        flex-direction: column;
+        height: 60vh;
+    }
+
+    #cartelera-view{
+        width: 100%;
+        border-bottom: solid 3px var(--naranja-);
+    }
+
+    #cartelera-noview{
+        display: none;
+    }
+
+    /*PRIMER CARRUSEL*/
+
+    /*SEGUNDO CARRUSEL*/
+
+    .contenedorCarrusel{
+        height: 1600px;
+    }
+
+    .carruseles{
+        height: 100%;
+        width: 100%;
+    }
+
+    .contenedorTitulos > .h2{
+        font-size: 1rem;
+        margin: 5px;
+        height: 50px;
+        padding-top: 0px;
+        text-align: center;
+    }
+
+    .contenedorTarjetas{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .carruseles > .flechas{
+        margin-top: -100px;
+    }
+
+
+    /*NUESTROS ALIMENTOS*/
+
+    .p-noview{
+        display: none;
+    }
+
+    .about-feeds{
+        padding-top: 100px;
+        height: 1100px;
+        overflow: hidden;
+    }
+
+    .custom-shape-divider-top-1686532109 {
+        width: 250%;
+        height: 1100px;
+        margin-left: -90%;
+        margin-top: 25px;
+    }
+
+    .custom-shape-divider-top-1686532109 svg {
+        position: relative;
+        display: block;
+        width: calc(134% + 1.3px);
+        height: 150px;
+    }
+
+    .custom-shape-divider-top {
+        margin-top: 25px;
+        margin-left: -90%;
+        width: 250%;
+        height: 1100px;
+    }
+
+    /* FOOTER */
+
+    .footer-section{
+        margin-top: -15px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .logo-iconos{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .contenedor-iconos{
+        width: 80%;
+        height: 100px;
+        display: flex;
+        align-items: center;
+    }
+    
+    .contenedor-listas-footer{
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .contenedor-listas-footer > ul{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 50px;
+    }
+    
+    .contenedor-listas-footer > ul > li{
+        margin: 25px;
+        text-align: center;
+    }
+    
+    /* LOGIN */
+
+    .login-form > input {
+        width: 200px;
+    }
+
+    /* CONTACTO */
+
+    .contenedor-contacto{
+        display: flex;
+        flex-direction: column;
+        height: 600px;
+    }
+
+    .contacto-izquierdo{
+        border-right: none;
+    }
+
+    /* NOSOTROS */
+
+    .section-nosotros-container{
+        height: 780px;
+    }
+
+    /* CARRITO */
+
+    .contenedorHeader{
+        display: none;
+    }
+
+    .pedido{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .detalleFacturacion{
+        width: 100%;
+    }
+
+    .tuPedido{
+        width: 100%;
+    }
+    
+    #pais{
+        width: 100%;
+    }
+
+    /* MEDIOS DE PAGO */
+    .mediosPago-container>div>h2{
+        font-size: medium;
+    }
+
+}
+
+
+@media (min-width: 650px) and (max-width: 780px){
+
+
+    /* MEDIOS DE PAGO */
+    .mediosPago-container>div>h2{
+        font-size: medium;
+    }
+
+    /*NAVBAR*/
+
+    .navbar{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+    }
+
+    .logo{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 25px;
+    }
+
+    .nav-toggle{
+        display: none;
+    }
+
+    .d-flex.search-form{
+        display: none;
+    }
+
+    .form-control.search-input.me-2{
+        display: none;
+    }
+
+    #fetchBtn{
+        display: none;
+    }
+
+    .nav-menu-container{
+        display: none;
+    }
+
+    .navbar-icons{
+        display: none;
+    }
+
+    .contenedor-icono-lista{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 25px;
+    }
+
+    .bi.bi-list{
+        display: block;
+        color: var(--naranja-);
+        font-size: 2rem;
+    }
+
+    /*ACA EMPIEZA EL HERO*/
+
+
+    .contenedor{
+        background-image: url(../imagenes/cachorro.jpg);
+        background-size: cover;
+        background-position: center center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 400px;
+    }
+
+    .contenedor-izq{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100%;
+        width: 80%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .titulo{
+        
+        margin-top: 30px;
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
+    .vida{
+        font-size: 1.5rem;
+        margin-top: -10px;
+    }
+
+    .texto{
+        font-size: 0.5;
+        text-align: center;
+    }
+
+    .botones{
+        width: 100%;
+        height: 6rem;
+    }
+
+    .btn-comprar{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 25%;
+        height: 75%;
+        font-size: 1rem;
+        font-weight: 500;
+    }
+
+    .btn-leer-mas{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 25%;
+        height: 75%;
+        font-size: 1rem;
+        font-weight: 500;
+        color: var(--color-fondo);
+        background-color: var(--naranja-);
+    }
+
+    .contenedor-der{
+        display: none;
+    }
+
+    .numeros{ 
+        font-size: 2rem;
+        margin-bottom: 0;
+    }
+
+    .info{
+        font-size: 0.8rem;
+    }
+    
+
+    /*PRIMER CARRUSEL*/
+
+    /*SEGUNDO CARRUSEL*/
+
+    .contenedorCarrusel{
+        height: 1600px;
+    }
+
+    .carruseles{
+        height: 100%;
+        width: 100%;
+    }
+
+    .contenedorTitulos > .h2{
+        font-size: 1rem;
+        margin: 5px;
+        height: 50px;
+        padding-top: 0px;
+        text-align: center;
+    }
+
+    .contenedorTarjetas{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .carruseles > .flechas{
+        margin-top: -100px;
+    }
+    
+    /*NUESTROS ALIMENTOS*/
+
+    .p-noview{
+        display: none;
+    }
+
+    .about-feeds{
+        padding-top: 100px;
+        height: 1100px;
+        overflow: hidden;
+    }
+
+    .custom-shape-divider-top-1686532109 {
+        width: 250%;
+        height: 1100px;
+        margin-left: -90%;
+        margin-top: 25px;
+    }
+
+    .custom-shape-divider-top-1686532109 svg {
+        position: relative;
+        display: block;
+        width: calc(134% + 1.3px);
+        height: 150px;
+    }
+
+    .custom-shape-divider-top {
+        margin-top: 25px;
+        margin-left: -90%;
+        width: 250%;
+        height: 1100px;
+    }
+
+
+    /* FOOTER */
+    
+    .footer-section{
+        margin-top: -15px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .logo-iconos{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .contenedor-iconos{
+        width: 80%;
+        height: 100px;
+        display: flex;
+        align-items: center;
+    }
+    
+    .contenedor-listas-footer{
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .contenedor-listas-footer > ul{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 50px;
+    }
+    
+    .contenedor-listas-footer > ul > li{
+        margin: 25px;
+        text-align: center;
+    }
+    
+    /* NOSOTROS */
+
+    .section-nosotros-container{
+        height: 750px;
+    }
+
+    /* CARRITO */
+    .contenedorHeader{
+        display: none;
+    }
+
+    .pedido{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .detalleFacturacion{
+        width: 100%;
+    }
+
+    .tuPedido{
+        width: 100%;
+    }
+    
+    #pais{
+        width: 100%;
+    }
+
+}
+
+@media (min-width: 781px) and (max-width: 895px){
+
+    /*NAVBAR*/
+
+    .navbar{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+    }
+
+    .logo{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 25px;
+    }
+
+    .nav-toggle{
+        display: none;
+    }
+
+    .d-flex.search-form{
+        display: none;
+    }
+
+    .form-control.search-input.me-2{
+        display: none;
+    }
+
+    #fetchBtn{
+        display: none;
+    }
+
+    .nav-menu-container{
+        display: none;
+    }
+
+    .navbar-icons{
+        display: none;
+    }
+
+    .contenedor-icono-lista{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 25px;
+    }
+
+    .bi.bi-list{
+        display: block;
+        color: var(--naranja-);
+        font-size: 2rem;
+    }
+
+    /*ACA EMPIEZA EL HERO*/
+
+
+    .contenedor{
+        background-image: url(../imagenes/cachorro.jpg);
+        background-size: cover;
+        background-position: center center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 450px;
+    }
+
+    .contenedor-izq{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100%;
+        width: 80%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .titulo{
+        
+        margin-top: 30px;
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
+    .vida{
+        font-size: 1.5rem;
+        margin-top: -10px;
+    }
+
+    .texto{
+        font-size: 0.5;
+        text-align: center;
+    }
+
+    .botones{
+        margin-top: 50px;
+        width: 100%;
+        height: 6rem;
+    }
+
+    .btn-comprar{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 25%;
+        height: 75%;
+        font-size: 1rem;
+        font-weight: 500;
+    }
+
+    .btn-leer-mas{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 25%;
+        height: 75%;
+        font-size: 1rem;
+        font-weight: 500;
+        color: var(--color-fondo);
+        background-color: var(--naranja-);
+    }
+
+    .contenedor-der{
+        display: none;
+    }
+
+    .numeros{ 
+        font-size: 2rem;
+        margin-bottom: 0;
+    }
+
+    .info{
+        font-size: 0.8rem;
+    }
+    
+
+    /*PRIMER CARRUSEL*/
+
+    /*SEGUNDO CARRUSEL*/
+
+    .contenedorCarrusel{
+        height: 1600px;
+    }
+
+    .carruseles{
+        height: 100%;
+        width: 100%;
+    }
+
+    .contenedorTitulos > .h2{
+        font-size: 1rem;
+        margin: 5px;
+        height: 50px;
+        padding-top: 0px;
+        text-align: center;
+    }
+
+    .contenedorTarjetas{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .carruseles > .flechas{
+        margin-top: -100px;
+    }
+    
+    /* FOOTER */
+    
+    .footer-section{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .logo-iconos{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .contenedor-iconos{
+        width: 80%;
+        height: 100px;
+        display: flex;
+        align-items: center;
+    }
+    
+    .contenedor-listas-footer{
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .contenedor-listas-footer > ul{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 50px;
+    }
+    
+    .contenedor-listas-footer > ul > li{
+        margin: 25px;
+        text-align: center;
+    }
+    
+    /* NOSOTROS */
+
+    .section-nosotros-container{
+        height: 650px;
+    }
+
+    /* CARRITO */
+
+    .contenedorHeader{
+        display: none;
+    }
+
+    .pedido{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .detalleFacturacion{
+        width: 90%;
+    }
+
+    .tuPedido{
+        width: 90%;
+    }
+    
+    #pais{
+        width: 100%;
+    }
+
+}
+
+@media (min-width: 895px) and (max-width: 1038px){
+
+    /*NAVBAR*/
+    
+    .navbar{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+    }
+
+    .logo{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 25px;
+    }
+
+    .nav-toggle{
+        display: none;
+    }
+
+    .d-flex.search-form{
+        display: none;
+    }
+
+    .form-control.search-input.me-2{
+        display: none;
+    }
+
+    #fetchBtn{
+        display: none;
+    }
+
+    .nav-menu-container{
+        display: none;
+    }
+
+    .navbar-icons{
+        display: none;
+    }
+
+    .contenedor-icono-lista{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 25px;
+    }
+
+    .bi.bi-list{
+        display: block;
+        color: var(--naranja-);
+        font-size: 2rem;
+    }
+    
+    /*ACA EMPIEZA EL HERO*/
+
+
+    .contenedor{
+        background-image: url(../imagenes/cachorro.jpg);
+        background-size: cover;
+        background-position: center center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 500px;
+    }
+
+    .contenedor-izq{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100%;
+        width: 80%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .titulo{
+        
+        margin-top: 30px;
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
+    .vida{
+        font-size: 1.5rem;
+        margin-top: -10px;
+    }
+
+    .texto{
+        margin-top: 50px;
+        text-align: center;
+    }
+
+    .botones{
+        margin-top: 100px;
+        width: 100%;
+        height: 6rem;
+    }
+
+    .btn-comprar{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 25%;
+        height: 75%;
+        font-size: 1rem;
+        font-weight: 500;
+    }
+
+    .btn-leer-mas{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 25%;
+        height: 75%;
+        font-size: 1rem;
+        font-weight: 500;
+        color: var(--color-fondo);
+        background-color: var(--naranja-);
+    }
+
+    .contenedor-der{
+        display: none;
+    }
+
+    .numeros{ 
+        font-size: 2rem;
+        margin-bottom: 0;
+    }
+
+    .info{
+        font-size: 0.8rem;
+    }
+    
+
+    /*PRIMER CARRUSEL*/
+
+    /*SEGUNDO CARRUSEL*/
+
+    .contenedorCarrusel{
+        height: 1600px;
+    }
+
+    .carruseles{
+        height: 100%;
+        width: 100%;
+    }
+
+    .contenedorTitulos > .h2{
+        font-size: 1rem;
+        margin: 5px;
+        height: 50px;
+        padding-top: 0px;
+        text-align: center;
+    }
+
+    .contenedorTarjetas{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .carruseles > .flechas{
+        margin-top: -100px;
+    }
+
+    /* FOOTER */
+
+    h4{
+        margin: 5px;
+    }
+
+    /* NOSOTROS */
+
+    .section-nosotros-container{
+        height: 600px;
+    }
+
+    /* CARRITO */
+    #pais{
+        width: 100%;
+    }
+
+
+
+}
+
+@media (min-width: 1038px) and (max-width: 1286px){
+
+    /*ACA EMPIEZA EL HERO*/
+
+    .titulo{
+        margin-top: 0px;
+    }
+
+    .vida{
+        margin-top: -15px;
+    }
+
+    .texto{
+        margin-top: -15px;
+    }
+
+    .botones{
+        height: 3.5rem;
+        width: 80%;
+    }
+
+    .btn-comprar{
+        display: flex;
+        height: 100%;
+        width: 50%;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.1rem;
+    }
+
+    .btn-leer-mas{
+        display: flex;
+        height: 100%;
+        width: 50%;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.1rem;
+    }
+
+    /*PRIMER CARRUSEL*/
+
+    /*SEGUNDO CARRUSEL*/
+    
+    /* FOOTER */
+
+    h4{
+        margin: 5px;
+    }
+
+    /* CARRITO */
+    #pais{
+        width: 100%;
+    }
+
 }
 
