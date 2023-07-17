@@ -11,12 +11,7 @@
             <p>Stock: <span class="product-span"><%= producto.stock %> (unidades)</span></p>
             <i class="bi bi-truck"> Consultá costo de <a href="/envios" target="_blank">envío</a></i>
             <i class="bi bi-arrow-left-right"> Devolución gratis</i>
-            <form action="/carrito" method="post" id="formulario-carrito">
-                <input type="hidden" id="input-producto-id" name="agregar" value="<%= producto._id %>">
-                <input type="hidden" name="titulo" value="<%= producto.titulo %>">
-                <input type="hidden" name="precio" value="<%= producto.precio %>">
-                <input class="btn btn-primary" type="submit" value="Agregar al carrito">
-              </form>
+            <a href="/carrito/agregar/<%= producto._id %>" class="btn btn-primary">Agregar al carrito</a>
             <div class="etiquetas-div">
                 <p>Etiquetas:</p>
                 <p><%= producto.etiquetas %></p>

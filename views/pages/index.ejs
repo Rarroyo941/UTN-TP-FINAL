@@ -1,5 +1,5 @@
 <%- include('../partials/header.ejs', { carritoLength: carritoLength }) %>
-
+<%- include('../partials/mensajes.ejs') -%>
 <!--ACA COMIENZA EL HERO-->
 <section>
     <div class="contenedor">
@@ -48,12 +48,7 @@
               <div class="card-body">
                 <h5 class="card-title primer-carousel-titulo"><%=productos[i].titulo%></h5>
                 <p class="card-text primer-carousel-precio">$<%=parseFloat(productos[i].precio).toFixed(2)%></p>
-                <form action="/carrito" method="post" id="formulario-carrito">
-                  <input type="hidden" id="input-producto-id" name="agregar" value="<%= productos[i]._id %>">
-                  <input type="hidden" name="titulo" value="<%= productos[i].titulo %>">
-                  <input type="hidden" name="precio" value="<%= productos[i].precio %>">
-                  <input class="btn btn-primary" type="submit" value="Agregar al carrito">
-                </form>
+                <a href="/carrito/agregar/<%= productos[i]._id %>" class="btn btn-primary">Agregar al carrito</a>
               </div>
             </div>
           </a>
@@ -69,12 +64,7 @@
               <div class="card-body">
                 <h5 class="card-title primer-carousel-titulo"><%=productos[i].titulo%></h5>
                 <p class="card-text primer-carousel-precio">$<%=parseFloat(productos[i].precio).toFixed(2)%></p>
-                <form action="/carrito" method="post" id="formulario-carrito">
-                  <input type="hidden" id="input-producto-id" name="agregar" value="<%= productos[i]._id %>">
-                  <input type="hidden" name="titulo" value="<%= productos[i].titulo %>">
-                  <input type="hidden" name="precio" value="<%= productos[i].precio %>">
-                  <input class="btn btn-primary" type="submit" value="Agregar al carrito">
-                </form>
+                <a href="/carrito/agregar/<%= productos[i]._id %>" class="btn btn-primary">Agregar al carrito</a>
               </div>
             </div>
           </a>
@@ -91,12 +81,7 @@
               <div class="card-body">
                 <h5 class="card-title primer-carousel-titulo"><%=productos[i].titulo%></h5>
                 <p class="card-text primer-carousel-precio">$<%=parseFloat(productos[i].precio).toFixed(2)%></p>
-                <form action="/carrito" method="post" id="formulario-carrito">
-                  <input type="hidden" id="input-producto-id" name="agregar" value="<%= productos[i]._id %>">
-                  <input type="hidden" name="titulo" value="<%= productos[i].titulo %>">
-                  <input type="hidden" name="precio" value="<%= productos[i].precio %>">
-                  <input class="btn btn-primary" type="submit" value="Agregar al carrito">
-                </form>
+                <a href="/carrito/agregar/<%= productos[i]._id %>" class="btn btn-primary">Agregar al carrito</a>
               </div>
             </div>
           </a>
@@ -112,12 +97,7 @@
               <div class="card-body">
                 <h5 class="card-title primer-carousel-titulo"><%=productos[i].titulo%></h5>
                 <p class="card-text primer-carousel-precio">$<%=parseFloat(productos[i].precio).toFixed(2)%></p>
-                <form action="/carrito" method="post" id="formulario-carrito">
-                  <input type="hidden" id="input-producto-id" name="agregar" value="<%= productos[i]._id %>">
-                  <input type="hidden" name="titulo" value="<%= productos[i].titulo %>">
-                  <input type="hidden" name="precio" value="<%= productos[i].precio %>">
-                  <input class="btn btn-primary" type="submit" value="Agregar al carrito">
-                </form>
+                <a href="/carrito/agregar/<%= productos[i]._id %>" class="btn btn-primary">Agregar al carrito</a>
               </div>
             </div>
           </a>
@@ -160,7 +140,7 @@
                   <p class="promo-label">Disponibles:</p>
                   <p><%=productos[i].stock%> unidades</p>
               </div>
-              <form action="/carrito" method="post" id="formulario-carrito">
+              <form action="/carrito/agregar/<%= productos[i]._id %>" method="get" id="formulario-carrito">
                 <input type="hidden" id="input-producto-id" name="agregar" value="<%= productos[i]._id %>">
                 <input type="hidden" name="titulo" value="<%= productos[i].titulo %>">
                 <input type="hidden" name="precio" value="<%= productos[i].precio %>">
@@ -192,7 +172,7 @@
                   <p class="promo-label">Disponibles:</p>
                   <p><%=productos[i].stock%> unidades</p>
               </div>
-              <form action="/carrito" method="post" id="formulario-carrito">
+              <form action="/carrito/agregar/<%= productos[i]._id %>" method="get" id="formulario-carrito">
                 <input type="hidden" id="input-producto-id" name="agregar" value="<%= productos[i]._id %>">
                 <input type="hidden" name="titulo" value="<%= productos[i].titulo %>">
                 <input type="hidden" name="precio" value="<%= productos[i].precio %>">
@@ -225,7 +205,7 @@
                   <p class="promo-label">En promoción:</p>
                   <p>$<%=(parseFloat(productos[i].precio) *0.9).toFixed(2)%></p>
               </div>
-              <form action="/carrito" method="post" id="formulario-carrito">
+              <form action="/carrito/agregar/<%= productos[i]._id %>" method="get" id="formulario-carrito">
                 <input type="hidden" id="input-producto-id" name="agregar" value="<%= productos[i]._id %>">
                 <input type="hidden" name="titulo" value="<%= productos[i].titulo %>">
                 <input type="hidden" name="precio" value="<%= productos[i].precio %>">

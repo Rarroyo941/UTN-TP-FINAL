@@ -10,12 +10,6 @@ import nodemailer from 'nodemailer';
 import LocalStrategy from 'passport-local';
 
 const router = express.Router();
-const initializeCarrito = (req, res, next) => {
-  if (!req.session.carrito) {
-    req.session.carrito = [];
-  }
-  next();
-};
 const carritoLengthMiddleware = (req, res, next) => {
   if (req.session.carrito) {
     res.locals.carritoLength = req.session.carrito.length;
@@ -124,23 +118,68 @@ router.get('/producto/:id', (req, res) => {
 router.get('/dashboard',isAuthenticatedUser,(req,res)=>{
   res.render('pages/dashboard', { user: req.user });
 })
-router.get('/carrito', initializeCarrito, async (req, res) => {
+router.get('/carrito', async (req, res) => {
   try {
-    const productos = await Product.find({ _id: { $in: req.session.carrito } });
+    const productosEnCarrito = req.session.carrito || []; // If cart is empty, initialize an empty array
+
     let total = 0;
-    for (const producto of productos) {
-      total += producto.precio;
+    for (const producto of productosEnCarrito) {
+      total += parseFloat(producto.precio) * producto.cantidad;
     }
     const user = req.user;
-    res.render('pages/carrito', { productos, total, user }); // Renderiza la vista 'carrito.ejs' con los productos y el total del carrito
+    res.render('pages/carrito', { productosEnCarrito, total, user }); // Pass the data to the view for rendering
   } catch (error) {
     console.error('Error al obtener los productos del carrito:', error);
     res.redirect('/'); // Redirige a la página principal o de error
   }
 });
-router.get('/pedidoRealizado', initializeCarrito, isAuthenticatedUser, async (req, res)=>{
+router.get('/carrito/agregar/:id', async (req, res) => {
+  try {
+    let productId = req.params.id;
+    const producto = await Product.findById(productId);
+
+    if (!producto) {
+      req.flash('error_msg', 'El producto no existe.');
+      return res.redirect('/');
+    }
+
+    if (typeof req.session.carrito === 'undefined') {
+      req.session.carrito = [];
+      req.session.carrito.push({
+        titulo: producto.titulo,
+        cantidad: 1,
+        precio: parseFloat(producto.precio).toFixed(2),
+      });
+    } else {
+      let carrito = req.session.carrito;
+      let nuevoItem = true;
+      for (var i = 0; i < carrito.length; i++) {
+        if (carrito[i].titulo == producto.titulo) {
+          carrito[i].cantidad++;
+          nuevoItem = false;
+          break;
+        }
+      }
+      if (nuevoItem) {
+        carrito.push({
+          titulo: producto.titulo,
+          cantidad: 1,
+          precio: parseFloat(producto.precio).toFixed(2),
+        });
+      }
+    }
+    req.flash('success_msg', 'Producto agregado exitosamente');
+    res.redirect('back');
+  } catch (error) {
+    console.error('Error al agregar el producto al carrito:', error);
+    req.flash('error_msg', 'Error al agregar el producto al carrito.');
+    res.redirect('/');
+  }
+});
+router.get('/pedidoRealizado', isAuthenticatedUser, async (req, res)=>{
   res.render('pages/pedidoRealizado')
 })
+
 
 /*router.get('/*', (req,res)=>{
   res.render('admin/pageNotFound')
@@ -149,33 +188,6 @@ router.get('/pedidoRealizado', initializeCarrito, isAuthenticatedUser, async (re
 
 
 //  RUTAS .POST
-
-router.post('/carrito', isAuthenticatedUser, async (req, res) => {
-  try {
-    const { titulo, precio } = req.body;
-
-    // Buscar el producto por título y precio
-    const producto = await Product.findOne({ titulo, precio });
-
-    // Si el producto existe, agregarlo al carrito
-    if (producto) {
-      if (req.session.carrito) {
-        req.session.carrito.push(producto._id);
-      } else {
-        req.session.carrito = [producto._id];
-      }
-
-      req.flash('success_msg', 'Producto agregado al carrito exitosamente.');
-      res.redirect('back'); // Redirige a la página del carrito de compras
-    } else {
-      req.flash('error_msg', 'El producto seleccionado no existe.');
-      res.redirect('/productos'); // Redirige a la página principal o de error
-    }
-  } catch (error) {
-    console.error('Error al agregar el producto al carrito:', error);
-    res.redirect('/productos'); // Redirige a la página principal o de error
-  }
-});
 router.post('/dashboardUsuario',(req,res)=>{
   res.render('dashboard')
 })
