@@ -179,6 +179,34 @@ router.get('/carrito/agregar/:id', async (req, res) => {
 router.get('/pedidoRealizado', isAuthenticatedUser, async (req, res)=>{
   res.render('pages/pedidoRealizado')
 })
+router.get('/carrito/editar/:titulo', (req, res) => {
+  let titulo = req.params.titulo;
+  let carrito = req.session.carrito;
+  let action = req.query.action;
+  for (let i = 0; i < carrito.length; i++) {
+    if (carrito[i].titulo == titulo) {
+      switch (action) {
+        case "agregar":
+          carrito[i].cantidad++;
+          break;
+        case "restar":
+          carrito[i].cantidad--;
+          break;
+        case "eliminar":
+          carrito.splice(i, 1);
+          if (carrito.length == 0) delete req.session.carrito;
+          break;
+        default:
+          console.log('Problema para actualizar');
+          break;
+      }
+      break;
+    }
+  }
+  req.flash('success_msg', 'Carrito actualizado');
+  res.redirect('/carrito');
+});
+
 
 
 /*router.get('/*', (req,res)=>{

@@ -112,19 +112,20 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <% productosEnCarrito.forEach(producto => { %>
-                    <tr class="productosAgregados">
-                      <td><%= producto.titulo %></td>
-                      <td>
-                        <!--<i class="bi bi-dash"></i>-->
-                        <input type="number" name="cantidad" min="1" value="<%= producto.cantidad %>" required>
-                        <!--<i class="bi bi-plus"></i>-->
-                      </td>
-                      <td>$<%= producto.precio %></td>
-                      <td>$<%= (parseFloat(producto.precio) * producto.cantidad).toFixed(2) %></td>
-                    </tr>
-                  <% }) %>
-                </tbody>
+                    <% productosEnCarrito.forEach(producto => { %>
+                      <tr class="productosAgregados">
+                        <td><%= producto.titulo %></td>
+                        <td>
+                          <a href="/carrito/editar/<%= producto.titulo %>?action=restar" class="carrito-iconos">-</a>
+                          <input type="number" name="cantidad" min="1" value="<%= producto.cantidad %>" required>
+                          <a href="/carrito/editar/<%= producto.titulo %>?action=agregar" class="carrito-iconos">+</a>
+                          <a href="/carrito/editar/<%= producto.titulo %>?action=eliminar" class="carrito-iconos"><i class="bi bi-trash"></i></a>
+                        </td>
+                        <td>$<%= producto.precio %></td>
+                        <td>$<%= (parseFloat(producto.precio) * producto.cantidad).toFixed(2) %></td>
+                      </tr>
+                    <% }) %>
+                  </tbody>                  
               </table>
               <div class="subtotalPedido">
                 <p>SUBTOTAL:</p>

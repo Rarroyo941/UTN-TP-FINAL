@@ -475,6 +475,10 @@ body{
     margin-top: -0.5rem;
     height: 15%;
 }
+.carrito-iconos {
+    text-decoration: none;
+    color: var(--naranja-);
+}
 .carrito-btn {
     width: 100%;
     color: var(--color-letra);
