@@ -1,4 +1,4 @@
-<%- include('../partials/header.ejs') %>
+<%- include('../partials/header.ejs', { carritoLength: carritoLength }) %>
 
 <!--ACA COMIENZA EL HERO-->
 <section>
@@ -52,7 +52,7 @@
                   <input type="hidden" id="input-producto-id" name="agregar" value="<%= productos[i]._id %>">
                   <input type="hidden" name="titulo" value="<%= productos[i].titulo %>">
                   <input type="hidden" name="precio" value="<%= productos[i].precio %>">
-                  <input class="btn btn-primary carrito-btn" type="submit" value="Agregar al carrito">
+                  <input class="btn btn-primary" type="submit" value="Agregar al carrito">
                 </form>
               </div>
             </div>
@@ -73,7 +73,7 @@
                   <input type="hidden" id="input-producto-id" name="agregar" value="<%= productos[i]._id %>">
                   <input type="hidden" name="titulo" value="<%= productos[i].titulo %>">
                   <input type="hidden" name="precio" value="<%= productos[i].precio %>">
-                  <input class="btn btn-primary carrito-btn" type="submit" value="Agregar al carrito">
+                  <input class="btn btn-primary" type="submit" value="Agregar al carrito">
                 </form>
               </div>
             </div>
@@ -95,7 +95,7 @@
                   <input type="hidden" id="input-producto-id" name="agregar" value="<%= productos[i]._id %>">
                   <input type="hidden" name="titulo" value="<%= productos[i].titulo %>">
                   <input type="hidden" name="precio" value="<%= productos[i].precio %>">
-                  <input class="btn btn-primary carrito-btn" type="submit" value="Agregar al carrito">
+                  <input class="btn btn-primary" type="submit" value="Agregar al carrito">
                 </form>
               </div>
             </div>
@@ -116,7 +116,7 @@
                   <input type="hidden" id="input-producto-id" name="agregar" value="<%= productos[i]._id %>">
                   <input type="hidden" name="titulo" value="<%= productos[i].titulo %>">
                   <input type="hidden" name="precio" value="<%= productos[i].precio %>">
-                  <input class="btn btn-primary carrito-btn" type="submit" value="Agregar al carrito">
+                  <input class="btn btn-primary" type="submit" value="Agregar al carrito">
                 </form>
               </div>
             </div>

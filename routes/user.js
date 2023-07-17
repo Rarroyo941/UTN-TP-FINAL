@@ -16,6 +16,15 @@ const initializeCarrito = (req, res, next) => {
   }
   next();
 };
+const carritoLengthMiddleware = (req, res, next) => {
+  if (req.session.carrito) {
+    res.locals.carritoLength = req.session.carrito.length;
+  } else {
+    res.locals.carritoLength = 0;
+  }
+  next();
+};
+router.use(carritoLengthMiddleware)
 function isAuthenticatedUser(req, res, next) {
   if(req.isAuthenticated()) {
       return next();
@@ -129,7 +138,7 @@ router.get('/carrito', initializeCarrito, async (req, res) => {
     res.redirect('/'); // Redirige a la página principal o de error
   }
 });
-router.get('/pedidoRealizado', initializeCarrito, async (req, res)=>{
+router.get('/pedidoRealizado', initializeCarrito, isAuthenticatedUser, async (req, res)=>{
   res.render('pages/pedidoRealizado')
 })
 
@@ -137,7 +146,36 @@ router.get('/pedidoRealizado', initializeCarrito, async (req, res)=>{
   res.render('admin/pageNotFound')
 })*/
 
+
+
 //  RUTAS .POST
+
+router.post('/carrito', isAuthenticatedUser, async (req, res) => {
+  try {
+    const { titulo, precio } = req.body;
+
+    // Buscar el producto por título y precio
+    const producto = await Product.findOne({ titulo, precio });
+
+    // Si el producto existe, agregarlo al carrito
+    if (producto) {
+      if (req.session.carrito) {
+        req.session.carrito.push(producto._id);
+      } else {
+        req.session.carrito = [producto._id];
+      }
+
+      req.flash('success_msg', 'Producto agregado al carrito exitosamente.');
+      res.redirect('back'); // Redirige a la página del carrito de compras
+    } else {
+      req.flash('error_msg', 'El producto seleccionado no existe.');
+      res.redirect('/productos'); // Redirige a la página principal o de error
+    }
+  } catch (error) {
+    console.error('Error al agregar el producto al carrito:', error);
+    res.redirect('/productos'); // Redirige a la página principal o de error
+  }
+});
 router.post('/dashboardUsuario',(req,res)=>{
   res.render('dashboard')
 })
@@ -315,32 +353,7 @@ router.post('/reset/:token', (req, res) => {
       res.redirect('/olvide');
     });
 });
-router.post('/carrito', async (req, res) => {
-  try {
-    const { titulo, precio } = req.body;
 
-    // Buscar el producto por título y precio
-    const producto = await Product.findOne({ titulo, precio });
-
-    // Si el producto existe, agregarlo al carrito
-    if (producto) {
-      if (req.session.carrito) {
-        req.session.carrito.push(producto._id);
-      } else {
-        req.session.carrito = [producto._id];
-      }
-
-      req.flash('success_msg', 'Producto agregado al carrito exitosamente.');
-      res.redirect('/carrito'); // Redirige a la página del carrito de compras
-    } else {
-      req.flash('error_msg', 'El producto seleccionado no existe.');
-      res.redirect('/productos'); // Redirige a la página principal o de error
-    }
-  } catch (error) {
-    console.error('Error al agregar el producto al carrito:', error);
-    res.redirect('/productos'); // Redirige a la página principal o de error
-  }
-});
 router.put('/usuarios/editar/:id', (req, res) => {
   let searchQuery = {_id: req.body.id};
 

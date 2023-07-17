@@ -1,229 +1,165 @@
-<%- include('../partials/header.ejs') %>
+<%- include('../partials/header.ejs', { carritoLength: carritoLength }) %>
 
 <section class="pruebacarrito">
-<header>
-    <div class="contenedorHeader">
-        <p class="elementosHeader">CARRITO</p>
-        <i class="bi bi-arrow-right elementosHeader"></i>
-        <p class="elementosHeader"><span class="finalizarPedido">FINALIZAR PEDIDO</span></p>
-        <i class="bi bi-arrow-right elementosHeader"></i>
-        <p class="elementosHeader">PEDIDO COMPLETO</p>
-    </div> 
-</header>
-<%- include('../partials/mensajes.ejs') -%>
-<section class="pedido">
-    <div class="detalleFacturacion">
-        <h3 class="tituloDetalleFact">
-            DETALLES DE FACTURACIÓN
-        </h3>
-        <form action="#" id="formularioCarrito">
-            <div class="nombreApellidoFormulario">
-                <div class="nomApellForm">
-                    <label for="nombres">Nombres *</label>
-                    <input id="nombres" type="text" name="nombres" placeholder="<%= user ? user.nombre : 'Nombre' %>" >
-                </div>
-                <div class="nomApellForm">
-                    <label for="apellidos">Apellidos *</label>
-                    <input id="apellidos" type="text" name="apellidos" placeholder="Apellidos" >
-                </div>
-            </div>
-            <div class="empresa">
-                <label for="empresa">Email</label>
-                <input id="empresa" type="email" name="empresa" placeholder="<%= user ? user.email : 'E-mail' %>" >
-            </div>
-            <div class="empresa">
-                <label for="empresa">Nombre de la empresa (Opcional)</label>
-                <input id="empresa" type="text" name="empresa" placeholder="Nombre de la empresa">
-            </div>
-            <div class="telefono">
-                <label for="telefono">Telofono de contacto *</label>
-                <input id="telefono" type="tel" name="telefono" placeholder="Telefono" >
-            </div>
-            <div class="pais">
-                <label for="pais">Pais/Region</label>
-                <input id="pais" type="text" name="pais" placeholder="Argentina" disabled>
-            </div>
-            <div class="codigoPostal">
-                <label for="codigoPostal">Codigo Postal *</label>
-                <input id="codigoPostal" type="number" name="codigoPostal" placeholder="Codigo Postal" >
-                <a href="https://www.correoargentino.com.ar/formularios/cpa" target="_blank" class="linkPostal">No se mi codigo postal</a>
-            </div>
-            <div class="provinciaLocalidad">
-                <div class="provinciaLocalidadForm">
-                    <label for="provincia">Provincia *</label>
-                    <input id="provincia" type="text" name="provincia" placeholder="Provincia" >
-                </div>
-                <div class="provinciaLocalidadForm">
-                    <label for="localidad">Localidad *</label>
-                    <input id="localidad" type="text" name="localidad" placeholder="Localidad" >
-                </div>
-            </div>
-            <div class="calleNumero">
-                <div class="calleNumeroForm">
-                    <label for="calle">Calle *</label>
-                    <input id="calle" type="text" name="calle" placeholder="Calle">
-                </div>
-                <div class="calleNumeroForm">
-                    <label for="numero">Numero *</label>
-                    <input id="numero" type="number" name="numero" placeholder="Numero">
-                    <div class="sinNumero">
-                        <input id="sinNumero" type="checkbox" name="sinNumero">
-                        <label for="sinNumero">Sin Numero</label>
+    <header>
+        <div class="contenedorHeader">
+            <p class="elementosHeader">CARRITO</p>
+            <i class="bi bi-arrow-right elementosHeader"></i>
+            <p class="elementosHeader"><span class="finalizarPedido">FINALIZAR PEDIDO</span></p>
+            <i class="bi bi-arrow-right elementosHeader"></i>
+            <p class="elementosHeader">PEDIDO COMPLETO</p>
+        </div> 
+    </header>
+    <%- include('../partials/mensajes.ejs') -%>
+    <section class="pedido">
+        <div class="detalleFacturacion">
+            <h3 class="tituloDetalleFact">
+                DETALLES DE FACTURACIÓN
+            </h3>
+            <form action="#" id="formularioCarrito">
+                <div class="nombreApellidoFormulario">
+                    <div class="nomApellForm">
+                        <label for="nombres">Nombres *</label>
+                        <input id="nombres" type="text" name="nombres" value="<%= user ? user.nombre : 'Nombre' %>" >
+                    </div>
+                    <div class="nomApellForm">
+                        <label for="apellidos">Apellidos *</label>
+                        <input id="apellidos" type="text" name="apellidos" placeholder="Apellidos" >
                     </div>
                 </div>
-
-            </div>
-            <div class="pisoDepto">
-                <div class="pisoDeptoForm">
-                    <label for="piso">Piso/Departamento (Opcional)</label>
-                    <input id="piso" type="text" name="piso" placeholder="Piso/Departamento">
-                </div> 
-            </div>
-            <label for="#" class="entreCalles">Entre calles (Opcional)</label>
-            <div class="entreCallesForm">
-                <div class="calleUnoYDos">
-                    <label for="calleUno">Calle 1</label>
-                    <input id="calleUno" type="text" name="calleUno" placeholder="Calle 1">
+                <div class="empresa">
+                    <label for="empresa">Email*</label>
+                    <input id="empresa" type="email" name="empresa" value="<%= user ? user.email : 'E-mail' %>" >
                 </div>
-                <div class="calleUnoYDos">
-                    <label for="calleDos">Calle 2</label>
-                    <input id="calleDos" type="text" name="calleDos" placeholder="Calle 2">
+                <div class="empresa">
+                    <label for="empresa">Nombre de la empresa (Opcional)</label>
+                    <input id="empresa" type="text" name="empresa" placeholder="Nombre de la empresa">
                 </div>
-            </div>
-            <div class="ingresarComentarios">
-                <label for="comentarios">Comentarios (Opcional)</label>
-                <textarea name="comentarios" id="contadorLetras" maxlength="450" onkeyup="contarLetras()" placeholder="Comentarios"></textarea>
-                <div id="contador">
-                    0/450
+                <div class="telefono">
+                    <label for="telefono">Telofono de contacto *</label>
+                    <input id="telefono" type="tel" name="telefono" placeholder="Telefono" >
                 </div>
-            </div>
-        </form>
-    </div>
-
-    <section class="tuPedido">
-        <h3 class="tituloTuPedido">TU PEDIDO</h3>
-        <table id="tablaProductos">
-            <thead>
-              <tr class="titulosProductoSubtotal">
-                <th>PRODUCTO</th>
-                <th>CANTIDAD</th>
-                <th>SUBTOTAL</th>
-                <th>TOTAL</th>
-              </tr>
-            </thead>
-            <tbody>
-              <% productos.forEach(producto => { %>
-                <tr class="productosAgregados" data-id="<%= producto._id %>" data-precio="<%= parseFloat(producto.precio).toFixed(2) %>">
-                  <td><%= producto.titulo %></td>
-                  <td>
-                    <i class="bi bi-dash" id="decrementar-<%= producto._id %>" data-precio="<%= parseFloat(producto.precio).toFixed(2) %>"></i>
-                    <input id="cantidad-<%= producto._id %>" type="number" name="cantidad" min="1" value="1" required>
-                    <i class="bi bi-plus" id="incrementar-<%= producto._id %>" data-precio="<%= parseFloat(producto.precio).toFixed(2) %>"></i>
-                  </td>
-                  <td>$<%= producto.precio.toFixed(2) %></td>
-                  <!-- Nuevo elemento <td> para mostrar el resultado de la multiplicación -->
-                  <td>
-                    <p id="resultado-<%= producto._id %>">$<%= parseFloat(producto.precio).toFixed(2) %></p>
-                  </td>
-                </tr>
-              <% }) %>
-            </tbody>
-          </table>
-        <div class="subtotalPedido">
-          <p>SUBTOTAL:</p>
-          <p>$<%= total.toFixed(2) %></p>
+                <div class="pais">
+                    <label for="pais">Pais/Region</label>
+                    <input id="pais" type="text" name="pais" placeholder="Argentina" disabled>
+                </div>
+                <div class="codigoPostal">
+                    <label for="codigoPostal">Codigo Postal *</label>
+                    <input id="codigoPostal" type="number" name="codigoPostal" placeholder="Codigo Postal" >
+                    <a href="https://www.correoargentino.com.ar/formularios/cpa" target="_blank" class="linkPostal">No se mi codigo postal</a>
+                </div>
+                <div class="provinciaLocalidad">
+                    <div class="provinciaLocalidadForm">
+                        <label for="provincia">Provincia *</label>
+                        <input id="provincia" type="text" name="provincia" placeholder="Provincia" >
+                    </div>
+                    <div class="provinciaLocalidadForm">
+                        <label for="localidad">Localidad *</label>
+                        <input id="localidad" type="text" name="localidad" placeholder="Localidad" >
+                    </div>
+                </div>
+                <div class="calleNumero">
+                    <div class="calleNumeroForm">
+                        <label for="calle">Calle *</label>
+                        <input id="calle" type="text" name="calle" placeholder="Calle">
+                    </div>
+                    <div class="calleNumeroForm">
+                        <label for="numero">Numero *</label>
+                        <input id="numero" type="number" name="numero" placeholder="Numero">
+                        <div class="sinNumero">
+                            <input id="sinNumero" type="checkbox" name="sinNumero">
+                            <label for="sinNumero">Sin Numero</label>
+                        </div>
+                    </div>
+    
+                </div>
+                <div class="pisoDepto">
+                    <div class="pisoDeptoForm">
+                        <label for="piso">Piso/Departamento (Opcional)</label>
+                        <input id="piso" type="text" name="piso" placeholder="Piso/Departamento">
+                    </div> 
+                </div>
+                <label for="#" class="entreCalles">Entre calles (Opcional)</label>
+                <div class="entreCallesForm">
+                    <div class="calleUnoYDos">
+                        <label for="calleUno">Calle 1</label>
+                        <input id="calleUno" type="text" name="calleUno" placeholder="Calle 1">
+                    </div>
+                    <div class="calleUnoYDos">
+                        <label for="calleDos">Calle 2</label>
+                        <input id="calleDos" type="text" name="calleDos" placeholder="Calle 2">
+                    </div>
+                </div>
+                <div class="ingresarComentarios">
+                    <label for="comentarios">Comentarios (Opcional)</label>
+                    <textarea name="comentarios" id="contadorLetras" maxlength="450" onkeyup="contarLetras()" placeholder="Comentarios"></textarea>
+                    <div id="contador">
+                        0/450
+                    </div>
+                </div>
+            </form>
         </div>
-        <div class="envioPedido">
-                <p>ENVIO:</p>
-                <div class="checkboxPedido">
-                    <div class="checkPedido">
-                        <label for="tipoEnvio">Retirar en local</label>
-                        <input type="radio" name="tipoEnvio">
-                    </div>
-                    <div class="checkPedido">
-                        <label for="tipoEnvio">Definir con vendedor</label>
-                        <input type="radio" name="tipoEnvio">
+    
+        <section class="tuPedido">
+            <h3 class="tituloTuPedido">TU PEDIDO</h3>
+            <table id="tablaProductos">
+                <thead>
+                  <tr class="titulosProductoSubtotal">
+                    <th>PRODUCTO</th>
+                    <th>CANTIDAD</th>
+                    <th>SUBTOTAL</th>
+                    <th>TOTAL</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <% productos.forEach(producto => { %>
+                      <tr class="productosAgregados" data-id="<%= producto._id %>" data-precio="<%= parseFloat(producto.precio).toFixed(2) %>">
+                        <td><%= producto.titulo %></td>
+                        <td>
+                          <i class="bi bi-dash"></i>
+                          <input type="number" name="cantidad" min="1" value="1" required>
+                          <i class="bi bi-plus"></i>
+                        </td>
+                        <td>$<%= producto.precio.toFixed(2) %></td>
+                        <td>$<%= producto.precio.toFixed(2) %></td>
+                      </tr>
+                    <% }) %>
+                  </tbody>
+              </table>
+            <div class="subtotalPedido">
+              <p>SUBTOTAL:</p>
+              <p>$<%= total.toFixed(2) %></p>
+            </div>
+            <div class="envioPedido">
+                    <p>ENVIO:</p>
+                    <div class="checkboxPedido">
+                        <div class="checkPedido">
+                            <label for="tipoEnvio">Retirar en local</label>
+                            <input type="radio" name="tipoEnvio">
+                        </div>
+                        <div class="checkPedido">
+                            <label for="tipoEnvio">Definir con vendedor</label>
+                            <input type="radio" name="tipoEnvio">
+                        </div>
                     </div>
                 </div>
+                
+                <div class="totalPedido">
+                    <p>TOTAL:</p>
+                    <div id="total">$<%= total.toFixed(2) %></div>  
+                </div>
+                <div class="datosPersonalesPedido">
+                    <p>Tus datos personales se utilizaran para procesar tu pedido, mejorar tu experiencia en nuestra web y otros propósitos descriptos en nuestra <a href="/carrito" class="politicaDePrivacidad">politica de privacidad.</a></p>
+                </div>
+                <div class="terminosYCondiciones">
+                    <input type="checkbox" name="terminosYCondiciones" id="termYCondCheck">
+                    <label for="terminosYCondiciones">He leido y acepto los <a href="#" id="terYCondLink">Terminos y Condiciones.</a></label>
+                </div>
+                <a href="/pedidoRealizado" class="btn" id="btnPedido" disabled>REALIZAR PEDIDO</a>
             </div>
             
-            <div class="totalPedido">
-                <p>TOTAL:</p>
-                <div id="total">$<%= total.toFixed(2) %></div>  
-            </div>
-            <div class="datosPersonalesPedido">
-                <p>Tus datos personales se utilizaran para procesar tu pedido, mejorar tu experiencia en nuestra web y otros propositos descriptos en nuestros <a href="/carrito" class="politicaDePrivacidad">politica de privacidad.</a></p>
-            </div>
-            <div class="terminosYCondiciones">
-                <input type="checkbox" name="terminosYCondiciones" id="termYCondCheck">
-                <label for="terminosYCondiciones">He leido y acepto los <a href="#" id="terYCondLink">Terminos y Condiciones.</a></label>
-            </div>
-            <a href="/pedidoRealizado" class="btn" id="btnPedido" disabled>REALIZAR PEDIDO</a>
-        </div>
-        
-        
+            
+        </section>
     </section>
-</section>
-</section>
-
-<script>
-    // Obtener todos los elementos con clase "productosAgregados"
-    const productosElements = document.querySelectorAll(".productosAgregados");
-  
-    const decrementarCantidad = (productoId) => {
-      const cantidadInput = document.getElementById(`cantidad-${productoId}`);
-      let cantidad = parseInt(cantidadInput.value);
-      if (cantidad > 1) {
-        cantidad--;
-        cantidadInput.value = cantidad;
-        calcularSubtotal(productoId, cantidad);
-      }
-    };
-  
-    const incrementarCantidad = (productoId) => {
-      const cantidadInput = document.getElementById(`cantidad-${productoId}`);
-      let cantidad = parseInt(cantidadInput.value);
-      cantidad++;
-      cantidadInput.value = cantidad;
-      calcularSubtotal(productoId, cantidad);
-    };
-  
-    const calcularSubtotal = (productoId, cantidad) => {
-      const precioUnitario = parseFloat(productos.find(p => p._id.toString() === productoId.toString()).precio);
-      const subtotal = precioUnitario * cantidad;
-      const subtotalElement = document.getElementById(`subtotal-${productoId}`);
-      subtotalElement.textContent = `$${subtotal.toFixed(2)}`;
-      const resultado = precioUnitario * cantidad;
-        const resultadoElement = document.getElementById(`resultado-${productoId}`);
-        resultadoElement.textContent = `$${resultado.toFixed(2)}`;
-      // Actualizar el total al modificar un subtotal
-      const totalElement = document.getElementById('total');
-    let total = 0;
-    productosElements.forEach(producto => {
-      const cantidadInput = producto.querySelector(`#cantidad-${producto.dataset.id}`);
-      const precio = parseFloat(producto.dataset.precio);
-      total += cantidadInput.value * precio;
-    });
-    totalElement.textContent = `$${total.toFixed(2)}`;
-    };
-  
-    document.addEventListener("DOMContentLoaded", () => {
-      // Asociar los eventos a los botones + y - para modificar la cantidad
-      productosElements.forEach(producto => {
-        const productoId = producto.dataset.id;
-        const cantidadInput = producto.querySelector(`#cantidad-${productoId}`);
-        const decrementButton = producto.querySelector(`#decrementar-${productoId}`);
-        const incrementButton = producto.querySelector(`#incrementar-${productoId}`);
-        
-        decrementButton.addEventListener('click', () => decrementarCantidad(productoId));
-        incrementButton.addEventListener('click', () => incrementarCantidad(productoId));
-  
-        cantidadInput.addEventListener("input", (event) => {
-        const cantidad = parseInt(event.target.value);
-        calcularSubtotal(productoId, cantidad);
-      });
-      });
-    });
-  </script>
-
+    </section>
 <%- include('../partials/footer.ejs') %>

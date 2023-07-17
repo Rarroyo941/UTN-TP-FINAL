@@ -1,6 +1,6 @@
-<%- include('../partials/header.ejs') %>
+<%- include('../partials/header.ejs', { carritoLength: carritoLength }) %>
 <h1 class="login-title">CATÁLOGO DE PRODUCTOS</h1>
-
+<%- include('../partials/mensajes.ejs') %>
 <section class="products-section">
   <div class="product-category">
     <h3>CATEGORÍAS</h3>
@@ -24,7 +24,7 @@
             <input type="hidden" id="input-producto-id" name="agregar" value="<%= producto._id %>">
             <input type="hidden" name="titulo" value="<%= producto.titulo %>">
             <input type="hidden" name="precio" value="<%= producto.precio %>">
-            <input class="btn btn-primary carrito-btn" type="submit" value="Agregar al carrito">
+            <input class="btn btn-primary" type="submit" value="Agregar al carrito">
           </form>
          
         </div>

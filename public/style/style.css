@@ -142,7 +142,8 @@ body{
     padding: 5px 10px;
     text-decoration: none;
     color: var(--naranja-);
-    font-size: 1.7rem;
+    font-size: 1.2rem;
+    margin-bottom: 4px;
 }
 .nav-toggle{
     color: #141414;
@@ -588,7 +589,8 @@ body{
 .resenias > h2 {
     font-weight: bolder;
     text-align: center;
-    margin-bottom: 2rem;
+    margin: 2rem auto;
+    padding-top: 2rem;
 }
 .contenedor-resenias {
     display: flex;
@@ -885,7 +887,7 @@ footer > h5 {
 .nosotros-texto {
     background-color: #F8F8F8;
     opacity: 0.8;
-    text-shadow: 1px 0 0 var(--naranja-);
+    text-shadow: 0 0 2px white;
     background: linear-gradient(135deg, #FAD0AB55 25%, transparent 25%) -10px 0/ 20px 20px, linear-gradient(225deg, #FAD0AB 25%, transparent 25%) -10px 0/ 20px 20px, linear-gradient(315deg, #FAD0AB55 25%, transparent 25%) 0px 0/ 20px 20px, linear-gradient(45deg, #FAD0AB 25%, #F8F8F8 25%) 0px 0/ 20px 20px;
     margin: 2rem 5%;
     padding: 3rem;
@@ -1308,6 +1310,23 @@ color: var(--color-letra);
     display: flex;
     flex-direction: column;
 }
+.carrito-icon {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #000;
+    position: relative;
+  }
+  .carrito-length {
+    background-color:var(--naranja-); 
+    color: #fff;
+    font-size: 12px;
+    padding: 2px 6px; 
+    border-radius: 50%; 
+    position: absolute;
+    top: 0px; 
+    right: -6px;
+  }
 
 .contenedorHeader{
     display: flex;
@@ -1359,7 +1378,7 @@ color: var(--color-letra);
     padding-top: 15px;
     padding-bottom: 30px;
     padding-left: 15px;
-    margin-bottom: 30px;
+    margin-bottom: 5px;
     background-color: aliceblue;
 }
 
@@ -1377,7 +1396,6 @@ color: var(--color-letra);
     height: 30px;
     width: 80%;
     padding-left: 10px;
-    margin-top: 10px;
     border-radius: 5px;
     border: #FAD0AB solid 2px;
 }
@@ -1385,11 +1403,9 @@ color: var(--color-letra);
 .empresa{
     display: flex;
     flex-direction: column;
-    margin-top: 30px;
 }
 
 #empresa{
-    margin-top: 10px;
     height: 30px;
     padding-left: 10px;
     width: 90%;
@@ -1400,11 +1416,9 @@ color: var(--color-letra);
 .telefono{
     display: flex;
     flex-direction: column;
-    margin-top: 30px;
 }
 
 #telefono{
-    margin-top: 10px;
     height: 30px;
     padding-left: 10px;
     width: 40%;
@@ -1415,26 +1429,22 @@ color: var(--color-letra);
 .pais{
     display: flex;
     flex-direction: column;
-    margin-top: 30px;
 }
 
 #pais{
-    margin-top: 10px;
     height: 30px;
     padding-left: 10px;
     background: transparent;
-    width: 10%;
+    width: 20%;
     border: none;
 } 
 
 .codigoPostal{
     display: flex;
     flex-direction: column;
-    margin-top: 20px;
 }
 
 #codigoPostal{
-    margin-top: 10px;
     height: 30px;
     width: 40%;
     padding-left: 10px;
@@ -1443,10 +1453,10 @@ color: var(--color-letra);
 }
 
 .linkPostal{
-    margin-top: 10px;
     text-decoration: none;
     color: blue;
     font-size: small;
+    margin-top: 5px;
 }
 
 .provinciaLocalidad{
@@ -1457,14 +1467,12 @@ color: var(--color-letra);
     display: flex;
     flex-direction: column;
     width: 50%;
-    margin-top: 30px;
 }
 
 .provinciaLocalidadForm>input{
     height: 30px;
     width: 80%;
     padding-left: 10px;
-    margin-top: 10px;
     border-radius: 5px;
     border: #FAD0AB solid 2px;
 }
@@ -1477,21 +1485,18 @@ color: var(--color-letra);
     display: flex;
     flex-direction: column;
     width: 50%;
-    margin-top: 30px;
 }
 
 .calleNumeroForm>input{
     height: 30px;
     width: 80%;
     padding-left: 10px;
-    margin-top: 10px;
     border-radius: 5px;
     border: #FAD0AB solid 2px;
 }
 
 .sinNumero{
     display: flex;
-    margin-top: 5px;
     align-items: center;
     justify-content: start;
 }
@@ -1499,6 +1504,7 @@ color: var(--color-letra);
 .sinNumero>label{
     color: blue;
     font-size: small;
+    padding-top: 15px;
 }
 
 .pisoDepto{
@@ -1509,14 +1515,13 @@ color: var(--color-letra);
     display: flex;
     flex-direction: column;
     width: 50%;
-    margin-top: 30px;
+    margin-top: -2rem;
 }
 
 .pisoDeptoForm>input{
     height: 30px;
     width: 80%;
     padding-left: 10px;
-    margin-top: 10px;
     border-radius: 5px;
     border: #FAD0AB solid 2px;
 }
@@ -1527,7 +1532,7 @@ color: var(--color-letra);
 
 .entreCallesForm{
     display: flex;
-    margin-top: 10px;
+    margin-top: -1rem;
 }
 
 .calleUnoYDos{
@@ -1540,7 +1545,6 @@ color: var(--color-letra);
     height: 30px;
     width: 80%;
     padding-left: 10px;
-    margin-top: 10px;
     border-radius: 5px;
     border: #FAD0AB solid 2px;
 }
@@ -1548,14 +1552,12 @@ color: var(--color-letra);
 .ingresarComentarios{
     display: flex;
     flex-direction: column;
-    margin-top: 30px;
 }
 
 #contadorLetras{
     height: 100px;
     width: 90%;
     padding-left: 10px;
-    margin-top: 10px;
     border-radius: 5px;
     border: #FAD0AB solid 2px;
     resize: none;
@@ -1735,11 +1737,12 @@ color: var(--color-letra);
     margin-top: 25px;
     cursor: pointer;
 }
-
 #btnPedido:disabled{
     background-color: gray;
     cursor: auto;
 }
+
+
 .pedidoConfirmado {
     display: flex;
     flex-direction: column;
@@ -1795,3 +1798,4 @@ color: var(--color-letra);
     text-align: left;
     padding-left: 1rem;
 }
+

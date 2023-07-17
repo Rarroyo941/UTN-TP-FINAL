@@ -53,6 +53,7 @@ app.use((req, res, next)=> {
   next();
 });
 
+
 // Rutas
 app.use(userRouter); // Usa el enrutador userRouter
 app.use(adminRouter)
