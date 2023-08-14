@@ -11,4 +11,6 @@ El proyecto se enfoca en un e-commerce desarrollado con NodeJS, Express, MongoDB
 # Una pestaña de Login/Registro:
 <img src="https://i.ibb.co/MZSb12M/img3tp.jpg" alt="imagen de proyecto 3"/><br>
 # CRUD de Usuarios y Productos para el administrador:
-<img src="https://i.ibb.co/7kZ1PzM/img4tp.jpg" alt="imagen de proyecto 4"/>
+<img src="https://i.ibb.co/7kZ1PzM/img4tp.jpg" alt="imagen de proyecto 4"/><br>
+# y un carrito de compras totalmente funcional:
+<img src="https://i.ibb.co/pLkcBRh/img5tp.jpg" alt="imagen de proyecto 4"/>
