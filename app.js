@@ -8,9 +8,9 @@ import flash from 'connect-flash';
 import session from 'express-session';
 import methodOverride from 'method-override';
 import passport from 'passport';
-import LocalStrategy from 'passport-local'
-import userRouter from './routes/user.js'; // Importa el enrutador desde el archivo separado
+import LocalStrategy from 'passport-local';
 import adminRouter from './routes/admin.js'
+import userRouter from './routes/user.js'
 import User from './models/userModel.js';
 
 const app = express();
