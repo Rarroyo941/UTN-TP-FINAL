@@ -5,7 +5,7 @@ Hola! Bienvenido a mi trabajo final presentado a la UTN de Buenos Aires para la 
 El proyecto se enfoca en un e-commerce desarrollado con NodeJS, Express, MongoDB Atlas, Bootstrap, y otros paquetes complementarios.
 
 <video width="320" height="240" controls>
-  <source src="https://www.veed.io/view/c0347518-93a8-4597-a3eb-b8121fcee75d?panel=share" type="video/mp4">
+  <source src="https://youtu.be/6zg6ezZWuQ0" autoplay type="video/mp4">
   Your browser does not support the video tag.
 </video>
 <img src="https://i.ibb.co/x1MP08B/img1tp.jpg" alt="imagen de proyecto 1"/>
