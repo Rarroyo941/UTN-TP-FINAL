@@ -4,6 +4,7 @@ Hola! Bienvenido a mi trabajo final presentado a la UTN de Buenos Aires para la 
 
 El proyecto se enfoca en un e-commerce desarrollado con NodeJS, Express, MongoDB Atlas, Bootstrap, y otros paquetes complementarios.
 
+<video src="https://www.veed.io/view/c0347518-93a8-4597-a3eb-b8121fcee75d?panel=share"/>
 <img src="https://i.ibb.co/x1MP08B/img1tp.jpg" alt="imagen de proyecto 1"/>
 
 # Cuenta con una pestaña de productos:
