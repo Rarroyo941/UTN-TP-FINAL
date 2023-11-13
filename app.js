@@ -2,7 +2,6 @@ import express from 'express';
 import morgan from 'morgan';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
-import path from 'path';
 import dotenv from 'dotenv';
 import flash from 'connect-flash';
 import session from 'express-session';
@@ -11,7 +10,7 @@ import passport from 'passport';
 import LocalStrategy from 'passport-local';
 import adminRouter from './routes/admin.js'
 import userRouter from './routes/user.js'
-import User from './models/userModel.js';
+import User from './models/userModel';
 
 const app = express();
 dotenv.config({ path: './config.env' });
