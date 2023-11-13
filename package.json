@@ -5,7 +5,7 @@
   "type": "module",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "nodemon --experimental-modules --es-module-specifier-resolution=node app.js"
   },
   "keywords": [],
   "author": "",
