@@ -1,6 +1,6 @@
 import express from "express";
 import ExpressValidator from "express-validator";
-import { User } from '../models/userModel.js';
+import User from '../models/usermodel.js';
 import Product from '../models/productmodel.js';
 
 

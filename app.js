@@ -10,7 +10,7 @@ import passport from 'passport';
 import LocalStrategy from 'passport-local';
 import adminRouter from './routes/admin.js'
 import userRouter from './routes/user.js'
-import {User} from './models/userModel.js';
+import User from './models/usermodel.js';
 
 const app = express();
 dotenv.config({ path: './config.env' });

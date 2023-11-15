@@ -2,7 +2,7 @@ import express from "express";
 import session from "express-session";
 import passport from "passport";
 import bcrypt from 'bcrypt';
-import { User } from '../models/userModel.js';
+import User from '../models/usermodel.js';
 import Product from '../models/productmodel.js';
 import crypto from 'crypto';
 import async from 'async';
