@@ -16,7 +16,7 @@ import MongoStore from 'connect-mongo';
 const app = express();
 dotenv.config({ path: './config.env' });
 
-mongoose.connect(process.env.MONGODB_URI, {
+mongoose.connect('mongodb+srv://Admin:12345@cluster0.gz1bmpq.mongodb.net/ProductosBD?retryWrites=true&w=majority', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
@@ -32,7 +32,7 @@ app.use(session({
   secret: 'login/registro',
   resave: false,
   saveUninitialized: true,
-  store: MongoStore.create({ mongoUrl: process.env.MONGODB_URI})
+  store: MongoStore.create({ mongoUrl: 'mongodb+srv://Admin:12345@cluster0.gz1bmpq.mongodb.net/ProductosBD?retryWrites=true&w=majority'})
 }));
 app.use(passport.initialize());
 app.use(passport.session());
